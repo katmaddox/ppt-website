@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site Map — Practice Transition Partners</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#022C51;--royal:#115694;--sky:#1D86E4;--gold:#ECB100;
+  --cream:#FAF8F1;--white:#fff;
+  --text-b:#3D3B37;--text-m:#73716C;--border:#D9D7CF;--navy-tint:#EAF1F8;
+  --serif:'Libre Baskerville',Georgia,serif;
+  --sans:'Source Sans 3',system-ui,sans-serif;
+}
+body{font-family:var(--sans);background:var(--cream);color:var(--text-b);min-height:100vh;padding:48px;}
+
+/* HEADER */
+.header{max-width:1100px;margin:0 auto 56px;display:flex;align-items:center;justify-content:space-between;}
+.header-left h1{font-family:var(--serif);font-size:32px;color:var(--navy);margin-bottom:4px;}
+.header-left p{font-size:14px;color:var(--text-m);}
+.header-badge{background:var(--navy);color:var(--white);font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:6px 16px;border-radius:100px;}
+
+/* TREE */
+.tree{max-width:1100px;margin:0 auto;}
+
+/* LEVEL ROW */
+.level{display:flex;justify-content:center;gap:0;position:relative;margin-bottom:0;}
+
+/* NODE */
+.node{display:flex;flex-direction:column;align-items:center;position:relative;}
+
+/* NODE CARD */
+.node-card{border-radius:10px;padding:14px 18px;text-align:center;min-width:140px;max-width:160px;position:relative;z-index:2;cursor:pointer;transition:transform .15s,box-shadow .15s;}
+.node-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(2,44,81,0.15);}
+.node-card a{text-decoration:none;color:inherit;}
+.node-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;}
+.node-title{font-family:var(--serif);font-size:14px;line-height:1.3;}
+.node-file{font-size:10px;margin-top:5px;opacity:0.6;}
+
+/* NODE TYPES */
+.node-root .node-card{background:var(--navy);border:2px solid var(--navy);}
+.node-root .node-label{color:var(--gold);}
+.node-root .node-title{color:var(--white);}
+.node-root .node-file{color:rgba(255,255,255,0.5);}
+
+.node-primary .node-card{background:var(--white);border:2px solid var(--royal);}
+.node-primary .node-label{color:var(--royal);}
+.node-primary .node-title{color:var(--navy);}
+
+.node-secondary .node-card{background:var(--white);border:1.5px solid var(--border);}
+.node-secondary .node-label{color:var(--text-m);}
+.node-secondary .node-title{color:var(--navy);}
+
+.node-leaf .node-card{background:var(--navy-tint);border:1.5px solid #C8DFEE;}
+.node-leaf .node-label{color:var(--royal);}
+.node-leaf .node-title{color:var(--navy);}
+
+/* CONNECTORS */
+.connector-down{width:2px;height:32px;background:var(--border);margin:0 auto;}
+.connector-row{display:flex;justify-content:center;align-items:flex-start;position:relative;margin-bottom:0;}
+
+/* Horizontal bar across children */
+.children-wrap{display:flex;flex-direction:column;align-items:center;}
+.children-row{display:flex;justify-content:center;gap:20px;position:relative;}
+.children-row::before{
+  content:'';
+  position:absolute;
+  top:0;left:50%;
+  transform:translateX(-50%);
+  height:2px;
+  background:var(--border);
+  width:calc(100% - 80px);
+}
+.child-col{display:flex;flex-direction:column;align-items:center;}
+.child-col .connector-down{height:24px;}
+
+/* Sub-children */
+.sub-children{display:flex;flex-direction:column;align-items:center;margin-top:0;}
+.sub-children-row{display:flex;justify-content:center;gap:16px;position:relative;}
+.sub-children-row::before{
+  content:'';
+  position:absolute;
+  top:0;left:50%;
+  transform:translateX(-50%);
+  height:2px;
+  background:var(--border);
+  width:calc(100% - 60px);
+}
+.sub-child-col{display:flex;flex-direction:column;align-items:center;}
+
+/* LEGEND */
+.legend{max-width:1100px;margin:56px auto 0;display:flex;gap:24px;flex-wrap:wrap;}
+.legend-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-m);}
+.legend-dot{width:14px;height:14px;border-radius:4px;flex-shrink:0;}
+.legend-dot-root{background:var(--navy);}
+.legend-dot-primary{background:var(--white);border:2px solid var(--royal);}
+.legend-dot-secondary{background:var(--white);border:2px solid var(--border);}
+.legend-dot-leaf{background:var(--navy-tint);border:2px solid #C8DFEE;}
+
+/* PRIORITY TABLE */
+.meta-table{max-width:1100px;margin:48px auto 0;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.meta-table table{width:100%;border-collapse:collapse;}
+.meta-table th{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-m);padding:14px 20px;text-align:left;background:var(--cream);border-bottom:1px solid var(--border);}
+.meta-table td{font-size:13px;color:var(--text-b);padding:12px 20px;border-bottom:1px solid var(--border);}
+.meta-table tr:last-child td{border-bottom:none;}
+.meta-table tr:hover td{background:#F7F5EE;}
+.priority-bar{display:flex;align-items:center;gap:8px;}
+.priority-fill{height:6px;border-radius:3px;background:var(--royal);}
+.tag{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;}
+.tag-high{background:var(--navy-tint);color:var(--royal);}
+.tag-med{background:#F0FDF4;color:#166534;}
+.tag-daily{background:#FEF3CC;color:#7A5800;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>Site Map</h1>
+    <p>Practice Transition Partners — Visual page hierarchy</p>
+  </div>
+  <span class="header-badge">9 pages</span>
+</div>
+
+<div class="tree">
+
+  <!-- ROOT -->
+  <div class="node node-root" style="margin-bottom:0;">
+    <div class="node-card">
+      <div class="node-label">Entry Point</div>
+      <div class="node-title">Home</div>
+      <div class="node-file">index.html → 01_home.html</div>
+    </div>
+  </div>
+
+  <div class="connector-down"></div>
+
+  <!-- PRIMARY NAV LEVEL -->
+  <div class="children-wrap">
+    <div class="children-row">
+
+      <!-- FOR BUYERS -->
+      <div class="child-col">
+        <div class="connector-down"></div>
+        <div class="node node-primary">
+          <div class="node-card">
+            <a href="02_buying.html">
+              <div class="node-label">For Buyers</div>
+              <div class="node-title">Buying a Practice</div>
+              <div class="node-file">02_buying.html</div>
+            </a>
+          </div>
+        </div>
+        <!-- Listings child -->
+        <div class="connector-down"></div>
+        <div class="sub-children">
+          <div class="sub-children-row">
+            <div class="sub-child-col">
+              <div class="node node-secondary">
+                <div class="node-card">
+                  <a href="04_listings.html">
+                    <div class="node-label">Browse</div>
+                    <div class="node-title">Listings</div>
+                    <div class="node-file">04_listings.html</div>
+                  </a>
+                </div>
+              </div>
+              <!-- Listing detail child -->
+              <div class="connector-down"></div>
+              <div class="node node-leaf">
+                <div class="node-card">
+                  <a href="04b_listing_detail.html">
+                    <div class="node-label">Detail</div>
+                    <div class="node-title">Listing Detail</div>
+                    <div class="node-file">04b_listing_detail.html</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOR SELLERS -->
+      <div class="child-col">
+        <div class="connector-down"></div>
+        <div class="node node-primary">
+          <div class="node-card">
+            <a href="03_selling.html">
+              <div class="node-label">For Sellers</div>
+              <div class="node-title">Selling a Practice</div>
+              <div class="node-file">03_selling.html</div>
+            </a>
+          </div>
+        </div>
+        <!-- OOV child -->
+        <div class="connector-down"></div>
+        <div class="sub-children">
+          <div class="sub-children-row">
+            <div class="sub-child-col">
+              <div class="node node-secondary">
+                <div class="node-card">
+                  <a href="05_opinion_of_value.html">
+                    <div class="node-label">Valuation</div>
+                    <div class="node-title">Opinion of Value</div>
+                    <div class="node-file">05_opinion_of_value.html</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS -->
+      <div class="child-col">
+        <div class="connector-down"></div>
+        <div class="node node-primary">
+          <div class="node-card">
+            <a href="06_events.html">
+              <div class="node-label">Company</div>
+              <div class="node-title">Events</div>
+              <div class="node-file">06_events.html</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="child-col">
+        <div class="connector-down"></div>
+        <div class="node node-primary">
+          <div class="node-card">
+            <a href="07_about.html">
+              <div class="node-label">Company</div>
+              <div class="node-title">About &amp; Contact</div>
+              <div class="node-file">07_about.html</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot legend-dot-root"></div> Entry point / home</div>
+  <div class="legend-item"><div class="legend-dot legend-dot-primary"></div> Primary nav pages</div>
+  <div class="legend-item"><div class="legend-dot legend-dot-secondary"></div> Secondary pages</div>
+  <div class="legend-item"><div class="legend-dot legend-dot-leaf"></div> Detail / leaf pages</div>
+</div>
+
+<!-- META TABLE -->
+<div class="meta-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>File</th>
+        <th>SEO Priority</th>
+        <th>Update Frequency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Home</strong></td>
+        <td>01_home.html</td>
+        <td><div class="priority-bar"><div class="priority-fill" style="width:80px;"></div><span>1.0</span></div></td>
+        <td><span class="tag tag-med">Weekly</span></td>
+      </tr>
+      <tr>
+        <td><strong>For Buyers</strong></td>
+        <td>02_buying.html</td>
+        <td><div class="priority-bar"><div class="priority-fill" style="width:72px;"></div><span>0.9</span></div></td>
+        <td><span class="tag tag-high">Monthly</span></td>
+      </tr>
+      <tr>
+        <td><strong>For Sellers</strong></td>
+        <td>03_selling.html</td>
+        <td><div class="priority-bar"><div class="priority-fill" style="width:72px;"></div><span>0.9</span></div></td>
+        <td><span class="tag tag-high">Monthly</span></td>
+      </tr>
+      <tr>
+        <td><strong>Listings</strong></td>
+        <td>04_listings.html</td>
+        <td><div class="priority-bar"><div class="priority-fill" style="width:72px;"></div><span>0.9</span></div></td>
+        <td><span class="tag tag-daily">Daily</span></td>
+      </tr>
+      <tr>
+        <td><strong>Listing Detail</strong></td>
+        <td>04b_listing_detail.html</td>
+        <td><div class="priority-bar"><div class="priority-fill" style="width:56px;"></div><span>0.7</span></div></td>
+        <td><span class="tag tag-daily">Daily</span></td>
+      </tr>
+      <tr>
+        <td><strong>Opinion of Value</strong></td>
+        <td>05_opinion_of_value.html</td>
+        <td><div class="priority-bar"><div class="priority-fill" style="width:64px;"></div><span>0.8</span></div></td>
+        <td><span class="tag tag-high">Monthly</span></td>
+      </tr>
+      <tr>
+        <td><strong>Events</strong></td>
+        <td>06_events.html</td>
+        <td><div class="priority-bar"><div class="priority-fill" style="width:56px;"></div><span>0.7</span></div></td>
+        <td><span class="tag tag-med">Weekly</span></td>
+      </tr>
+      <tr>
+        <td><strong>About &amp; Contact</strong></td>
+        <td>07_about.html</td>
+        <td><div class="priority-bar"><div class="priority-fill" style="width:48px;"></div><span>0.6</span></div></td>
+        <td><span class="tag tag-high">Monthly</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
