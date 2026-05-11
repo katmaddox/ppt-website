@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Events — Practice Transition Partners</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#022C51;--royal:#115694;--sky:#1D86E4;--gold:#ECB100;
+  --cream:#FAF8F1;--warm:#73716C;--white:#fff;
+  --text:#1A1917;--text-b:#3D3B37;--text-m:#73716C;
+  --border:#D9D7CF;--surface:#F0EDE4;--navy-tint:#EAF1F8;
+  --serif:'Libre Baskerville',Georgia,serif;
+  --sans:'Source Sans 3',system-ui,sans-serif;
+}
+body{font-family:var(--sans);color:var(--text-b);background:var(--white);line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+h1,h2,h3,h4{font-family:var(--serif);}
+
+/* ── NAV ─────────────────────────────────────────── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.nav img{height:48px;width:auto;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:14px;font-weight:600;color:var(--text-m);transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--navy);}
+.nav-cta{background:var(--navy);color:var(--white)!important;font-size:13px;font-weight:700;padding:9px 20px;border-radius:6px;letter-spacing:0.01em;}
+.nav-cta:hover{background:var(--royal)!important;}
+
+/* ── HERO ────────────────────────────────────────── */
+.hero{background:var(--navy);padding:72px 48px 64px;overflow:hidden;position:relative;}
+.hero::after{content:'';position:absolute;right:-120px;top:-80px;width:600px;height:600px;border-radius:50%;background:rgba(17,86,148,0.35);pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(236,177,0,0.15);border:1px solid rgba(236,177,0,0.4);border-radius:100px;padding:5px 14px;margin-bottom:24px;}
+.hero-eyebrow span{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);}
+.hero h1{font-size:48px;color:var(--white);line-height:1.1;margin-bottom:20px;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.72);line-height:1.7;max-width:500px;margin-bottom:36px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.arrow{width:14px;height:14px;flex-shrink:0;}
+
+/* ── BUTTONS ─────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:14px;font-weight:700;padding:11px 24px;border-radius:6px;border:none;cursor:pointer;letter-spacing:0.01em;}
+.btn-primary{background:var(--navy);color:var(--white);}
+.btn-gold{background:var(--gold);color:var(--navy);}
+.btn-ghost-w{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.4);}
+.btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy);}
+.btn-royal{background:var(--royal);color:var(--white);}
+.btn-sm{font-size:13px;padding:8px 18px;}
+
+/* ── SECTIONS ────────────────────────────────────── */
+.section{padding:80px 48px;}
+.section-cream{background:var(--cream);}
+.section-navy{background:var(--navy);}
+.container{max-width:1200px;margin:0 auto;}
+.eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--royal);margin-bottom:10px;}
+.eyebrow-w{color:rgba(255,255,255,0.6);}
+.section-h2{font-size:38px;color:var(--navy);line-height:1.15;margin-bottom:14px;}
+.section-h2-w{color:var(--white);}
+.section-sub{font-size:16px;color:var(--text-m);line-height:1.7;max-width:580px;margin-bottom:40px;}
+.section-sub-w{color:rgba(255,255,255,0.65);}
+.section-header{margin-bottom:40px;}
+
+/* ── FEATURED EVENT ──────────────────────────────── */
+.featured-event{background:var(--navy-tint);border:2px solid var(--royal);border-radius:16px;padding:40px;display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:center;}
+.fe-date{background:var(--navy);border-radius:12px;padding:16px 20px;text-align:center;min-width:80px;flex-shrink:0;}
+.fe-date-month{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+.fe-date-day{font-family:var(--serif);font-size:38px;font-weight:700;color:var(--white);line-height:1;}
+.fe-badge{display:inline-block;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:#E8F4FD;color:var(--royal);padding:4px 12px;border-radius:100px;margin-bottom:12px;}
+.fe-badge-live{background:#FEF3CC;color:#7A5800;}
+.featured-event h3{font-size:26px;color:var(--navy);line-height:1.2;margin-bottom:10px;}
+.featured-event p{font-size:15px;color:var(--text-m);line-height:1.7;margin-bottom:16px;}
+.fe-meta{display:flex;gap:20px;flex-wrap:wrap;}
+.fe-meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-m);}
+.fe-meta-item svg{flex-shrink:0;opacity:0.5;}
+.fe-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-end;flex-shrink:0;}
+.fe-seats{font-size:12px;color:var(--text-m);text-align:right;margin-top:4px;}
+.fe-seats strong{color:var(--navy);}
+
+/* ── EVENT CARDS GRID ────────────────────────────── */
+.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.event-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;}
+.event-card:hover{box-shadow:0 4px 20px rgba(2,44,81,0.1);border-color:#bbb;transition:all .2s;}
+.ec-header{padding:20px 24px 0;}
+.ec-date-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.ec-date-badge{display:flex;align-items:center;gap:10px;}
+.ec-month{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-m);}
+.ec-day{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--navy);line-height:1;}
+.ec-type{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;}
+.type-webinar{background:var(--navy-tint);color:var(--royal);}
+.type-seminar{background:#F0FDF4;color:#166534;}
+.type-conference{background:#FEF3CC;color:#7A5800;}
+.type-workshop{background:#FDF4FF;color:#7E22CE;}
+.ec-body{padding:0 24px 20px;flex:1;display:flex;flex-direction:column;}
+.ec-body h4{font-size:17px;color:var(--navy);line-height:1.3;margin-bottom:8px;}
+.ec-body p{font-size:14px;color:var(--text-m);line-height:1.65;flex:1;margin-bottom:16px;}
+.ec-meta{display:flex;flex-direction:column;gap:4px;margin-bottom:16px;}
+.ec-meta-line{font-size:12px;color:var(--text-m);display:flex;align-items:center;gap:6px;}
+.ec-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.ec-price{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--navy);}
+.ec-price-free{color:#166534;}
+
+/* ── PAST EVENTS ─────────────────────────────────── */
+.past-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.past-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;opacity:0.85;}
+.past-card-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-m);margin-bottom:10px;}
+.past-card h4{font-size:16px;color:var(--navy);margin-bottom:6px;line-height:1.3;}
+.past-card p{font-size:13px;color:var(--text-m);line-height:1.6;margin-bottom:14px;}
+.past-card-meta{font-size:12px;color:var(--text-m);}
+.past-link{font-size:13px;font-weight:700;color:var(--royal);display:flex;align-items:center;gap:4px;margin-top:12px;}
+
+/* ── NEWSLETTER ──────────────────────────────────── */
+.newsletter{background:var(--navy-tint);border:1px solid #C8DFEE;border-radius:16px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.nl-form{display:flex;gap:10px;}
+.nl-input{flex:1;height:44px;border:1.5px solid var(--border);border-radius:6px;padding:0 14px;font-family:var(--sans);font-size:14px;color:var(--text-b);background:var(--white);}
+.nl-input:focus{outline:none;border-color:var(--royal);}
+.nl-note{font-size:12px;color:var(--text-m);margin-top:10px;}
+
+/* ── CTA BAND ────────────────────────────────────── */
+.cta-band{background:var(--royal);padding:80px 48px;text-align:center;}
+.cta-band h2{font-size:38px;color:var(--white);margin-bottom:12px;}
+.cta-band p{font-size:16px;color:rgba(255,255,255,0.75);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;}
+.cta-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+
+/* ── FOOTER ──────────────────────────────────────── */
+.footer{background:#0D1F30;padding:56px 48px 28px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.f-brand img{height:68px;filter:brightness(0) invert(1);margin-bottom:14px;}
+.f-brand p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;max-width:260px;}
+.f-col h4{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:16px;}
+.f-col a{display:block;font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:10px;}
+.f-col a:hover{color:var(--white);}
+.f-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;}
+.f-copy{font-size:12px;color:rgba(255,255,255,0.3);}
+
+/* ── HERO PANEL ──────────────────────────────────── */
+.hero-panel{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:16px;}
+.hp-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.1);}
+.hp-row:last-child{border-bottom:none;padding-bottom:0;}
+.hp-date{background:rgba(236,177,0,0.2);border-radius:8px;padding:10px 12px;text-align:center;min-width:52px;flex-shrink:0;}
+.hp-month{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);}
+.hp-day{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--white);line-height:1;}
+.hp-info h4{font-size:14px;color:var(--white);margin-bottom:2px;}
+.hp-info p{font-size:12px;color:rgba(255,255,255,0.5);}
+.hp-chip{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:100px;flex-shrink:0;}
+.chip-web{background:rgba(29,134,228,0.25);color:#7EC8F5;}
+.chip-conf{background:rgba(236,177,0,0.2);color:var(--gold);}
+.chip-sem{background:rgba(34,197,94,0.2);color:#86EFAC;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="01_home.html"><img src="data:image/png;base64,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" alt="Practice Transition Partners"></a>
+  <div class="nav-links">
+    <a href="02_buying.html">For Buyers</a>
+    <a href="03_selling.html">For Sellers</a>
+    <a href="04_listings.html">Listings</a>
+    <a href="05_opinion_of_value.html">Opinion of Value</a>
+    <a href="06_events.html" class="active">Events</a>
+    <a href="07_about.html">About</a>
+    <a href="05_opinion_of_value.html" class="nav-cta">Get a Valuation</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 0L6.5 3.5H10L7.25 5.65L8.25 9.25L5 7.2L1.75 9.25L2.75 5.65L0 3.5H3.5L5 0Z" fill="#ECB100"/></svg>
+        <span>Webinars · Seminars · Conferences</span>
+      </div>
+      <h1>Learn, connect, and<br>plan your next <em>transition</em></h1>
+      <p class="hero-sub">Join PTP advisors and industry experts at live and virtual events designed for dentists and physicians planning to buy or sell a practice.</p>
+      <div class="hero-actions">
+        <a href="#upcoming" class="btn btn-gold">Browse upcoming events <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="07_about.html" class="btn btn-ghost-w">Contact an advisor</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div style="font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:4px;">Upcoming Events</div>
+      <div class="hp-row">
+        <div class="hp-date"><div class="hp-month">Jun</div><div class="hp-day">14</div></div>
+        <div class="hp-info" style="flex:1;">
+          <h4>Practice Transition Summit 2026</h4>
+          <p>Phoenix, AZ · In-Person</p>
+        </div>
+        <span class="hp-chip chip-conf">Conference</span>
+      </div>
+      <div class="hp-row">
+        <div class="hp-date"><div class="hp-month">Jun</div><div class="hp-day">25</div></div>
+        <div class="hp-info" style="flex:1;">
+          <h4>Valuation Fundamentals Webinar</h4>
+          <p>Virtual · 12:00 PM ET</p>
+        </div>
+        <span class="hp-chip chip-web">Webinar</span>
+      </div>
+      <div class="hp-row">
+        <div class="hp-date"><div class="hp-month">Jul</div><div class="hp-day">10</div></div>
+        <div class="hp-info" style="flex:1;">
+          <h4>Buyer Readiness Workshop</h4>
+          <p>Chicago, IL · In-Person</p>
+        </div>
+        <span class="hp-chip chip-sem">Seminar</span>
+      </div>
+      <div class="hp-row">
+        <div class="hp-date"><div class="hp-month">Jul</div><div class="hp-day">22</div></div>
+        <div class="hp-info" style="flex:1;">
+          <h4>Financing Your Acquisition</h4>
+          <p>Virtual · 1:00 PM ET</p>
+        </div>
+        <span class="hp-chip chip-web">Webinar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED EVENT -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="eyebrow">Featured Event</div>
+    <div class="featured-event">
+      <div class="fe-date">
+        <div class="fe-date-month">Jun</div>
+        <div class="fe-date-day">14</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:4px;">— 15</div>
+      </div>
+      <div>
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+          <span class="fe-badge fe-badge-live">● Filling Fast</span>
+          <span class="fe-badge">In-Person</span>
+        </div>
+        <h3>Practice Transition Summit 2026</h3>
+        <p>Two days of expert-led sessions on valuation, deal structure, financing, and life after the sale — featuring panels with active buyers, sellers, and lenders. Network with 200+ dentists and physicians navigating practice transitions nationwide.</p>
+        <div class="fe-meta">
+          <div class="fe-meta-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a4 4 0 100 8A4 4 0 007 1zM1 13c0-2.2 2.7-4 6-4s6 1.8 6 4" stroke="#73716C" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Dr. Rachel Kim, James Morrow, David Chen CPA
+          </div>
+          <div class="fe-meta-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
+            June 14–15, 2026 · 8:00 AM – 6:00 PM MST
+          </div>
+          <div class="fe-meta-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="#73716C" stroke-width="1.3"/><circle cx="7" cy="5" r="1.5" stroke="#73716C" stroke-width="1.3"/></svg>
+            Marriott Phoenix Downtown · Phoenix, AZ
+          </div>
+        </div>
+      </div>
+      <div class="fe-actions">
+        <a href="07_about.html" class="btn btn-gold">Register Now <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="07_about.html" class="btn btn-ghost btn-sm">Learn more</a>
+        <div class="fe-seats"><strong>47</strong> seats remaining</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING EVENTS -->
+<section class="section" id="upcoming">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Upcoming Events</div>
+      <h2 class="section-h2">Find an event near you</h2>
+      <p class="section-sub">From free webinars to full-day workshops, PTP events are built for busy practitioners — focused, practical, and free of sales pressure.</p>
+    </div>
+    <div class="events-grid">
+
+      <!-- Card 1 -->
+      <div class="event-card">
+        <div class="ec-header">
+          <div class="ec-date-row">
+            <div class="ec-date-badge">
+              <div>
+                <div class="ec-month">June</div>
+                <div class="ec-day">25</div>
+              </div>
+            </div>
+            <span class="ec-type type-webinar">Webinar</span>
+          </div>
+        </div>
+        <div class="ec-body">
+          <h4>Valuation Fundamentals: What Your Practice Is Really Worth</h4>
+          <p>A plain-language walkthrough of how practices are valued — EBITDA multiples, goodwill, real estate, and what buyers actually look at.</p>
+          <div class="ec-meta">
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
+              Wednesday, June 25 · 12:00–1:00 PM ET
+            </div>
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="9.5" rx="1.5" stroke="#73716C" stroke-width="1.3"/><path d="M1.5 6h11M5 1.5v3M9 1.5v3" stroke="#73716C" stroke-width="1.3" stroke-linecap="round"/></svg>
+              Host: James Morrow, Senior Advisor
+            </div>
+          </div>
+        </div>
+        <div class="ec-footer">
+          <span class="ec-price ec-price-free">Free</span>
+          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="event-card">
+        <div class="ec-header">
+          <div class="ec-date-row">
+            <div class="ec-date-badge">
+              <div>
+                <div class="ec-month">July</div>
+                <div class="ec-day">10</div>
+              </div>
+            </div>
+            <span class="ec-type type-seminar">Seminar</span>
+          </div>
+        </div>
+        <div class="ec-body">
+          <h4>Buyer Readiness Workshop: Evaluating and Acquiring a Practice</h4>
+          <p>Half-day in-person workshop covering practice due diligence, letter of intent negotiation, and transitioning an existing patient base.</p>
+          <div class="ec-meta">
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
+              Thursday, July 10 · 9:00 AM – 1:00 PM CDT
+            </div>
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="#73716C" stroke-width="1.3"/><circle cx="7" cy="5" r="1.5" stroke="#73716C" stroke-width="1.3"/></svg>
+              Chicago, IL · Seats limited
+            </div>
+          </div>
+        </div>
+        <div class="ec-footer">
+          <span class="ec-price">$149</span>
+          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="event-card">
+        <div class="ec-header">
+          <div class="ec-date-row">
+            <div class="ec-date-badge">
+              <div>
+                <div class="ec-month">July</div>
+                <div class="ec-day">22</div>
+              </div>
+            </div>
+            <span class="ec-type type-webinar">Webinar</span>
+          </div>
+        </div>
+        <div class="ec-body">
+          <h4>Financing Your Acquisition: SBA Loans, Bank Financing &amp; Creative Structures</h4>
+          <p>PTP's lending partners break down the financing landscape for practice buyers, including SBA 7(a) programs and seller-carry options.</p>
+          <div class="ec-meta">
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
+              Tuesday, July 22 · 1:00–2:00 PM ET
+            </div>
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="9.5" rx="1.5" stroke="#73716C" stroke-width="1.3"/><path d="M1.5 6h11M5 1.5v3M9 1.5v3" stroke="#73716C" stroke-width="1.3" stroke-linecap="round"/></svg>
+              Panelists: Bank of America Practice Finance, Live Oak Bank
+            </div>
+          </div>
+        </div>
+        <div class="ec-footer">
+          <span class="ec-price ec-price-free">Free</span>
+          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="event-card">
+        <div class="ec-header">
+          <div class="ec-date-row">
+            <div class="ec-date-badge">
+              <div>
+                <div class="ec-month">Aug</div>
+                <div class="ec-day">7</div>
+              </div>
+            </div>
+            <span class="ec-type type-webinar">Webinar</span>
+          </div>
+        </div>
+        <div class="ec-body">
+          <h4>Seller Q&amp;A: Ask a Practice Broker Anything</h4>
+          <p>An open-format live session for sellers. Bring your questions about confidentiality, pricing, deal structure, taxes, and timing your exit.</p>
+          <div class="ec-meta">
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
+              Thursday, August 7 · 12:00–1:00 PM ET
+            </div>
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="9.5" rx="1.5" stroke="#73716C" stroke-width="1.3"/><path d="M1.5 6h11M5 1.5v3M9 1.5v3" stroke="#73716C" stroke-width="1.3" stroke-linecap="round"/></svg>
+              Host: PTP Senior Advisory Team
+            </div>
+          </div>
+        </div>
+        <div class="ec-footer">
+          <span class="ec-price ec-price-free">Free</span>
+          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="event-card">
+        <div class="ec-header">
+          <div class="ec-date-row">
+            <div class="ec-date-badge">
+              <div>
+                <div class="ec-month">Sep</div>
+                <div class="ec-day">18</div>
+              </div>
+            </div>
+            <span class="ec-type type-seminar">Seminar</span>
+          </div>
+        </div>
+        <div class="ec-body">
+          <h4>Transitioning Out: Tax, Legal &amp; Retirement Planning for Sellers</h4>
+          <p>A half-day seminar with CPAs and attorneys covering asset vs. stock sales, capital gains planning, and what to do with the proceeds.</p>
+          <div class="ec-meta">
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
+              Thursday, September 18 · 9:00 AM – 1:00 PM ET
+            </div>
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="#73716C" stroke-width="1.3"/><circle cx="7" cy="5" r="1.5" stroke="#73716C" stroke-width="1.3"/></svg>
+              Boston, MA · Limited to 40 attendees
+            </div>
+          </div>
+        </div>
+        <div class="ec-footer">
+          <span class="ec-price">$199</span>
+          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="event-card">
+        <div class="ec-header">
+          <div class="ec-date-row">
+            <div class="ec-date-badge">
+              <div>
+                <div class="ec-month">Oct</div>
+                <div class="ec-day">2</div>
+              </div>
+            </div>
+            <span class="ec-type type-conference">Conference</span>
+          </div>
+        </div>
+        <div class="ec-body">
+          <h4>Western Regional Practice Transition Forum</h4>
+          <p>A full-day conference for buyers and sellers in the western US. Includes practice tours, live deal case studies, and a networking reception.</p>
+          <div class="ec-meta">
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
+              Thursday, October 2 · 8:30 AM – 7:00 PM PT
+            </div>
+            <div class="ec-meta-line">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="#73716C" stroke-width="1.3"/><circle cx="7" cy="5" r="1.5" stroke="#73716C" stroke-width="1.3"/></svg>
+              San Diego, CA · 150 seats
+            </div>
+          </div>
+        </div>
+        <div class="ec-footer">
+          <span class="ec-price">$299</span>
+          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="newsletter">
+      <div>
+        <div class="eyebrow">Stay in the Loop</div>
+        <h2 class="section-h2" style="margin-bottom:12px;">Get event announcements<br>before they fill up</h2>
+        <p style="font-size:15px;color:var(--text-m);line-height:1.7;">PTP events routinely sell out. Add your email to get first access to new events, recordings from past webinars, and exclusive advisor Q&amp;A sessions.</p>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:14px;">Join 2,400+ practitioners already subscribed</div>
+        <div class="nl-form">
+          <input type="email" class="nl-input" placeholder="your@email.com">
+          <button class="btn btn-navy" style="background:var(--navy);color:var(--white);border:none;border-radius:6px;padding:0 20px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Subscribe</button>
+        </div>
+        <div class="nl-note">No spam. Unsubscribe anytime. Your information stays confidential.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAST EVENTS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Past Events</div>
+      <h2 class="section-h2">Recordings &amp; recaps available</h2>
+      <p class="section-sub">Missed a session? Most webinars are recorded and available to registered attendees. Reach out to request access.</p>
+    </div>
+    <div class="past-grid">
+      <div class="past-card">
+        <div class="past-card-label">Webinar · March 2026</div>
+        <h4>Understanding Practice Goodwill in Today's Market</h4>
+        <p>A deep dive into how goodwill is calculated, transferred, and taxed — with examples from recent PTP transactions.</p>
+        <div class="past-card-meta">Hosted by James Morrow · 89 attendees</div>
+        <a href="07_about.html" class="past-link">Request recording <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="past-card">
+        <div class="past-card-label">Seminar · February 2026</div>
+        <h4>Associate-to-Owner Track: Making the Leap</h4>
+        <p>Panel discussion with four dentists who recently completed their first acquisition — what they'd do differently and what surprised them.</p>
+        <div class="past-card-meta">Dallas, TX · In-Person · 38 attendees</div>
+        <a href="07_about.html" class="past-link">Request recording <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="past-card">
+        <div class="past-card-label">Webinar · January 2026</div>
+        <h4>2026 Practice Market Outlook: Pricing, Demand &amp; Hot Markets</h4>
+        <p>PTP's annual market review covering transaction volume, price trends, specialty demand, and which states are seeing the most activity.</p>
+        <div class="past-card-meta">Hosted by PTP Research Team · 214 attendees</div>
+        <a href="07_about.html" class="past-link">Request recording <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Can't make it to a live event?</h2>
+    <p>Our advisors are available for one-on-one calls at no cost. Get the same insight — on your schedule.</p>
+    <div class="cta-row">
+      <a href="07_about.html" class="btn btn-gold">Schedule a free call <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="05_opinion_of_value.html" class="btn btn-ghost-w">Get a practice valuation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="f-brand">
+      <img src="data:image/png;base64,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" alt="Practice Transition Partners">
+      <p>The trusted marketplace for buying and selling dental and medical practices — confidential, broker-led, and nationwide.</p>
+    </div>
+    <div class="f-col">
+      <h4>For Buyers</h4>
+      <a href="04_listings.html">Browse Listings</a>
+      <a href="02_buying.html">How It Works</a>
+      <a href="02_buying.html">Financing</a>
+      <a href="02_buying.html">Register</a>
+    </div>
+    <div class="f-col">
+      <h4>For Sellers</h4>
+      <a href="05_opinion_of_value.html">Get a Valuation</a>
+      <a href="03_selling.html">Our Process</a>
+      <a href="03_selling.html">Confidentiality</a>
+      <a href="03_selling.html">FAQs</a>
+    </div>
+    <div class="f-col">
+      <h4>Company</h4>
+      <a href="07_about.html">About Us</a>
+      <a href="07_about.html">Contact</a>
+      <a href="06_events.html">Events</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <span class="f-copy">© 2026 Practice Transition Partners. All rights reserved.</span>
+    <span class="f-copy">Confidential · Licensed · Nationwide</span>
+  </div>
+</footer>
+
+</body>
+</html>

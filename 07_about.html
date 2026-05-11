@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Us — Practice Transition Partners</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#022C51;--royal:#115694;--sky:#1D86E4;--gold:#ECB100;
+  --cream:#FAF8F1;--warm:#73716C;--white:#fff;
+  --text:#1A1917;--text-b:#3D3B37;--text-m:#73716C;
+  --border:#D9D7CF;--surface:#F0EDE4;--navy-tint:#EAF1F8;
+  --serif:'Libre Baskerville',Georgia,serif;
+  --sans:'Source Sans 3',system-ui,sans-serif;
+}
+body{font-family:var(--sans);color:var(--text-b);background:var(--white);line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+h1,h2,h3,h4{font-family:var(--serif);}
+
+/* ── NAV ─────────────────────────────────────────── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.nav img{height:48px;width:auto;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:14px;font-weight:600;color:var(--text-m);transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--navy);}
+.nav-cta{background:var(--navy);color:var(--white)!important;font-size:13px;font-weight:700;padding:9px 20px;border-radius:6px;letter-spacing:0.01em;}
+.nav-cta:hover{background:var(--royal)!important;}
+
+/* ── HERO ────────────────────────────────────────── */
+.hero{background:var(--navy);padding:80px 48px 72px;overflow:hidden;position:relative;}
+.hero::after{content:'';position:absolute;right:-120px;top:-80px;width:600px;height:600px;border-radius:50%;background:rgba(17,86,148,0.35);pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(236,177,0,0.15);border:1px solid rgba(236,177,0,0.4);border-radius:100px;padding:5px 14px;margin-bottom:24px;}
+.hero-eyebrow span{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);}
+.hero h1{font-size:52px;color:var(--white);line-height:1.1;margin-bottom:20px;max-width:700px;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:18px;color:rgba(255,255,255,0.72);line-height:1.7;max-width:600px;}
+
+/* ── STAT BAR ────────────────────────────────────── */
+.stat-bar{background:var(--cream);border-bottom:1px solid var(--border);padding:28px 48px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;}
+.sstat{text-align:center;}
+.sstat-num{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--navy);}
+.sstat-label{font-size:12px;color:var(--text-m);margin-top:2px;}
+.sstat-div{width:1px;height:44px;background:var(--border);}
+
+/* ── BUTTONS ─────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:14px;font-weight:700;padding:11px 24px;border-radius:6px;border:none;cursor:pointer;letter-spacing:0.01em;}
+.btn-primary{background:var(--navy);color:var(--white);}
+.btn-gold{background:var(--gold);color:var(--navy);}
+.btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy);}
+.btn-ghost-w{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.4);}
+.btn-sm{font-size:13px;padding:8px 18px;}
+.arrow{width:14px;height:14px;flex-shrink:0;}
+
+/* ── SECTIONS ────────────────────────────────────── */
+.section{padding:80px 48px;}
+.section-cream{background:var(--cream);}
+.section-navy{background:var(--navy);}
+.container{max-width:1200px;margin:0 auto;}
+.eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--royal);margin-bottom:10px;}
+.eyebrow-w{color:rgba(255,255,255,0.6);}
+.section-h2{font-size:38px;color:var(--navy);line-height:1.15;margin-bottom:14px;}
+.section-h2-w{color:var(--white);}
+.section-sub{font-size:16px;color:var(--text-m);line-height:1.7;max-width:580px;margin-bottom:40px;}
+.section-sub-w{color:rgba(255,255,255,0.65);}
+
+/* ── STORY (2-COL) ───────────────────────────────── */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.story-text p{font-size:16px;color:var(--text-m);line-height:1.8;margin-bottom:18px;}
+.story-text p:last-child{margin-bottom:0;}
+.story-card{background:var(--navy-tint);border:1px solid #C8DFEE;border-radius:16px;padding:36px;}
+.story-card-stat{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);}
+.story-card-stat:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.story-stat-num{font-family:var(--serif);font-size:42px;font-weight:700;color:var(--navy);line-height:1;}
+.story-stat-label{font-size:14px;color:var(--text-m);margin-top:4px;line-height:1.5;}
+
+/* ── TEAM GRID ───────────────────────────────────── */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.team-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.team-avatar{height:180px;background:var(--navy-tint);display:flex;align-items:center;justify-content:center;position:relative;}
+.team-avatar-initials{font-family:var(--serif);font-size:42px;font-weight:700;color:var(--royal);opacity:0.4;}
+.team-avatar-badge{position:absolute;bottom:12px;right:12px;background:var(--gold);color:var(--navy);font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;}
+.team-body{padding:20px;}
+.team-body h4{font-size:17px;color:var(--navy);margin-bottom:2px;}
+.team-title{font-size:13px;color:var(--royal);font-weight:600;margin-bottom:8px;}
+.team-bio{font-size:13px;color:var(--text-m);line-height:1.65;margin-bottom:14px;}
+.team-spec{display:flex;flex-wrap:wrap;gap:6px;}
+.team-spec-chip{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:var(--navy-tint);color:var(--royal);padding:3px 8px;border-radius:100px;}
+.team-contact{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+.team-contact a{font-size:12px;font-weight:600;color:var(--royal);}
+
+/* ── VALUES ──────────────────────────────────────── */
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.value-card{border:1px solid var(--border);border-radius:14px;padding:32px;background:var(--white);}
+.value-icon{width:48px;height:48px;border-radius:12px;background:var(--navy-tint);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.value-card h4{font-size:18px;color:var(--navy);margin-bottom:10px;}
+.value-card p{font-size:14px;color:var(--text-m);line-height:1.7;}
+
+/* ── CONTACT SECTION ─────────────────────────────── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.contact-form{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:36px;}
+.contact-form h3{font-size:24px;color:var(--navy);margin-bottom:6px;}
+.contact-form-sub{font-size:14px;color:var(--text-m);margin-bottom:28px;line-height:1.6;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:12px;font-weight:700;color:var(--text-b);margin-bottom:6px;letter-spacing:0.02em;}
+.form-group input,.form-group select,.form-group textarea{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:10px 14px;font-family:var(--sans);font-size:14px;color:var(--text-b);background:var(--white);transition:border-color .2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--royal);}
+.form-group textarea{min-height:110px;resize:vertical;}
+.form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2373716C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+.form-submit{width:100%;padding:13px;background:var(--navy);color:var(--white);font-family:var(--sans);font-size:15px;font-weight:700;border:none;border-radius:6px;cursor:pointer;letter-spacing:0.01em;}
+.form-submit:hover{background:var(--royal);}
+.form-note{font-size:11px;color:var(--text-m);text-align:center;margin-top:10px;line-height:1.5;}
+.contact-info{padding-top:8px;}
+.contact-info h3{font-size:28px;color:var(--navy);margin-bottom:14px;}
+.contact-info-sub{font-size:15px;color:var(--text-m);line-height:1.7;margin-bottom:36px;}
+.contact-block{margin-bottom:28px;}
+.contact-block-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-m);margin-bottom:8px;}
+.contact-block-value{font-size:16px;color:var(--navy);font-weight:600;}
+.contact-block-note{font-size:13px;color:var(--text-m);margin-top:2px;}
+.contact-offices{display:flex;flex-direction:column;gap:14px;margin-top:32px;}
+.office-row{display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--navy-tint);border-radius:10px;}
+.office-dot{width:8px;height:8px;border-radius:50%;background:var(--royal);margin-top:6px;flex-shrink:0;}
+.office-info h5{font-size:14px;color:var(--navy);margin-bottom:2px;}
+.office-info p{font-size:13px;color:var(--text-m);}
+
+/* ── CTA BAND ────────────────────────────────────── */
+.cta-band{background:var(--navy);padding:80px 48px;text-align:center;}
+.cta-band h2{font-size:38px;color:var(--white);margin-bottom:12px;}
+.cta-band p{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;}
+.cta-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+
+/* ── TESTIMONIALS ────────────────────────────────── */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
+.tcard{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:26px;}
+.tcard-quote{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--navy);line-height:1.65;margin-bottom:18px;padding-left:16px;border-left:3px solid var(--gold);}
+.tcard-author{font-size:14px;font-weight:700;color:var(--navy);}
+.tcard-role{font-size:12px;color:var(--text-m);margin-top:2px;}
+
+/* ── FOOTER ──────────────────────────────────────── */
+.footer{background:#0D1F30;padding:56px 48px 28px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.f-brand img{height:68px;filter:brightness(0) invert(1);margin-bottom:14px;}
+.f-brand p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;max-width:260px;}
+.f-col h4{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:16px;}
+.f-col a{display:block;font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:10px;}
+.f-col a:hover{color:var(--white);}
+.f-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;}
+.f-copy{font-size:12px;color:rgba(255,255,255,0.3);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="01_home.html"><img src="data:image/png;base64,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" alt="Practice Transition Partners"></a>
+  <div class="nav-links">
+    <a href="02_buying.html">For Buyers</a>
+    <a href="03_selling.html">For Sellers</a>
+    <a href="04_listings.html">Listings</a>
+    <a href="05_opinion_of_value.html">Opinion of Value</a>
+    <a href="06_events.html">Events</a>
+    <a href="07_about.html" class="active">About</a>
+    <a href="05_opinion_of_value.html" class="nav-cta">Get a Valuation</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 0L6.5 3.5H10L7.25 5.65L8.25 9.25L5 7.2L1.75 9.25L2.75 5.65L0 3.5H3.5L5 0Z" fill="#ECB100"/></svg>
+      <span>Trusted · Experienced · Nationwide</span>
+    </div>
+    <h1>The advisors behind<br>your <em>transition</em></h1>
+    <p class="hero-sub">Practice Transition Partners was built by practitioners, for practitioners — with one mission: helping dentists and physicians buy and sell practices with clarity, confidentiality, and exceptional outcomes.</p>
+  </div>
+</section>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="sstat"><div class="sstat-num">400+</div><div class="sstat-label">Practices transitioned</div></div>
+  <div class="sstat-div"></div>
+  <div class="sstat"><div class="sstat-num">$2.1B+</div><div class="sstat-label">In transaction value</div></div>
+  <div class="sstat-div"></div>
+  <div class="sstat"><div class="sstat-num">98%</div><div class="sstat-label">Client satisfaction rate</div></div>
+  <div class="sstat-div"></div>
+  <div class="sstat"><div class="sstat-num">22 yrs</div><div class="sstat-label">In practice brokerage</div></div>
+  <div class="sstat-div"></div>
+  <div class="sstat"><div class="sstat-num">35+</div><div class="sstat-label">States served</div></div>
+</div>
+
+<!-- OUR STORY -->
+<section class="section">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-text">
+        <div class="eyebrow">Our Story</div>
+        <h2 class="section-h2">Built by practitioners who<br>understood the stakes</h2>
+        <p>Practice Transition Partners was founded in 2004 by a dentist and a healthcare attorney who had each navigated the practice transition process themselves — and found it opaque, stressful, and underserved. They set out to change that.</p>
+        <p>Over two decades, we've grown into one of the most trusted practice brokerage firms in the country, with a team of credentialed advisors, in-house valuation specialists, and dedicated transaction coordinators who guide buyers and sellers from first conversation to closed deal.</p>
+        <p>We've closed transactions in 35+ states, across every major dental and medical specialty. Our average client stays with us because their colleagues refer us — not because we advertise. That word-of-mouth reputation is something we guard fiercely.</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:8px;">Talk to an advisor <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="story-card">
+        <div class="story-card-stat">
+          <div class="story-stat-num">2004</div>
+          <div class="story-stat-label">Year founded — born from a dentist's own frustrating transition experience</div>
+        </div>
+        <div class="story-card-stat">
+          <div class="story-stat-num">60 days</div>
+          <div class="story-stat-label">Average time from signed listing agreement to close</div>
+        </div>
+        <div class="story-card-stat">
+          <div class="story-stat-num">100%</div>
+          <div class="story-stat-label">Confidential process — your identity is protected throughout</div>
+        </div>
+        <div class="story-card-stat" style="margin-bottom:0;padding-bottom:0;border-bottom:none;">
+          <div class="story-stat-num">NDA first</div>
+          <div class="story-stat-label">Every prospective buyer signs an NDA before receiving any practice details</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="eyebrow">Meet the Team</div>
+    <h2 class="section-h2">Advisors who've seen it all</h2>
+    <p class="section-sub">Every PTP advisor is credentialed, experienced, and dedicated to a specific region — so you always have someone who knows your market deeply.</p>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-avatar">
+          <span class="team-avatar-initials">JM</span>
+          <span class="team-avatar-badge">Senior Advisor</span>
+        </div>
+        <div class="team-body">
+          <h4>James Morrow</h4>
+          <div class="team-title">Senior Practice Advisor, Southwest</div>
+          <p class="team-bio">17 years in dental practice brokerage. Has closed over 90 transactions across Arizona, Nevada, and New Mexico, including multi-location DSO roll-ups.</p>
+          <div class="team-spec">
+            <span class="team-spec-chip">General Dentistry</span>
+            <span class="team-spec-chip">Orthodontics</span>
+            <span class="team-spec-chip">DSO</span>
+          </div>
+          <div class="team-contact">
+            <a href="mailto:jmorrow@ptpractices.com">Email James</a>
+            <span style="color:var(--border);">·</span>
+            <a href="tel:+16025550190">602-555-0190</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:#EAF4EF;">
+          <span class="team-avatar-initials" style="color:#166534;">RK</span>
+          <span class="team-avatar-badge">Senior Advisor</span>
+        </div>
+        <div class="team-body">
+          <h4>Dr. Rachel Kim, DDS</h4>
+          <div class="team-title">Senior Practice Advisor, West Coast</div>
+          <p class="team-bio">Former practicing dentist turned full-time transition advisor. Brings clinical perspective to valuations and buyer-seller negotiations across California and Oregon.</p>
+          <div class="team-spec">
+            <span class="team-spec-chip">Pediatric</span>
+            <span class="team-spec-chip">Endodontics</span>
+            <span class="team-spec-chip">Start-ups</span>
+          </div>
+          <div class="team-contact">
+            <a href="mailto:rkim@ptpractices.com">Email Rachel</a>
+            <span style="color:var(--border);">·</span>
+            <a href="tel:+14155550183">415-555-0183</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:#FEF3CC;">
+          <span class="team-avatar-initials" style="color:#7A5800;">DC</span>
+          <span class="team-avatar-badge">Valuation Lead</span>
+        </div>
+        <div class="team-body">
+          <h4>David Chen, CPA, CVA</h4>
+          <div class="team-title">Director of Valuations</div>
+          <p class="team-bio">Certified Valuation Analyst with 14 years in healthcare practice valuation. Leads all Opinion of Value reports and expert witness engagements.</p>
+          <div class="team-spec">
+            <span class="team-spec-chip">Valuations</span>
+            <span class="team-spec-chip">Tax Planning</span>
+            <span class="team-spec-chip">Medical</span>
+          </div>
+          <div class="team-contact">
+            <a href="mailto:dchen@ptpractices.com">Email David</a>
+            <span style="color:var(--border);">·</span>
+            <a href="tel:+13125550177">312-555-0177</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:#FDF4FF;">
+          <span class="team-avatar-initials" style="color:#7E22CE;">SP</span>
+          <span class="team-avatar-badge">Advisor</span>
+        </div>
+        <div class="team-body">
+          <h4>Sara Patel, JD</h4>
+          <div class="team-title">Practice Advisor & Transaction Counsel, Southeast</div>
+          <p class="team-bio">Healthcare attorney turned advisor. Specializes in navigating complex deal structures, regulatory compliance, and physician group transitions across FL, GA, and TX.</p>
+          <div class="team-spec">
+            <span class="team-spec-chip">Physician Groups</span>
+            <span class="team-spec-chip">Compliance</span>
+            <span class="team-spec-chip">Deal Structure</span>
+          </div>
+          <div class="team-contact">
+            <a href="mailto:spatel@ptpractices.com">Email Sara</a>
+            <span style="color:var(--border);">·</span>
+            <a href="tel:+14045550162">404-555-0162</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section">
+  <div class="container">
+    <div class="eyebrow">Our Values</div>
+    <h2 class="section-h2">How we do what we do</h2>
+    <p class="section-sub" style="margin-bottom:36px;">These aren't aspirational statements. They're the operating principles behind every transaction we touch.</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L4 6v5c0 4.4 3 8.5 7 9.5 4-1 7-5.1 7-9.5V6L11 2z" stroke="#115694" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11l2 2 4-4" stroke="#115694" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>Confidentiality above all</h4>
+        <p>Your identity, your financials, and your plans stay private. Every prospective buyer executes an NDA before receiving any details. We've never had a confidentiality breach in 22 years.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#115694" stroke-width="1.5"/><path d="M11 7v4l3 2" stroke="#115694" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Transparency at every step</h4>
+        <p>We tell you what a practice is worth — not what you want to hear. Our valuations are independent, data-backed, and fully documented so you can make decisions with confidence.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 12c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#115694" stroke-width="1.5" stroke-linecap="round"/><path d="M7 17l4-10 4 10" stroke="#115694" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 14h5" stroke="#115694" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Aligned incentives</h4>
+        <p>We earn our fee when you close — not when you list. That alignment means we work to get you to a successful transaction, not just to have you on our books.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="eyebrow">What Our Clients Say</div>
+    <h2 class="section-h2">From the people we've served</h2>
+    <div class="tgrid">
+      <div class="tcard">
+        <p class="tcard-quote">"James guided us through the entire sale of our three-location group. He kept everything confidential, found us a qualified buyer in 47 days, and we closed above asking."</p>
+        <div class="tcard-author">Dr. Michael Torres</div>
+        <div class="tcard-role">Seller · General Dentistry Group · Scottsdale, AZ</div>
+      </div>
+      <div class="tcard">
+        <p class="tcard-quote">"As a first-time buyer, I had no idea what I was doing. Rachel walked me through every step — the due diligence, the financing, the transition plan. I wouldn't have gotten there without her."</p>
+        <div class="tcard-author">Dr. Jenna Okafor</div>
+        <div class="tcard-role">Buyer · Pediatric Practice · Sacramento, CA</div>
+      </div>
+      <div class="tcard">
+        <p class="tcard-quote">"David's valuation was thorough, defensible, and exactly what I needed going into negotiations. It gave me leverage I wouldn't have had otherwise."</p>
+        <div class="tcard-author">Dr. Eric Landau</div>
+        <div class="tcard-role">Seller · Oral Surgery Practice · Atlanta, GA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-form">
+        <h3>Get in touch</h3>
+        <p class="contact-form-sub">Whether you're ready to start or just have questions, we're here. All conversations are completely confidential and carry no obligation.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="jane@yourpractice.com">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>I am a...</label>
+          <select>
+            <option value="">Select one</option>
+            <option>Seller — I want to sell my practice</option>
+            <option>Buyer — I want to acquire a practice</option>
+            <option>Both — I'm exploring my options</option>
+            <option>Just curious / other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Specialty &amp; State</label>
+          <input type="text" placeholder="e.g. General Dentistry, Arizona">
+        </div>
+        <div class="form-group">
+          <label>Message (optional)</label>
+          <textarea placeholder="Tell us a bit about your situation — timeline, goals, or questions you have..."></textarea>
+        </div>
+        <button class="form-submit">Send message — no obligation</button>
+        <p class="form-note">Your information is kept strictly confidential. We never share client details with third parties.</p>
+      </div>
+
+      <div class="contact-info">
+        <div class="eyebrow">Contact</div>
+        <h3>We'd love to hear from you</h3>
+        <p class="contact-info-sub">Our advisors respond within one business day — often the same day. There's no pressure, no pitch. Just a real conversation about what makes sense for your situation.</p>
+
+        <div class="contact-block">
+          <div class="contact-block-label">Main Phone</div>
+          <div class="contact-block-value">(800) 555-0140</div>
+          <div class="contact-block-note">Mon–Fri, 8am–6pm in your time zone</div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-label">General Inquiries</div>
+          <div class="contact-block-value">hello@ptpractices.com</div>
+          <div class="contact-block-note">Responses within one business day</div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-label">Confidential Seller Line</div>
+          <div class="contact-block-value">(800) 555-0199</div>
+          <div class="contact-block-note">Direct line for sellers — answered by a senior advisor</div>
+        </div>
+
+        <div class="contact-offices">
+          <div style="font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-m);margin-bottom:4px;">Regional Offices</div>
+          <div class="office-row">
+            <div class="office-dot"></div>
+            <div class="office-info">
+              <h5>Southwest — Scottsdale, AZ</h5>
+              <p>James Morrow · 602-555-0190</p>
+            </div>
+          </div>
+          <div class="office-row">
+            <div class="office-dot"></div>
+            <div class="office-info">
+              <h5>West Coast — San Francisco, CA</h5>
+              <p>Dr. Rachel Kim · 415-555-0183</p>
+            </div>
+          </div>
+          <div class="office-row">
+            <div class="office-dot"></div>
+            <div class="office-info">
+              <h5>Midwest — Chicago, IL</h5>
+              <p>David Chen · 312-555-0177</p>
+            </div>
+          </div>
+          <div class="office-row">
+            <div class="office-dot"></div>
+            <div class="office-info">
+              <h5>Southeast — Atlanta, GA</h5>
+              <p>Sara Patel · 404-555-0162</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Ready to take the next step?</h2>
+    <p>Whether you're buying or selling, the first conversation is free, confidential, and carries no obligation.</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-gold">Schedule a free call <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="05_opinion_of_value.html" class="btn btn-ghost-w">Get a valuation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="f-brand">
+      <img src="data:image/png;base64,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" alt="Practice Transition Partners">
+      <p>The trusted marketplace for buying and selling dental and medical practices — confidential, broker-led, and nationwide.</p>
+    </div>
+    <div class="f-col">
+      <h4>For Buyers</h4>
+      <a href="04_listings.html">Browse Listings</a>
+      <a href="02_buying.html">How It Works</a>
+      <a href="02_buying.html">Financing</a>
+      <a href="02_buying.html">Register</a>
+    </div>
+    <div class="f-col">
+      <h4>For Sellers</h4>
+      <a href="05_opinion_of_value.html">Get a Valuation</a>
+      <a href="03_selling.html">Our Process</a>
+      <a href="03_selling.html">Confidentiality</a>
+      <a href="03_selling.html">FAQs</a>
+    </div>
+    <div class="f-col">
+      <h4>Company</h4>
+      <a href="07_about.html">About Us</a>
+      <a href="07_about.html">Contact</a>
+      <a href="06_events.html">Events</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <span class="f-copy">© 2026 Practice Transition Partners. All rights reserved.</span>
+    <span class="f-copy">Confidential · Licensed · Nationwide</span>
+  </div>
+</footer>
+
+</body>
+</html>

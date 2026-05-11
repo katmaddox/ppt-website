@@ -1,0 +1,143 @@
+/* ============================================================
+   PRACTICE TRANSITION PARTNERS — Design Tokens
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+
+  /* ── Colors ──────────────────────────────────────────── */
+
+  /* Primary */
+  --color-navy:        #022C51;   /* deep navy – brand primary */
+  --color-royal:       #115694;   /* royal blue – secondary primary */
+
+  /* Background */
+  --color-gray:        #73716C;   /* warm gray – body text, dividers */
+  --color-cream:       #FAF8F1;   /* warm cream – page background */
+
+  /* Accent */
+  --color-blue:        #1D86E4;   /* sky blue – CTA, links */
+  --color-gold:        #ECB100;   /* gold – highlights, logo star */
+
+  /* Neutral scale */
+  --color-white:       #FFFFFF;
+  --color-off-white:   #FAF8F1;
+  --color-gray-100:    #F4F3EF;
+  --color-gray-200:    #E8E6E0;
+  --color-gray-300:    #D0CEC8;
+  --color-gray-400:    #A8A5A0;
+  --color-gray-500:    #73716C;
+  --color-gray-600:    #56544F;
+  --color-gray-700:    #3A3835;
+  --color-gray-800:    #1E1D1B;
+  --color-navy-light:  #0A4B8A;   /* hover state for navy */
+  --color-navy-muted:  #E8EEF4;   /* tinted navy bg (portals) */
+
+  /* Semantic */
+  --color-success:     #1A8C4E;
+  --color-warning:     #C8860A;
+  --color-error:       #C0392B;
+  --color-info:        #1D86E4;
+
+  /* ── Typography ──────────────────────────────────────── */
+
+  --font-display:  'Libre Baskerville', Georgia, serif;
+  --font-body:     'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Scale */
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
+  --text-base:  1rem;       /* 16px */
+  --text-md:    1.125rem;   /* 18px */
+  --text-lg:    1.25rem;    /* 20px */
+  --text-xl:    1.5rem;     /* 24px */
+  --text-2xl:   1.875rem;   /* 30px */
+  --text-3xl:   2.25rem;    /* 36px */
+  --text-4xl:   2.75rem;    /* 44px */
+  --text-5xl:   3.5rem;     /* 56px */
+  --text-6xl:   4.375rem;   /* 70px */
+
+  /* Weight */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+
+  /* Leading */
+  --leading-tight:  1.1;
+  --leading-snug:   1.2;
+  --leading-normal: 1.4;
+  --leading-relaxed:1.6;
+  --leading-loose:  1.8;
+
+  /* Letter spacing */
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.08em;
+  --tracking-widest:  0.12em;
+
+  /* ── Spacing ─────────────────────────────────────────── */
+
+  --space-1:   0.25rem;   /* 4px */
+  --space-2:   0.5rem;    /* 8px */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+  --space-32:  8rem;      /* 128px */
+
+  /* ── Layout ──────────────────────────────────────────── */
+
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+
+  --sidebar-width: 260px;
+  --nav-height:    72px;
+
+  /* ── Border Radius ───────────────────────────────────── */
+
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ─────────────────────────────────────────── */
+
+  --shadow-sm:  0 1px 2px rgba(2, 44, 81, 0.06);
+  --shadow-md:  0 4px 12px rgba(2, 44, 81, 0.10);
+  --shadow-lg:  0 8px 24px rgba(2, 44, 81, 0.14);
+  --shadow-xl:  0 16px 48px rgba(2, 44, 81, 0.18);
+
+  /* ── Transitions ─────────────────────────────────────── */
+
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast:   150ms;
+  --duration-normal: 250ms;
+  --duration-slow:   400ms;
+
+  --transition-default: var(--duration-normal) var(--ease-default);
+
+  /* ── Z-index scale ───────────────────────────────────── */
+
+  --z-below:   -1;
+  --z-base:     0;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-modal:    300;
+  --z-toast:    400;
+}
