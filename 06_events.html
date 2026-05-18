@@ -162,7 +162,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
     <a href="05_opinion_of_value.html">Opinion of Value</a>
     <a href="06_events.html" class="active">Events</a>
     <a href="07_about.html">About</a>
-    <a href="05_opinion_of_value.html" class="nav-cta">Get a Valuation</a>
+    <a onclick="openValuationModal();return false;" href="#" class="nav-cta">Get a Valuation</a>
   </div>
 </nav>
 
@@ -534,7 +534,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
     <p>Our advisors are available for one-on-one calls at no cost. Get the same insight — on your schedule.</p>
     <div class="cta-row">
       <a href="07_about.html" class="btn btn-gold">Schedule a free call <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="05_opinion_of_value.html" class="btn btn-ghost-w">Get a practice valuation</a>
+      <a onclick="openValuationModal();return false;" href="#" class="btn btn-ghost-w">Get a practice valuation</a>
     </div>
   </div>
 </section>
@@ -555,7 +555,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
     </div>
     <div class="f-col">
       <h4>For Sellers</h4>
-      <a href="05_opinion_of_value.html">Get a Valuation</a>
+      <a onclick="openValuationModal();return false;" href="#">Get a Valuation</a>
       <a href="03_selling.html">Our Process</a>
       <a href="03_selling.html">Confidentiality</a>
       <a href="03_selling.html">FAQs</a>
@@ -573,6 +573,142 @@ h1,h2,h3,h4{font-family:var(--serif);}
     <span class="f-copy">Confidential · Licensed · Nationwide</span>
   </div>
 </footer>
+
+
+<!-- VALUATION MODAL -->
+<div id="valuationModal" class="vm-overlay" onclick="vmOverlayClick(event)" role="dialog" aria-modal="true" aria-labelledby="vmTitle">
+  <div class="vm-card">
+    <div class="vm-header">
+      <div>
+        <div class="vm-eyebrow">Confidential · No Obligation</div>
+        <h2 class="vm-title" id="vmTitle">Request a Practice Valuation</h2>
+      </div>
+      <button class="vm-close" onclick="closeValuationModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="vm-body">
+      <div class="vm-form" id="vmForm">
+        <p class="vm-sub">Tell us a little about your practice and we'll be in touch within one business day — always confidential, always no pressure.</p>
+        <div class="vm-row">
+          <div class="vm-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane">
+          </div>
+          <div class="vm-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="vm-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="jane@yourpractice.com">
+        </div>
+        <div class="vm-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="vm-row">
+          <div class="vm-group">
+            <label>Practice Specialty</label>
+            <select>
+              <option value="">Select specialty</option>
+              <option>General Dentistry</option>
+              <option>Orthodontics</option>
+              <option>Oral Surgery</option>
+              <option>Pediatric Dentistry</option>
+              <option>Endodontics</option>
+              <option>Periodontics</option>
+              <option>Prosthodontics</option>
+              <option>Primary Care / Family Medicine</option>
+              <option>Other Medical</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="vm-group">
+            <label>State</label>
+            <input type="text" placeholder="e.g. Arizona">
+          </div>
+        </div>
+        <div class="vm-group">
+          <label>When are you thinking of selling?</label>
+          <select>
+            <option value="">Select a timeline</option>
+            <option>Within 6 months</option>
+            <option>6–12 months</option>
+            <option>1–2 years</option>
+            <option>2–5 years</option>
+            <option>Just exploring for now</option>
+          </select>
+        </div>
+        <div class="vm-group">
+          <label>Anything else you'd like us to know? <span style="font-weight:400;color:var(--text-m)">(optional)</span></label>
+          <textarea placeholder="Practice size, patient volume, goals for the transition..."></textarea>
+        </div>
+        <button class="vm-submit" onclick="vmSubmit()">Request my valuation &#8594;</button>
+        <p class="vm-note">&#128274;&nbsp; Your identity and practice details are kept strictly confidential. We never share your information.</p>
+      </div>
+      <div class="vm-success" id="vmSuccess">
+        <div class="vm-success-icon">&#10003;</div>
+        <h3>We'll be in touch soon</h3>
+        <p>A senior PTP advisor will reach out within one business day to schedule your confidential valuation call.</p>
+        <p style="margin-top:12px;font-size:13px;color:var(--text-m);">In the meantime, feel free to browse our <a href="04_listings.html" style="color:var(--royal);font-weight:600;">active listings</a> or learn more about <a href="03_selling.html" style="color:var(--royal);font-weight:600;">our selling process</a>.</p>
+        <button class="vm-submit" style="margin-top:28px;" onclick="closeValuationModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.vm-overlay{position:fixed;inset:0;background:rgba(2,44,81,0.55);backdrop-filter:blur(4px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .25s ease;}
+.vm-overlay.open{opacity:1;pointer-events:all;}
+.vm-card{background:#fff;border-radius:16px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;transform:translateY(24px);transition:transform .25s ease;box-shadow:0 24px 80px rgba(2,44,81,0.25);}
+.vm-overlay.open .vm-card{transform:translateY(0);}
+.vm-header{background:#022C51;padding:24px 28px;border-radius:16px 16px 0 0;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:2;}
+.vm-eyebrow{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(236,177,0,0.9);margin-bottom:6px;}
+.vm-title{font-family:'Libre Baskerville',serif;font-size:22px;color:#fff;line-height:1.2;}
+.vm-close{background:rgba(255,255,255,0.12);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:20px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;line-height:1;transition:background .15s;}
+.vm-close:hover{background:rgba(255,255,255,0.22);}
+.vm-body{padding:28px;}
+.vm-sub{font-size:14px;color:#73716C;line-height:1.65;margin-bottom:22px;}
+.vm-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.vm-group{margin-bottom:16px;}
+.vm-group label{display:block;font-size:12px;font-weight:700;color:#3D3B37;margin-bottom:6px;letter-spacing:0.02em;}
+.vm-group input,.vm-group select,.vm-group textarea{width:100%;border:1.5px solid #D9D7CF;border-radius:6px;padding:10px 14px;font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3D3B37;background:#fff;transition:border-color .2s;}
+.vm-group input:focus,.vm-group select:focus,.vm-group textarea:focus{outline:none;border-color:#115694;}
+.vm-group textarea{min-height:90px;resize:vertical;}
+.vm-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2373716C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+.vm-submit{width:100%;padding:13px;background:#022C51;color:#fff;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700;border:none;border-radius:6px;cursor:pointer;letter-spacing:0.01em;transition:background .2s;}
+.vm-submit:hover{background:#115694;}
+.vm-note{font-size:11px;color:#73716C;text-align:center;margin-top:12px;line-height:1.5;}
+.vm-success{display:none;text-align:center;padding:20px 0;}
+.vm-success-icon{width:64px;height:64px;background:#EAF1F8;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:#115694;margin:0 auto 20px;}
+.vm-success h3{font-family:'Libre Baskerville',serif;font-size:24px;color:#022C51;margin-bottom:12px;}
+.vm-success p{font-size:15px;color:#73716C;line-height:1.65;max-width:360px;margin:0 auto;}
+</style>
+
+<script>
+function openValuationModal(){
+  document.getElementById('valuationModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeValuationModal(){
+  document.getElementById('valuationModal').classList.remove('open');
+  document.body.style.overflow='';
+  setTimeout(function(){
+    document.getElementById('vmForm').style.display='block';
+    document.getElementById('vmSuccess').style.display='none';
+  },300);
+}
+function vmOverlayClick(e){
+  if(e.target===document.getElementById('valuationModal')) closeValuationModal();
+}
+function vmSubmit(){
+  document.getElementById('vmForm').style.display='none';
+  document.getElementById('vmSuccess').style.display='block';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeValuationModal();
+});
+</script>
 
 </body>
 </html>
