@@ -22,7 +22,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
 
 /* ── NAV ─────────────────────────────────────────── */
 .nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
-.nav img{height:48px;width:auto;}
+.nav img{height:64px;width:auto;}
 .nav-links{display:flex;gap:28px;align-items:center;}
 .nav-links a{font-size:14px;font-weight:600;color:var(--text-m);transition:color .2s;}
 .nav-links a:hover,.nav-links a.active{color:var(--navy);}
@@ -63,21 +63,30 @@ h1,h2,h3,h4{font-family:var(--serif);}
 .section-sub-w{color:rgba(255,255,255,0.65);}
 .section-header{margin-bottom:40px;}
 
-/* ── FEATURED EVENT ──────────────────────────────── */
-.featured-event{background:var(--navy-tint);border:2px solid var(--royal);border-radius:16px;padding:40px;display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:center;}
-.fe-date{background:var(--navy);border-radius:12px;padding:16px 20px;text-align:center;min-width:80px;flex-shrink:0;}
-.fe-date-month{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
-.fe-date-day{font-family:var(--serif);font-size:38px;font-weight:700;color:var(--white);line-height:1;}
+/* ── FEATURED PODCAST ────────────────────────────── */
+.featured-pod{background:var(--navy);border-radius:16px;padding:40px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;}
+.fp-art{width:148px;height:148px;border-radius:14px;background:linear-gradient(135deg,#1D86E4 0%,#7C3AED 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fp-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.fp-show{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);}
+.fp-title{font-family:var(--serif);font-size:24px;color:var(--white);line-height:1.25;margin-bottom:10px;}
+.fp-desc{font-size:14px;color:rgba(255,255,255,0.62);line-height:1.75;margin-bottom:16px;max-width:580px;}
+.fp-meta{display:flex;gap:6px;align-items:center;margin-bottom:22px;}
+.fp-meta span{font-size:12px;color:rgba(255,255,255,0.38);}
+.fp-meta .fp-dot{color:rgba(255,255,255,0.2);}
+/* Custom player */
+.fp-player{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 16px;}
+.fp-play-btn{width:40px;height:40px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .15s,background .15s;}
+.fp-play-btn:hover{background:#d4a000;transform:scale(1.06);}
+.fp-play-btn svg{color:var(--navy);flex-shrink:0;}
+.fp-progress-wrap{flex:1;cursor:pointer;padding:6px 0;}
+.fp-progress-bar{height:4px;background:rgba(255,255,255,0.15);border-radius:2px;position:relative;}
+.fp-progress-fill{height:4px;background:var(--gold);border-radius:2px;width:0%;transition:width .1s linear;}
+.fp-progress-thumb{width:12px;height:12px;background:var(--white);border-radius:50%;position:absolute;top:50%;transform:translate(-50%,-50%);left:0%;box-shadow:0 1px 4px rgba(0,0,0,0.3);}
+.fp-time{font-family:var(--sans);font-size:12px;color:rgba(255,255,255,0.45);white-space:nowrap;flex-shrink:0;min-width:90px;text-align:right;}
+
+/* ── FEATURED EVENT (kept for event cards below) ─── */
 .fe-badge{display:inline-block;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:#E8F4FD;color:var(--royal);padding:4px 12px;border-radius:100px;margin-bottom:12px;}
 .fe-badge-live{background:#FEF3CC;color:#7A5800;}
-.featured-event h3{font-size:26px;color:var(--navy);line-height:1.2;margin-bottom:10px;}
-.featured-event p{font-size:15px;color:var(--text-m);line-height:1.7;margin-bottom:16px;}
-.fe-meta{display:flex;gap:20px;flex-wrap:wrap;}
-.fe-meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-m);}
-.fe-meta-item svg{flex-shrink:0;opacity:0.5;}
-.fe-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-end;flex-shrink:0;}
-.fe-seats{font-size:12px;color:var(--text-m);text-align:right;margin-top:4px;}
-.fe-seats strong{color:var(--navy);}
 
 /* ── EVENT CARDS GRID ────────────────────────────── */
 .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
@@ -110,6 +119,36 @@ h1,h2,h3,h4{font-family:var(--serif);}
 .past-card p{font-size:13px;color:var(--text-m);line-height:1.6;margin-bottom:14px;}
 .past-card-meta{font-size:12px;color:var(--text-m);}
 .past-link{font-size:13px;font-weight:700;color:var(--royal);display:flex;align-items:center;gap:4px;margin-top:12px;}
+
+/* ── PODCAST GRID ────────────────────────────────── */
+.pod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
+.pod-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s;}
+.pod-card:hover{box-shadow:0 4px 20px rgba(2,44,81,0.1);border-color:#bbb;}
+.pod-card-art{height:120px;background:linear-gradient(135deg,#1D86E4 0%,#7C3AED 100%);display:flex;align-items:center;justify-content:center;position:relative;}
+.pod-card-art.art-2{background:linear-gradient(135deg,#022C51 0%,#115694 100%);}
+.pod-card-art.art-3{background:linear-gradient(135deg,#7C3AED 0%,#EC4899 100%);}
+.pod-card-art.art-4{background:linear-gradient(135deg,#115694 0%,#1D86E4 100%);}
+.pod-card-art.art-5{background:linear-gradient(135deg,#064E3B 0%,#1D86E4 100%);}
+.pod-card-art.art-6{background:linear-gradient(135deg,#7A5800 0%,#ECB100 100%);}
+.pod-ep-num{position:absolute;top:10px;left:12px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+.pod-card-body{padding:20px 22px;flex:1;display:flex;flex-direction:column;}
+.pod-card-body h4{font-family:var(--serif);font-size:16px;color:var(--navy);line-height:1.35;margin-bottom:8px;}
+.pod-card-body p{font-size:13px;color:var(--text-m);line-height:1.65;flex:1;margin-bottom:14px;}
+.pod-card-meta{display:flex;gap:6px;align-items:center;margin-bottom:14px;}
+.pod-card-meta span{font-size:11px;color:var(--text-m);}
+.pod-card-meta .dot{color:var(--border);}
+.pod-card-footer{padding:14px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.pod-play-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--royal);background:none;border:none;cursor:pointer;padding:0;}
+.pod-play-btn:hover{color:var(--navy);}
+.pod-play-btn svg{flex-shrink:0;}
+.pod-more{display:none;margin-top:24px;}
+.pod-more.open{display:grid;}
+.pod-see-more{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:14px;font-weight:700;color:var(--royal);background:var(--white);border:1.5px solid var(--border);border-radius:8px;padding:10px 24px;cursor:pointer;transition:border-color .15s,color .15s;}
+.pod-see-more:hover{border-color:var(--royal);}
+.pod-subscribe{display:flex;gap:10px;align-items:center;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.pod-sub-label{font-size:14px;color:var(--text-m);}
+.pod-sub-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--royal);padding:7px 14px;border:1.5px solid var(--border);border-radius:6px;transition:border-color .15s,color .15s;}
+.pod-sub-link:hover{border-color:var(--royal);}
 
 /* ── NEWSLETTER ──────────────────────────────────── */
 .newsletter{background:var(--navy-tint);border:1px solid #C8DFEE;border-radius:16px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
@@ -148,6 +187,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
 .chip-web{background:rgba(29,134,228,0.25);color:#7EC8F5;}
 .chip-conf{background:rgba(236,177,0,0.2);color:var(--gold);}
 .chip-sem{background:rgba(34,197,94,0.2);color:#86EFAC;}
+.chip-pod{background:rgba(168,85,247,0.25);color:#D8B4FE;}
 </style>
 </head>
 <body>
@@ -160,7 +200,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
     <a href="03_selling.html">For Sellers</a>
     <a href="04_listings.html">Listings</a>
     <a href="05_opinion_of_value.html">Opinion of Value</a>
-    <a href="06_events.html" class="active">Events</a>
+    <a href="06_events.html" class="active">Education</a>
     <a href="07_about.html">About</a>
     <a onclick="openValuationModal();return false;" href="#" class="nav-cta">Get a Valuation</a>
   </div>
@@ -182,7 +222,15 @@ h1,h2,h3,h4{font-family:var(--serif);}
       </div>
     </div>
     <div class="hero-panel">
-      <div style="font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:4px;">Upcoming Events</div>
+      <div style="font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:4px;">Events &amp; Podcasts</div>
+      <div class="hp-row">
+        <div class="hp-date"><div class="hp-month">New</div><div class="hp-day" style="font-size:14px;line-height:1.2;">Ep.</div></div>
+        <div class="hp-info" style="flex:1;">
+          <h4>When to Sell: Timing Your Exit Right</h4>
+          <p>The Transition Table · Ep. 42</p>
+        </div>
+        <span class="hp-chip chip-pod">Podcast</span>
+      </div>
       <div class="hp-row">
         <div class="hp-date"><div class="hp-month">Jun</div><div class="hp-day">14</div></div>
         <div class="hp-info" style="flex:1;">
@@ -207,55 +255,61 @@ h1,h2,h3,h4{font-family:var(--serif);}
         </div>
         <span class="hp-chip chip-sem">Seminar</span>
       </div>
-      <div class="hp-row">
-        <div class="hp-date"><div class="hp-month">Jul</div><div class="hp-day">22</div></div>
-        <div class="hp-info" style="flex:1;">
-          <h4>Financing Your Acquisition</h4>
-          <p>Virtual · 1:00 PM ET</p>
-        </div>
-        <span class="hp-chip chip-web">Webinar</span>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURED EVENT -->
+<!-- FEATURED -->
 <section class="section section-cream">
   <div class="container">
-    <div class="eyebrow">Featured Event</div>
-    <div class="featured-event">
-      <div class="fe-date">
-        <div class="fe-date-month">Jun</div>
-        <div class="fe-date-day">14</div>
-        <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:4px;">— 15</div>
+    <div class="eyebrow">Featured</div>
+    <div class="featured-pod">
+
+      <!-- Artwork -->
+      <div class="fp-art">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <rect x="6"  y="22" width="6" height="16" rx="3" fill="rgba(255,255,255,0.9)"/>
+          <rect x="16" y="14" width="6" height="32" rx="3" fill="rgba(255,255,255,0.9)"/>
+          <rect x="26" y="8"  width="6" height="44" rx="3" fill="rgba(255,255,255,0.9)"/>
+          <rect x="36" y="18" width="6" height="24" rx="3" fill="rgba(255,255,255,0.9)"/>
+          <rect x="46" y="24" width="6" height="12" rx="3" fill="rgba(255,255,255,0.9)"/>
+        </svg>
       </div>
+
+      <!-- Info -->
       <div>
-        <div style="display:flex;gap:8px;margin-bottom:12px;">
-          <span class="fe-badge fe-badge-live">● Filling Fast</span>
-          <span class="fe-badge">In-Person</span>
+        <div class="fp-top">
+          <span class="fp-show">The Transition Table</span>
+          <span class="hp-chip chip-pod">Podcast</span>
         </div>
-        <h3>Practice Transition Summit 2026</h3>
-        <p>Two days of expert-led sessions on valuation, deal structure, financing, and life after the sale — featuring panels with active buyers, sellers, and lenders. Network with 200+ dentists and physicians navigating practice transitions nationwide.</p>
-        <div class="fe-meta">
-          <div class="fe-meta-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a4 4 0 100 8A4 4 0 007 1zM1 13c0-2.2 2.7-4 6-4s6 1.8 6 4" stroke="#73716C" stroke-width="1.3" stroke-linecap="round"/></svg>
-            Dr. Rachel Kim, James Morrow, David Chen CPA
-          </div>
-          <div class="fe-meta-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
-            June 14–15, 2026 · 8:00 AM – 6:00 PM MST
-          </div>
-          <div class="fe-meta-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="#73716C" stroke-width="1.3"/><circle cx="7" cy="5" r="1.5" stroke="#73716C" stroke-width="1.3"/></svg>
-            Marriott Phoenix Downtown · Phoenix, AZ
-          </div>
+        <h3 class="fp-title">When to Sell: Timing Your Exit Right</h3>
+        <p class="fp-desc">Senior advisor James Morrow breaks down the five market signals that indicate the right time to sell, why most dentists wait too long, and how to read your own practice's readiness before you list.</p>
+        <div class="fp-meta">
+          <span>Episode 42</span>
+          <span class="fp-dot">·</span>
+          <span>38 min</span>
+          <span class="fp-dot">·</span>
+          <span>May 6, 2026</span>
         </div>
+
+        <!-- Audio Player -->
+        <div class="fp-player">
+          <button class="fp-play-btn" id="fpPlayBtn" onclick="togglePod()" aria-label="Play episode">
+            <svg id="fpPlayIcon" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M6 4l9 5-9 5V4z" fill="currentColor"/></svg>
+          </button>
+          <div class="fp-progress-wrap" id="fpProgressWrap" onclick="seekPod(event)">
+            <div class="fp-progress-bar">
+              <div class="fp-progress-fill" id="fpFill"></div>
+              <div class="fp-progress-thumb" id="fpThumb"></div>
+            </div>
+          </div>
+          <span class="fp-time" id="fpTime">0:00 / 38:00</span>
+        </div>
+        <audio id="podAudio" preload="none">
+          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
       </div>
-      <div class="fe-actions">
-        <a href="07_about.html" class="btn btn-gold">Register Now <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="07_about.html" class="btn btn-ghost btn-sm">Learn more</a>
-        <div class="fe-seats"><strong>47</strong> seats remaining</div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -472,10 +526,182 @@ h1,h2,h3,h4{font-family:var(--serif);}
   </div>
 </section>
 
-<!-- NEWSLETTER -->
+<!-- PODCAST SECTION -->
 <section class="section section-cream">
   <div class="container">
-    <div class="newsletter">
+    <div class="section-header">
+      <div class="eyebrow">The Transition Table</div>
+      <h2 class="section-h2">Our podcast</h2>
+      <p class="section-sub">Straight talk for dentists and physicians on buying, selling, and planning the next chapter. New episodes every two weeks.</p>
+    </div>
+    <!-- Subscribe row -->
+    <div class="pod-subscribe">
+      <span class="pod-sub-label">Listen on:</span>
+      <a href="#" class="pod-sub-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="currentColor" stroke-width="1.5"/><path d="M12 6a4 4 0 014 4c0 3.5-2 7-4 9-2-2-4-5.5-4-9a4 4 0 014-4z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="1.5" fill="currentColor"/></svg>
+        Apple Podcasts
+      </a>
+      <a href="#" class="pod-sub-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Spotify
+      </a>
+      <a href="#" class="pod-sub-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        RSS Feed
+      </a>
+    </div>
+
+    <div class="pod-grid">
+
+      <!-- Ep 42 -->
+      <div class="pod-card">
+        <div class="pod-card-art">
+          <span class="pod-ep-num">Ep. 42</span>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
+        </div>
+        <div class="pod-card-body">
+          <h4>When to Sell: Timing Your Exit Right</h4>
+          <p>Five market signals that indicate the right time to sell, and why most dentists wait too long.</p>
+          <div class="pod-card-meta">
+            <span>May 6, 2026</span><span class="dot">·</span><span>38 min</span>
+          </div>
+        </div>
+        <div class="pod-card-footer">
+          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3')">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
+            Play episode
+          </button>
+          <span style="font-size:11px;color:var(--text-m);">Latest</span>
+        </div>
+      </div>
+
+      <!-- Ep 41 -->
+      <div class="pod-card">
+        <div class="pod-card-art art-2">
+          <span class="pod-ep-num">Ep. 41</span>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
+        </div>
+        <div class="pod-card-body">
+          <h4>SBA Loans Explained: What Buyers Need to Know</h4>
+          <p>A lender's-eye view of how SBA 7(a) loans work for practice acquisitions and what kills deals at the finish line.</p>
+          <div class="pod-card-meta">
+            <span>Apr 22, 2026</span><span class="dot">·</span><span>42 min</span>
+          </div>
+        </div>
+        <div class="pod-card-footer">
+          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3')">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
+            Play episode
+          </button>
+        </div>
+      </div>
+
+      <!-- Ep 40 -->
+      <div class="pod-card">
+        <div class="pod-card-art art-3">
+          <span class="pod-ep-num">Ep. 40</span>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
+        </div>
+        <div class="pod-card-body">
+          <h4>The Associate Path: Buy-In vs. Acquisition</h4>
+          <p>When does buying into a practice make more sense than acquiring one outright? We break down both models.</p>
+          <div class="pod-card-meta">
+            <span>Apr 8, 2026</span><span class="dot">·</span><span>35 min</span>
+          </div>
+        </div>
+        <div class="pod-card-footer">
+          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3')">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
+            Play episode
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /pod-grid row 1 -->
+
+    <!-- Hidden rows -->
+    <div class="pod-grid pod-more" id="podMore">
+
+      <!-- Ep 39 -->
+      <div class="pod-card">
+        <div class="pod-card-art art-4">
+          <span class="pod-ep-num">Ep. 39</span>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
+        </div>
+        <div class="pod-card-body">
+          <h4>Goodwill, Tangibles, and Real Estate: What's Really Being Sold</h4>
+          <p>Most sellers don't realize how much of their sale price is tied up in intangible goodwill — and what drives that number up or down.</p>
+          <div class="pod-card-meta">
+            <span>Mar 25, 2026</span><span class="dot">·</span><span>31 min</span>
+          </div>
+        </div>
+        <div class="pod-card-footer">
+          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3')">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
+            Play episode
+          </button>
+        </div>
+      </div>
+
+      <!-- Ep 38 -->
+      <div class="pod-card">
+        <div class="pod-card-art art-5">
+          <span class="pod-ep-num">Ep. 38</span>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
+        </div>
+        <div class="pod-card-body">
+          <h4>Confidentiality in Practice Sales: How to Keep It Quiet</h4>
+          <p>The practical steps brokers and sellers take to market a practice without alerting staff, patients, or competitors.</p>
+          <div class="pod-card-meta">
+            <span>Mar 11, 2026</span><span class="dot">·</span><span>28 min</span>
+          </div>
+        </div>
+        <div class="pod-card-footer">
+          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3')">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
+            Play episode
+          </button>
+        </div>
+      </div>
+
+      <!-- Ep 37 -->
+      <div class="pod-card">
+        <div class="pod-card-art art-6">
+          <span class="pod-ep-num">Ep. 37</span>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
+        </div>
+        <div class="pod-card-body">
+          <h4>Life After the Sale: Planning the Transition Period</h4>
+          <p>What happens in the 6–12 months after closing — and how sellers can set themselves and the incoming buyer up for success.</p>
+          <div class="pod-card-meta">
+            <span>Feb 25, 2026</span><span class="dot">·</span><span>44 min</span>
+          </div>
+        </div>
+        <div class="pod-card-footer">
+          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3')">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
+            Play episode
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /pod-more -->
+
+    <!-- See More toggle -->
+    <div style="text-align:center;margin-top:28px;">
+      <button class="pod-see-more" id="podSeeMore" onclick="toggleMoreEpisodes()">
+        See more episodes
+        <svg id="podSeeMoreIcon" width="14" height="14" viewBox="0 0 14 14" fill="none" style="transition:transform .25s;"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section" style="background:#022C51;">
+  <div class="container">
+    <div class="newsletter" style="background:var(--white);">
       <div>
         <div class="eyebrow">Stay in the Loop</div>
         <h2 class="section-h2" style="margin-bottom:12px;">Get event announcements<br>before they fill up</h2>
@@ -487,7 +713,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
           <input type="email" class="nl-input" placeholder="your@email.com">
           <button class="btn btn-navy" style="background:var(--navy);color:var(--white);border:none;border-radius:6px;padding:0 20px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Subscribe</button>
         </div>
-        <div class="nl-note">No spam. Unsubscribe anytime. Your information stays confidential.</div>
+        <div class="nl-note" style="color:rgba(255,255,255,0.4);">No spam. Unsubscribe anytime. Your information stays confidential.</div>
       </div>
     </div>
   </div>
@@ -564,7 +790,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
       <h4>Company</h4>
       <a href="07_about.html">About Us</a>
       <a href="07_about.html">Contact</a>
-      <a href="06_events.html">Events</a>
+      <a href="06_events.html">Education</a>
       <a href="#">Privacy Policy</a>
     </div>
   </div>
@@ -643,7 +869,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
           <label>Anything else you'd like us to know? <span style="font-weight:400;color:var(--text-m)">(optional)</span></label>
           <textarea placeholder="Practice size, patient volume, goals for the transition..."></textarea>
         </div>
-        <button class="vm-submit" onclick="vmSubmit()">Request my valuation &#8594;</button>
+        <button class="vm-submit" onclick="vmSubmit()">Submit</button>
         <p class="vm-note">&#128274;&nbsp; Your identity and practice details are kept strictly confidential. We never share your information.</p>
       </div>
       <div class="vm-success" id="vmSuccess">
@@ -686,6 +912,107 @@ h1,h2,h3,h4{font-family:var(--serif);}
 </style>
 
 <script>
+/* ── PODCAST PLAYER ──────────────────────────────── */
+const podAudio = document.getElementById('podAudio');
+const fpFill   = document.getElementById('fpFill');
+const fpThumb  = document.getElementById('fpThumb');
+const fpTime   = document.getElementById('fpTime');
+
+function togglePod(){
+  const icon = document.getElementById('fpPlayIcon');
+  if(podAudio.paused){
+    podAudio.play();
+    icon.innerHTML = '<rect x="3" y="3" width="4.5" height="12" rx="1.5" fill="currentColor"/><rect x="10.5" y="3" width="4.5" height="12" rx="1.5" fill="currentColor"/>';
+  } else {
+    podAudio.pause();
+    icon.innerHTML = '<path d="M6 4l9 5-9 5V4z" fill="currentColor"/>';
+  }
+}
+
+function fmtTime(s){
+  if(isNaN(s)||s===Infinity) return '0:00';
+  const m = Math.floor(s/60), sec = Math.floor(s%60);
+  return m+':'+(sec<10?'0':'')+sec;
+}
+
+podAudio.addEventListener('timeupdate',function(){
+  const pct = (this.currentTime/this.duration)*100||0;
+  fpFill.style.width  = pct+'%';
+  fpThumb.style.left  = pct+'%';
+  fpTime.textContent  = fmtTime(this.currentTime)+' / '+fmtTime(this.duration);
+});
+
+podAudio.addEventListener('ended',function(){
+  const icon = document.getElementById('fpPlayIcon');
+  icon.innerHTML = '<path d="M6 4l9 5-9 5V4z" fill="currentColor"/>';
+  fpFill.style.width = '0%';
+  fpThumb.style.left = '0%';
+  fpTime.textContent = '0:00 / '+fmtTime(this.duration);
+});
+
+function seekPod(e){
+  const wrap = document.getElementById('fpProgressWrap');
+  const rect = wrap.getBoundingClientRect();
+  const pct  = Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));
+  if(podAudio.duration) podAudio.currentTime = pct * podAudio.duration;
+}
+
+/* ── EPISODE CARD PLAYERS ────────────────────────── */
+let activeCardBtn = null;
+let activeCardAudio = null;
+
+function playEpisode(btn, src){
+  // If another card is playing, stop it
+  if(activeCardAudio && activeCardAudio !== btn._audio){
+    activeCardAudio.pause();
+    activeCardAudio.currentTime = 0;
+    if(activeCardBtn) resetCardBtn(activeCardBtn);
+  }
+  // Also pause the featured player if running
+  if(!podAudio.paused){ podAudio.pause(); resetFeaturedBtn(); }
+
+  // Create or reuse audio for this card
+  if(!btn._audio){
+    btn._audio = new Audio(src);
+    btn._audio.addEventListener('ended', function(){ resetCardBtn(btn); activeCardBtn = null; activeCardAudio = null; });
+  }
+  activeCardAudio = btn._audio;
+  activeCardBtn   = btn;
+
+  if(btn._audio.paused){
+    btn._audio.play();
+    btn.innerHTML = '<svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="4" height="10" rx="1.5" fill="currentColor"/><rect x="15" y="9" width="4" height="10" rx="1.5" fill="currentColor"/></svg> Pause';
+  } else {
+    btn._audio.pause();
+    resetCardBtn(btn);
+    activeCardBtn = null;
+  }
+}
+
+function resetCardBtn(btn){
+  btn.innerHTML = '<svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg> Play episode';
+}
+
+function toggleMoreEpisodes(){
+  const more = document.getElementById('podMore');
+  const icon = document.getElementById('podSeeMoreIcon');
+  const btn  = document.getElementById('podSeeMore');
+  const open = more.classList.toggle('open');
+  icon.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+  btn.textContent = '';
+  btn.appendChild(document.createTextNode(open ? 'See fewer episodes' : 'See more episodes'));
+  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('id','podSeeMoreIcon');svg.setAttribute('width','14');svg.setAttribute('height','14');svg.setAttribute('viewBox','0 0 14 14');svg.setAttribute('fill','none');svg.style.transition='transform .25s';svg.style.transform=open?'rotate(180deg)':'rotate(0deg)';
+  const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+  path.setAttribute('d','M2 5l5 5 5-5');path.setAttribute('stroke','currentColor');path.setAttribute('stroke-width','1.5');path.setAttribute('stroke-linecap','round');path.setAttribute('stroke-linejoin','round');
+  svg.appendChild(path);btn.appendChild(svg);
+}
+
+function resetFeaturedBtn(){
+  const icon = document.getElementById('fpPlayIcon');
+  if(icon) icon.innerHTML = '<path d="M6 4l9 5-9 5V4z" fill="currentColor"/>';
+}
+
 function openValuationModal(){
   document.getElementById('valuationModal').classList.add('open');
   document.body.style.overflow='hidden';

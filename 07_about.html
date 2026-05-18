@@ -22,7 +22,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
 
 /* ── NAV ─────────────────────────────────────────── */
 .nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
-.nav img{height:48px;width:auto;}
+.nav img{height:64px;width:auto;}
 .nav-links{display:flex;gap:28px;align-items:center;}
 .nav-links a{font-size:14px;font-weight:600;color:var(--text-m);transition:color .2s;}
 .nav-links a:hover,.nav-links a.active{color:var(--navy);}
@@ -162,7 +162,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
     <a href="03_selling.html">For Sellers</a>
     <a href="04_listings.html">Listings</a>
     <a href="05_opinion_of_value.html">Opinion of Value</a>
-    <a href="06_events.html">Events</a>
+    <a href="06_events.html">Education</a>
     <a href="07_about.html" class="active">About</a>
     <a onclick="openValuationModal();return false;" href="#" class="nav-cta">Get a Valuation</a>
   </div>
@@ -525,7 +525,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
       <h4>Company</h4>
       <a href="07_about.html">About Us</a>
       <a href="07_about.html">Contact</a>
-      <a href="06_events.html">Events</a>
+      <a href="06_events.html">Education</a>
       <a href="#">Privacy Policy</a>
     </div>
   </div>
@@ -604,7 +604,7 @@ h1,h2,h3,h4{font-family:var(--serif);}
           <label>Anything else you'd like us to know? <span style="font-weight:400;color:var(--text-m)">(optional)</span></label>
           <textarea placeholder="Practice size, patient volume, goals for the transition..."></textarea>
         </div>
-        <button class="vm-submit" onclick="vmSubmit()">Request my valuation &#8594;</button>
+        <button class="vm-submit" onclick="vmSubmit()">Submit</button>
         <p class="vm-note">&#128274;&nbsp; Your identity and practice details are kept strictly confidential. We never share your information.</p>
       </div>
       <div class="vm-success" id="vmSuccess">
