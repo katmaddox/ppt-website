@@ -113,6 +113,35 @@ h1,h2,h3,h4{font-family:var(--serif);}
 .cta-band p{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;}
 .cta-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
 
+/* ── FEATURED MEDIA ─────────────────────────────── */
+.fm-section{background:var(--cream);padding:80px 0;}
+.fm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
+.fm-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:box-shadow .2s;}
+.fm-card:hover{box-shadow:0 8px 32px rgba(2,44,81,0.1);}
+.fm-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;}
+.fm-art{width:100%;height:100%;object-fit:cover;display:block;}
+.fm-art-grad{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.fm-play-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,44,81,0.25);transition:background .2s;}
+.fm-card:hover .fm-play-wrap{background:rgba(2,44,81,0.38);}
+.fm-play-btn{width:52px;height:52px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:transform .15s;}
+.fm-play-btn:hover{transform:scale(1.08);}
+.fm-play-btn svg{margin-left:3px;}
+.fm-yt-link{position:absolute;top:10px;right:10px;width:32px;height:32px;background:rgba(0,0,0,0.65);border-radius:6px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .15s;}
+.fm-yt-link:hover{background:#FF0000;}
+.fm-ep-tag{position:absolute;bottom:10px;left:10px;background:rgba(2,44,81,0.8);color:#fff;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+.fm-body{padding:18px 20px 20px;}
+.fm-title{font-family:var(--serif);font-size:16px;color:var(--navy);line-height:1.4;margin-bottom:6px;}
+.fm-desc{font-size:13px;color:var(--text-m);line-height:1.6;margin-bottom:14px;}
+.fm-meta{font-size:11px;color:var(--text-m);font-family:var(--sans);}
+.fm-audio-bar{display:none;align-items:center;gap:8px;padding:0 20px 16px;gap:10px;}
+.fm-audio-bar.active{display:flex;}
+.fm-mini-play{width:32px;height:32px;border-radius:50%;background:var(--navy);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fm-mini-play svg{margin-left:2px;}
+.fm-progress-wrap{flex:1;height:4px;background:var(--border);border-radius:2px;cursor:pointer;position:relative;}
+.fm-progress-fill{height:4px;background:var(--gold);border-radius:2px;width:0;transition:width .1s linear;}
+.fm-time{font-size:11px;color:var(--text-m);font-family:var(--sans);white-space:nowrap;}
+.fm-cta-wrap{text-align:center;margin-top:40px;}
+
 /* ── FOOTER ──────────────────────────────────────── */
 .footer{background:#0D1F30;padding:56px 48px 28px;}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
@@ -131,8 +160,8 @@ h1,h2,h3,h4{font-family:var(--serif);}
 <nav class="nav">
   <a href="01_home.html"><img src="data:image/png;base64,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" alt="Practice Transition Partners"></a>
   <div class="nav-links">
-    <a href="02_buying.html">For Buyers</a>
     <a href="03_selling.html">For Sellers</a>
+    <a href="02_buying.html">For Buyers</a>
     <a href="04_listings.html">Listings</a>
     <a href="05_opinion_of_value.html">Opinion of Value</a>
     <a href="06_events.html">Education</a>
@@ -167,17 +196,17 @@ h1,h2,h3,h4{font-family:var(--serif);}
       </div>
     </div>
     <div class="hero-cards">
-      <div class="hcard hcard-buyer">
-        <div class="hcard-label">I want to buy</div>
-        <h3>Find your practice</h3>
-        <p>Browse verified listings matched to your specialty, location, and financing goals.</p>
-        <a href="04_listings.html" class="hcard-btn">Browse listings <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </div>
       <div class="hcard hcard-seller">
         <div class="hcard-label">I want to sell</div>
         <h3>Value your practice</h3>
         <p>Get a confidential opinion of value. No obligation. Your identity stays protected.</p>
         <a href="05_opinion_of_value.html" class="hcard-btn">Get started <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="hcard hcard-buyer">
+        <div class="hcard-label">I want to buy</div>
+        <h3>Find your practice</h3>
+        <p>Browse verified listings matched to your specialty, location, and financing goals.</p>
+        <a href="04_listings.html" class="hcard-btn">Browse listings <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </div>
@@ -204,18 +233,6 @@ h1,h2,h3,h4{font-family:var(--serif);}
     <p class="section-sub">Most brokers serve one side of the table. We specialize in both — so every transaction closes with confidence on both ends.</p>
     <div class="path-grid">
       <div class="path-card featured">
-        <span class="path-badge badge-buyer">For buyers</span>
-        <h3>Acquire a practice that fits your vision</h3>
-        <p>We match you to pre-screened practices based on specialty, geography, size, and financing readiness — then guide you all the way to keys-in-hand.</p>
-        <ul class="path-steps">
-          <li><span class="dot dot-blue"></span>Register and tell us your goals</li>
-          <li><span class="dot dot-blue"></span>Get matched to verified listings</li>
-          <li><span class="dot dot-blue"></span>Review financials under NDA</li>
-          <li><span class="dot dot-blue"></span>Negotiate, finance, and close</li>
-        </ul>
-        <a href="04_listings.html" class="btn btn-primary">Browse open practices</a>
-      </div>
-      <div class="path-card">
         <span class="path-badge badge-seller">For sellers</span>
         <h3>Transition your life's work with confidence</h3>
         <p>Selling a practice is one of the most significant decisions of your career. We protect your identity, value your practice fairly, and find you a qualified buyer.</p>
@@ -226,6 +243,18 @@ h1,h2,h3,h4{font-family:var(--serif);}
           <li><span class="dot dot-gold"></span>Close on your timeline</li>
         </ul>
         <a onclick="openValuationModal();return false;" href="#" class="btn btn-ghost">Get a valuation</a>
+      </div>
+      <div class="path-card">
+        <span class="path-badge badge-buyer">For buyers</span>
+        <h3>Acquire a practice that fits your vision</h3>
+        <p>We match you to pre-screened practices based on specialty, geography, size, and financing readiness — then guide you all the way to keys-in-hand.</p>
+        <ul class="path-steps">
+          <li><span class="dot dot-blue"></span>Register and tell us your goals</li>
+          <li><span class="dot dot-blue"></span>Get matched to verified listings</li>
+          <li><span class="dot dot-blue"></span>Review financials under NDA</li>
+          <li><span class="dot dot-blue"></span>Negotiate, finance, and close</li>
+        </ul>
+        <a href="04_listings.html" class="btn btn-primary">Browse open practices</a>
       </div>
     </div>
   </div>
@@ -283,6 +312,130 @@ h1,h2,h3,h4{font-family:var(--serif);}
         <div class="tcard-author">Dr. Priya K.</div>
         <div class="tcard-role">Buyer · Family Medicine · Atlanta, GA</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1.55 FEATURED MEDIA -->
+<section class="fm-section">
+  <div class="container">
+    <div class="eyebrow">Featured media</div>
+    <h2 class="section-h2">Listen and learn</h2>
+    <div class="fm-grid">
+
+      <!-- Card 1 -->
+      <div class="fm-card">
+        <div class="fm-thumb" onclick="fmPlay(this,0)">
+          <div class="fm-art-grad" style="background:linear-gradient(135deg,#022C51 0%,#1D86E4 100%);">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="28" fill="rgba(255,255,255,0.06)"/>
+              <path d="M22 18 C22 16.34 23.34 15 25 15 C26.66 15 28 16.34 28 18 L28 28 C28 29.66 26.66 31 25 31 C23.34 31 22 29.66 22 28 Z" fill="rgba(255,255,255,0.35)"/>
+              <path d="M32 18 C32 16.34 30.66 15 29 15 C27.34 15 26 16.34 26 18 L26 28 C26 29.66 27.34 31 29 31 C30.66 31 32 29.66 32 28 Z" fill="rgba(255,255,255,0.35)" transform="translate(4,0)"/>
+              <path d="M20 29 C20 29 20 35 25 38 C28 39.5 31 39.5 31 39.5 L31 41 L28 41 L28 43 L32 43 L32 41 L29 41 L29 39.5 C33.5 38.8 36 35 36 29" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="fm-play-wrap">
+            <button class="fm-play-btn" aria-label="Play episode">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 3L15 9L5 15V3Z" fill="#022C51"/></svg>
+            </button>
+          </div>
+          <a class="fm-yt-link" href="https://www.youtube.com/@PracticeTransitionPartners" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="Watch on YouTube">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M17.6 2.18A2.26 2.26 0 0 0 16.01.57C14.62.18 9 .18 9 .18S3.38.18 1.99.57A2.26 2.26 0 0 0 .4 2.18C0 3.58 0 6.5 0 6.5s0 2.92.4 4.32A2.26 2.26 0 0 0 1.99 12.43C3.38 12.82 9 12.82 9 12.82s5.62 0 7.01-.39a2.26 2.26 0 0 0 1.59-1.61C18 9.42 18 6.5 18 6.5s0-2.92-.4-4.32ZM7.2 9.28V3.72L11.89 6.5 7.2 9.28Z" fill="white"/></svg>
+          </a>
+          <span class="fm-ep-tag">Ep. 42</span>
+        </div>
+        <div class="fm-body">
+          <div class="fm-title">When to Start Planning Your Exit</div>
+          <div class="fm-desc">The timeline most sellers wish they'd started sooner — and the three decisions that shape everything.</div>
+          <div class="fm-meta">May 14, 2025 · 31 min</div>
+        </div>
+        <div class="fm-audio-bar" id="fmBar0">
+          <button class="fm-mini-play" onclick="fmMiniPlay(0)" id="fmMiniBtn0">
+            <svg id="fmMiniIcon0" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 1.5L10 6L3 10.5V1.5Z" fill="white"/></svg>
+          </button>
+          <div class="fm-progress-wrap" onclick="fmSeek(event,0)" id="fmProg0"><div class="fm-progress-fill" id="fmFill0"></div></div>
+          <span class="fm-time" id="fmTime0">0:00</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="fm-card">
+        <div class="fm-thumb" onclick="fmPlay(this,1)">
+          <div class="fm-art-grad" style="background:linear-gradient(135deg,#115694 0%,#7C3AED 100%);">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="28" fill="rgba(255,255,255,0.06)"/>
+              <rect x="16" y="22" width="4" height="12" rx="2" fill="rgba(255,255,255,0.35)"/>
+              <rect x="22" y="17" width="4" height="22" rx="2" fill="rgba(255,255,255,0.5)"/>
+              <rect x="28" y="20" width="4" height="16" rx="2" fill="rgba(255,255,255,0.35)"/>
+              <rect x="34" y="24" width="4" height="8" rx="2" fill="rgba(255,255,255,0.25)"/>
+            </svg>
+          </div>
+          <div class="fm-play-wrap">
+            <button class="fm-play-btn" aria-label="Play episode">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 3L15 9L5 15V3Z" fill="#022C51"/></svg>
+            </button>
+          </div>
+          <a class="fm-yt-link" href="https://www.youtube.com/@PracticeTransitionPartners" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="Watch on YouTube">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M17.6 2.18A2.26 2.26 0 0 0 16.01.57C14.62.18 9 .18 9 .18S3.38.18 1.99.57A2.26 2.26 0 0 0 .4 2.18C0 3.58 0 6.5 0 6.5s0 2.92.4 4.32A2.26 2.26 0 0 0 1.99 12.43C3.38 12.82 9 12.82 9 12.82s5.62 0 7.01-.39a2.26 2.26 0 0 0 1.59-1.61C18 9.42 18 6.5 18 6.5s0-2.92-.4-4.32ZM7.2 9.28V3.72L11.89 6.5 7.2 9.28Z" fill="white"/></svg>
+          </a>
+          <span class="fm-ep-tag">Ep. 39</span>
+        </div>
+        <div class="fm-body">
+          <div class="fm-title">Financing Your First Practice Acquisition</div>
+          <div class="fm-desc">SBA loans, seller carry-backs, and what lenders actually look at when underwriting a practice deal.</div>
+          <div class="fm-meta">Apr. 2, 2025 · 38 min</div>
+        </div>
+        <div class="fm-audio-bar" id="fmBar1">
+          <button class="fm-mini-play" onclick="fmMiniPlay(1)" id="fmMiniBtn1">
+            <svg id="fmMiniIcon1" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 1.5L10 6L3 10.5V1.5Z" fill="white"/></svg>
+          </button>
+          <div class="fm-progress-wrap" onclick="fmSeek(event,1)" id="fmProg1"><div class="fm-progress-fill" id="fmFill1"></div></div>
+          <span class="fm-time" id="fmTime1">0:00</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="fm-card">
+        <div class="fm-thumb" onclick="fmPlay(this,2)">
+          <div class="fm-art-grad" style="background:linear-gradient(135deg,#1D86E4 0%,#ECB100 100%);">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="28" fill="rgba(255,255,255,0.06)"/>
+              <circle cx="28" cy="28" r="10" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+              <circle cx="28" cy="28" r="6" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
+              <circle cx="28" cy="28" r="2.5" fill="rgba(255,255,255,0.5)"/>
+              <line x1="28" y1="14" x2="28" y2="18" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="28" y1="38" x2="28" y2="42" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="14" y1="28" x2="18" y2="28" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="38" y1="28" x2="42" y2="28" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="fm-play-wrap">
+            <button class="fm-play-btn" aria-label="Play episode">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 3L15 9L5 15V3Z" fill="#022C51"/></svg>
+            </button>
+          </div>
+          <a class="fm-yt-link" href="https://www.youtube.com/@PracticeTransitionPartners" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="Watch on YouTube">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M17.6 2.18A2.26 2.26 0 0 0 16.01.57C14.62.18 9 .18 9 .18S3.38.18 1.99.57A2.26 2.26 0 0 0 .4 2.18C0 3.58 0 6.5 0 6.5s0 2.92.4 4.32A2.26 2.26 0 0 0 1.99 12.43C3.38 12.82 9 12.82 9 12.82s5.62 0 7.01-.39a2.26 2.26 0 0 0 1.59-1.61C18 9.42 18 6.5 18 6.5s0-2.92-.4-4.32ZM7.2 9.28V3.72L11.89 6.5 7.2 9.28Z" fill="white"/></svg>
+          </a>
+          <span class="fm-ep-tag">Ep. 37</span>
+        </div>
+        <div class="fm-body">
+          <div class="fm-title">What Buyers Are Really Looking For</div>
+          <div class="fm-desc">Patient retention, staff stability, and the metrics that determine whether a buyer makes an offer — or walks.</div>
+          <div class="fm-meta">Mar. 5, 2025 · 27 min</div>
+        </div>
+        <div class="fm-audio-bar" id="fmBar2">
+          <button class="fm-mini-play" onclick="fmMiniPlay(2)" id="fmMiniBtn2">
+            <svg id="fmMiniIcon2" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 1.5L10 6L3 10.5V1.5Z" fill="white"/></svg>
+          </button>
+          <div class="fm-progress-wrap" onclick="fmSeek(event,2)" id="fmProg2"><div class="fm-progress-fill" id="fmFill2"></div></div>
+          <span class="fm-time" id="fmTime2">0:00</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="fm-cta-wrap">
+      <a href="06_events.html" class="btn btn-primary">Learn more &rarr;</a>
     </div>
   </div>
 </section>
@@ -444,6 +597,88 @@ h1,h2,h3,h4{font-family:var(--serif);}
 </style>
 
 <script>
+/* ── Featured Media Player ── */
+var fmAudios=[null,null,null];
+var fmPlaying=[false,false,false];
+var fmSrcs=['','',''];// placeholder — no actual audio file; demo mode
+
+function fmFmtTime(s){
+  if(isNaN(s)||!isFinite(s)) return '0:00';
+  var m=Math.floor(s/60), sec=Math.floor(s%60);
+  return m+':'+(sec<10?'0':'')+sec;
+}
+
+function fmPlay(thumb,idx){
+  // Show the audio bar and start playback
+  var bar=document.getElementById('fmBar'+idx);
+  bar.classList.add('active');
+  // Pause any other playing
+  for(var i=0;i<3;i++){
+    if(i!==idx&&fmPlaying[i]){
+      fmPause(i);
+    }
+  }
+  // Change thumb play button to indicate active
+  var btn=thumb.querySelector('.fm-play-btn');
+  btn.innerHTML='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="2" width="4" height="10" rx="1.5" fill="#022C51"/><rect x="8" y="2" width="4" height="10" rx="1.5" fill="#022C51"/></svg>';
+  // In demo: no actual audio; just mark as playing
+  fmPlaying[idx]=true;
+  fmSimulate(idx);
+}
+
+var fmSim=[null,null,null];
+var fmPct=[0,0,0];
+
+function fmSimulate(idx){
+  // Demo progress simulation
+  clearInterval(fmSim[idx]);
+  fmSim[idx]=setInterval(function(){
+    if(!fmPlaying[idx]){clearInterval(fmSim[idx]);return;}
+    fmPct[idx]=Math.min(fmPct[idx]+0.4,100);
+    document.getElementById('fmFill'+idx).style.width=fmPct[idx]+'%';
+    // Simulate ~30min episode duration progress
+    var elapsed=Math.round((fmPct[idx]/100)*1800);
+    document.getElementById('fmTime'+idx).textContent=fmFmtTime(elapsed);
+    if(fmPct[idx]>=100){
+      clearInterval(fmSim[idx]);
+      fmPlaying[idx]=false;
+      fmPct[idx]=0;
+      document.getElementById('fmFill'+idx).style.width='0%';
+      document.getElementById('fmTime'+idx).textContent='0:00';
+      // Reset mini button icon
+      document.getElementById('fmMiniIcon'+idx).innerHTML='<path d="M3 1.5L10 6L3 10.5V1.5Z" fill="white"/>';
+    }
+  },200);
+  // Update mini button to pause icon
+  document.getElementById('fmMiniIcon'+idx).innerHTML='<rect x="1" y="1" width="4" height="10" rx="1" fill="white"/><rect x="7" y="1" width="4" height="10" rx="1" fill="white"/>';
+}
+
+function fmMiniPlay(idx){
+  if(fmPlaying[idx]){
+    fmPause(idx);
+  } else {
+    for(var i=0;i<3;i++){if(i!==idx&&fmPlaying[i])fmPause(i);}
+    fmPlaying[idx]=true;
+    fmSimulate(idx);
+  }
+}
+
+function fmPause(idx){
+  fmPlaying[idx]=false;
+  clearInterval(fmSim[idx]);
+  document.getElementById('fmMiniIcon'+idx).innerHTML='<path d="M3 1.5L10 6L3 10.5V1.5Z" fill="white"/>';
+}
+
+function fmSeek(e,idx){
+  var wrap=document.getElementById('fmProg'+idx);
+  var rect=wrap.getBoundingClientRect();
+  var pct=Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));
+  fmPct[idx]=pct*100;
+  document.getElementById('fmFill'+idx).style.width=fmPct[idx]+'%';
+  var elapsed=Math.round((pct)*1800);
+  document.getElementById('fmTime'+idx).textContent=fmFmtTime(elapsed);
+}
+
 function openValuationModal(){
   document.getElementById('valuationModal').classList.add('open');
   document.body.style.overflow='hidden';

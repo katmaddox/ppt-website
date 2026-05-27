@@ -188,6 +188,76 @@ h1,h2,h3,h4{font-family:var(--serif);}
 .chip-conf{background:rgba(236,177,0,0.2);color:var(--gold);}
 .chip-sem{background:rgba(34,197,94,0.2);color:#86EFAC;}
 .chip-pod{background:rgba(168,85,247,0.25);color:#D8B4FE;}
+
+/* ── LIBRARY TOOLBAR ─────────────────────────────── */
+.lib-toolbar{background:var(--cream);padding:32px 48px 0;}
+.lib-toolbar-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding-bottom:28px;border-bottom:1px solid var(--border);}
+.lib-search-wrap{position:relative;flex:1;min-width:240px;}
+.lib-search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);pointer-events:none;}
+.lib-search{width:100%;height:44px;padding:0 16px 0 40px;border:1.5px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:14px;color:var(--text-b);background:var(--white);outline:none;transition:border-color .15s;}
+.lib-search:focus{border-color:var(--royal);}
+.lib-filters{display:flex;gap:6px;flex-wrap:wrap;}
+.lib-tab{font-family:var(--sans);font-size:13px;font-weight:700;padding:8px 16px;border-radius:6px;border:1.5px solid var(--border);background:var(--white);color:var(--text-m);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.lib-tab:hover{border-color:var(--royal);color:var(--navy);}
+.lib-tab.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.lib-count{font-size:13px;color:var(--text-m);margin-left:auto;}
+.lib-count strong{color:var(--navy);}
+
+/* ── LIBRARY SECTION ──────────────────────────────── */
+.lib-section{background:var(--cream);padding:32px 48px 80px;}
+.lib-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.lib-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s;}
+.lib-card:hover{box-shadow:0 6px 28px rgba(2,44,81,0.1);border-color:#c8c5bc;}
+.lib-card.hidden{display:none !important;}
+
+/* Thumbnail */
+.lc-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;flex-shrink:0;}
+.lc-art{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.lc-badge{position:absolute;top:10px;left:10px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;backdrop-filter:blur(4px);}
+.badge-podcast{background:rgba(124,58,237,0.85);color:#fff;}
+.badge-video{background:rgba(2,44,81,0.85);color:#fff;}
+.badge-blog{background:rgba(5,150,105,0.85);color:#fff;}
+.badge-event{background:rgba(236,177,0,0.92);color:var(--navy);}
+.badge-webinar{background:rgba(17,86,148,0.85);color:#fff;}
+.lc-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,44,81,0.2);transition:background .2s;cursor:pointer;}
+.lib-card:hover .lc-play-overlay{background:rgba(2,44,81,0.35);}
+.lc-play-btn{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.92);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 14px rgba(0,0,0,0.2);transition:transform .15s;}
+.lc-play-btn:hover{transform:scale(1.08);}
+.lc-play-btn svg{margin-left:3px;}
+.lc-ep-tag{position:absolute;bottom:10px;left:10px;background:rgba(2,44,81,0.72);color:rgba(255,255,255,0.9);font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+.lc-date-block{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.lc-date-month{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+.lc-date-day{font-family:var(--serif);font-size:44px;font-weight:700;color:var(--white);line-height:1;}
+.lc-date-loc{font-size:11px;color:rgba(255,255,255,0.55);margin-top:4px;}
+
+/* Card body */
+.lc-body{padding:18px 20px 14px;flex:1;display:flex;flex-direction:column;}
+.lc-title{font-family:var(--serif);font-size:16px;color:var(--navy);line-height:1.35;margin-bottom:7px;}
+.lc-desc{font-size:13px;color:var(--text-m);line-height:1.65;flex:1;margin-bottom:12px;}
+.lc-meta{display:flex;gap:5px;align-items:center;font-size:11px;color:var(--text-m);}
+.lc-meta .sep{color:var(--border);}
+.lc-footer{padding:12px 20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.lc-cta{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--royal);display:inline-flex;align-items:center;gap:5px;background:none;border:none;cursor:pointer;padding:0;text-decoration:none;}
+.lc-cta:hover{color:var(--navy);}
+.lc-price{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--navy);}
+.lc-price-free{color:#166534;}
+
+/* Mini podcast player */
+.lc-audio-bar{display:none;align-items:center;gap:8px;padding:0 20px 14px;}
+.lc-audio-bar.active{display:flex;}
+.lc-mini-play{width:28px;height:28px;border-radius:50%;background:var(--navy);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s;}
+.lc-mini-play:hover{background:var(--royal);}
+.lc-mini-play svg{margin-left:2px;}
+.lc-prog-wrap{flex:1;height:3px;background:var(--border);border-radius:2px;cursor:pointer;position:relative;}
+.lc-prog-fill{height:3px;background:var(--royal);border-radius:2px;width:0;transition:width .12s linear;}
+.lc-prog-time{font-size:11px;color:var(--text-m);white-space:nowrap;}
+
+/* Empty state */
+.lib-empty{display:none;text-align:center;padding:80px 0;grid-column:1/-1;}
+.lib-empty.visible{display:block;}
+.lib-empty-icon{font-size:40px;margin-bottom:16px;}
+.lib-empty h3{font-family:var(--serif);font-size:22px;color:var(--navy);margin-bottom:8px;}
+.lib-empty p{font-size:15px;color:var(--text-m);}
 </style>
 </head>
 <body>
@@ -196,8 +266,8 @@ h1,h2,h3,h4{font-family:var(--serif);}
 <nav class="nav">
   <a href="01_home.html"><img src="data:image/png;base64,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" alt="Practice Transition Partners"></a>
   <div class="nav-links">
-    <a href="02_buying.html">For Buyers</a>
     <a href="03_selling.html">For Sellers</a>
+    <a href="02_buying.html">For Buyers</a>
     <a href="04_listings.html">Listings</a>
     <a href="05_opinion_of_value.html">Opinion of Value</a>
     <a href="06_events.html" class="active">Education</a>
@@ -206,496 +276,509 @@ h1,h2,h3,h4{font-family:var(--serif);}
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- PAGE HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div>
       <div class="hero-eyebrow">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 0L6.5 3.5H10L7.25 5.65L8.25 9.25L5 7.2L1.75 9.25L2.75 5.65L0 3.5H3.5L5 0Z" fill="#ECB100"/></svg>
-        <span>Webinars · Seminars · Conferences</span>
+        <span>Podcasts &middot; Videos &middot; Blogs &middot; Events</span>
       </div>
-      <h1>Learn, connect, and<br>plan your next <em>transition</em></h1>
-      <p class="hero-sub">Join PTP advisors and industry experts at live and virtual events designed for dentists and physicians planning to buy or sell a practice.</p>
+      <h1>The PTP<br><em>Education Library</em></h1>
+      <p class="hero-sub">Everything you need to make a confident transition decision — free guides, expert podcasts, tutorial videos, and live events — all in one place.</p>
       <div class="hero-actions">
-        <a href="#upcoming" class="btn btn-gold">Browse upcoming events <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="07_about.html" class="btn btn-ghost-w">Contact an advisor</a>
+        <a href="#library" class="btn btn-gold">Browse the library <svg class="arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="07_about.html" class="btn btn-ghost-w">Talk to an advisor</a>
       </div>
     </div>
     <div class="hero-panel">
-      <div style="font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:4px;">Events &amp; Podcasts</div>
+      <div style="font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:12px;">What's in the library</div>
       <div class="hp-row">
-        <div class="hp-date"><div class="hp-month">New</div><div class="hp-day" style="font-size:14px;line-height:1.2;">Ep.</div></div>
-        <div class="hp-info" style="flex:1;">
-          <h4>When to Sell: Timing Your Exit Right</h4>
-          <p>The Transition Table · Ep. 42</p>
-        </div>
+        <div class="hp-date" style="background:rgba(124,58,237,0.2);"><div class="hp-month" style="color:#C4B5FD;">42</div><div class="hp-day" style="font-size:11px;line-height:1.4;color:rgba(255,255,255,0.6);">eps.</div></div>
+        <div class="hp-info" style="flex:1;"><h4>Podcast Episodes</h4><p>The Transition Table — weekly insights</p></div>
         <span class="hp-chip chip-pod">Podcast</span>
       </div>
       <div class="hp-row">
-        <div class="hp-date"><div class="hp-month">Jun</div><div class="hp-day">14</div></div>
-        <div class="hp-info" style="flex:1;">
-          <h4>Practice Transition Summit 2026</h4>
-          <p>Phoenix, AZ · In-Person</p>
-        </div>
-        <span class="hp-chip chip-conf">Conference</span>
+        <div class="hp-date" style="background:rgba(29,134,228,0.2);"><div class="hp-month" style="color:#7EC8F8;">12</div><div class="hp-day" style="font-size:11px;line-height:1.4;color:rgba(255,255,255,0.6);">vids.</div></div>
+        <div class="hp-info" style="flex:1;"><h4>Video Guides</h4><p>Webinar recordings and how-tos</p></div>
+        <span class="hp-chip chip-web">Video</span>
       </div>
       <div class="hp-row">
-        <div class="hp-date"><div class="hp-month">Jun</div><div class="hp-day">25</div></div>
-        <div class="hp-info" style="flex:1;">
-          <h4>Valuation Fundamentals Webinar</h4>
-          <p>Virtual · 12:00 PM ET</p>
-        </div>
-        <span class="hp-chip chip-web">Webinar</span>
+        <div class="hp-date" style="background:rgba(5,150,105,0.2);"><div class="hp-month" style="color:#6EE7B7;">24</div><div class="hp-day" style="font-size:11px;line-height:1.4;color:rgba(255,255,255,0.6);">posts</div></div>
+        <div class="hp-info" style="flex:1;"><h4>Blog Articles</h4><p>In-depth guides for buyers &amp; sellers</p></div>
+        <span class="hp-chip chip-sem">Blog</span>
       </div>
       <div class="hp-row">
-        <div class="hp-date"><div class="hp-month">Jul</div><div class="hp-day">10</div></div>
-        <div class="hp-info" style="flex:1;">
-          <h4>Buyer Readiness Workshop</h4>
-          <p>Chicago, IL · In-Person</p>
-        </div>
-        <span class="hp-chip chip-sem">Seminar</span>
+        <div class="hp-date"><div class="hp-month">Live</div><div class="hp-day" style="font-size:11px;line-height:1.4;color:rgba(255,255,255,0.6);">events</div></div>
+        <div class="hp-info" style="flex:1;"><h4>Upcoming Events</h4><p>Webinars, workshops &amp; conferences</p></div>
+        <span class="hp-chip chip-conf">Event</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURED -->
-<section class="section section-cream">
-  <div class="container">
-    <div class="eyebrow">Featured</div>
-    <div class="featured-pod">
-
-      <!-- Artwork -->
-      <div class="fp-art">
-        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-          <rect x="6"  y="22" width="6" height="16" rx="3" fill="rgba(255,255,255,0.9)"/>
-          <rect x="16" y="14" width="6" height="32" rx="3" fill="rgba(255,255,255,0.9)"/>
-          <rect x="26" y="8"  width="6" height="44" rx="3" fill="rgba(255,255,255,0.9)"/>
-          <rect x="36" y="18" width="6" height="24" rx="3" fill="rgba(255,255,255,0.9)"/>
-          <rect x="46" y="24" width="6" height="12" rx="3" fill="rgba(255,255,255,0.9)"/>
-        </svg>
-      </div>
-
-      <!-- Info -->
-      <div>
-        <div class="fp-top">
-          <span class="fp-show">The Transition Table</span>
-          <span class="hp-chip chip-pod">Podcast</span>
-        </div>
-        <h3 class="fp-title">When to Sell: Timing Your Exit Right</h3>
-        <p class="fp-desc">Senior advisor James Morrow breaks down the five market signals that indicate the right time to sell, why most dentists wait too long, and how to read your own practice's readiness before you list.</p>
-        <div class="fp-meta">
-          <span>Episode 42</span>
-          <span class="fp-dot">·</span>
-          <span>38 min</span>
-          <span class="fp-dot">·</span>
-          <span>May 6, 2026</span>
-        </div>
-
-        <!-- Audio Player -->
-        <div class="fp-player">
-          <button class="fp-play-btn" id="fpPlayBtn" onclick="togglePod()" aria-label="Play episode">
-            <svg id="fpPlayIcon" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M6 4l9 5-9 5V4z" fill="currentColor"/></svg>
-          </button>
-          <div class="fp-progress-wrap" id="fpProgressWrap" onclick="seekPod(event)">
-            <div class="fp-progress-bar">
-              <div class="fp-progress-fill" id="fpFill"></div>
-              <div class="fp-progress-thumb" id="fpThumb"></div>
-            </div>
-          </div>
-          <span class="fp-time" id="fpTime">0:00 / 38:00</span>
-        </div>
-        <audio id="podAudio" preload="none">
-          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        </audio>
-      </div>
-
+<!-- LIBRARY TOOLBAR -->
+<div class="lib-toolbar" id="library">
+  <div class="lib-toolbar-inner">
+    <div class="lib-search-wrap">
+      <svg class="lib-search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="#73716C" stroke-width="1.4"/><path d="M10 10l3.5 3.5" stroke="#73716C" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <input class="lib-search" id="libSearch" type="text" placeholder="Search podcasts, videos, blogs, events&hellip;" oninput="libFilter()">
     </div>
+    <div class="lib-filters">
+      <button class="lib-tab active" data-filter="all" onclick="libSetFilter(this)">All</button>
+      <button class="lib-tab" data-filter="podcast" onclick="libSetFilter(this)">Podcasts</button>
+      <button class="lib-tab" data-filter="video" onclick="libSetFilter(this)">Videos</button>
+      <button class="lib-tab" data-filter="blog" onclick="libSetFilter(this)">Blog</button>
+      <button class="lib-tab" data-filter="event" onclick="libSetFilter(this)">Events</button>
+    </div>
+    <span class="lib-count" id="libCount"><strong>19</strong> items</span>
   </div>
-</section>
+</div>
 
-<!-- UPCOMING EVENTS -->
-<section class="section" id="upcoming">
-  <div class="container">
-    <div class="section-header">
-      <div class="eyebrow">Upcoming Events</div>
-      <h2 class="section-h2">Find an event near you</h2>
-      <p class="section-sub">From free webinars to full-day workshops, PTP events are built for busy practitioners — focused, practical, and free of sales pressure.</p>
-    </div>
-    <div class="events-grid">
+<!-- LIBRARY GRID -->
+<section class="lib-section">
+  <div class="lib-grid" id="libGrid">
 
-      <!-- Card 1 -->
-      <div class="event-card">
-        <div class="ec-header">
-          <div class="ec-date-row">
-            <div class="ec-date-badge">
-              <div>
-                <div class="ec-month">June</div>
-                <div class="ec-day">25</div>
-              </div>
-            </div>
-            <span class="ec-type type-webinar">Webinar</span>
-          </div>
-        </div>
-        <div class="ec-body">
-          <h4>Valuation Fundamentals: What Your Practice Is Really Worth</h4>
-          <p>A plain-language walkthrough of how practices are valued — EBITDA multiples, goodwill, real estate, and what buyers actually look at.</p>
-          <div class="ec-meta">
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
-              Wednesday, June 25 · 12:00–1:00 PM ET
-            </div>
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="9.5" rx="1.5" stroke="#73716C" stroke-width="1.3"/><path d="M1.5 6h11M5 1.5v3M9 1.5v3" stroke="#73716C" stroke-width="1.3" stroke-linecap="round"/></svg>
-              Host: James Morrow, Senior Advisor
-            </div>
-          </div>
-        </div>
-        <div class="ec-footer">
-          <span class="ec-price ec-price-free">Free</span>
-          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="event-card">
-        <div class="ec-header">
-          <div class="ec-date-row">
-            <div class="ec-date-badge">
-              <div>
-                <div class="ec-month">July</div>
-                <div class="ec-day">10</div>
-              </div>
-            </div>
-            <span class="ec-type type-seminar">Seminar</span>
-          </div>
-        </div>
-        <div class="ec-body">
-          <h4>Buyer Readiness Workshop: Evaluating and Acquiring a Practice</h4>
-          <p>Half-day in-person workshop covering practice due diligence, letter of intent negotiation, and transitioning an existing patient base.</p>
-          <div class="ec-meta">
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
-              Thursday, July 10 · 9:00 AM – 1:00 PM CDT
-            </div>
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="#73716C" stroke-width="1.3"/><circle cx="7" cy="5" r="1.5" stroke="#73716C" stroke-width="1.3"/></svg>
-              Chicago, IL · Seats limited
-            </div>
-          </div>
-        </div>
-        <div class="ec-footer">
-          <span class="ec-price">$149</span>
-          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="event-card">
-        <div class="ec-header">
-          <div class="ec-date-row">
-            <div class="ec-date-badge">
-              <div>
-                <div class="ec-month">July</div>
-                <div class="ec-day">22</div>
-              </div>
-            </div>
-            <span class="ec-type type-webinar">Webinar</span>
-          </div>
-        </div>
-        <div class="ec-body">
-          <h4>Financing Your Acquisition: SBA Loans, Bank Financing &amp; Creative Structures</h4>
-          <p>PTP's lending partners break down the financing landscape for practice buyers, including SBA 7(a) programs and seller-carry options.</p>
-          <div class="ec-meta">
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
-              Tuesday, July 22 · 1:00–2:00 PM ET
-            </div>
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="9.5" rx="1.5" stroke="#73716C" stroke-width="1.3"/><path d="M1.5 6h11M5 1.5v3M9 1.5v3" stroke="#73716C" stroke-width="1.3" stroke-linecap="round"/></svg>
-              Panelists: Bank of America Practice Finance, Live Oak Bank
-            </div>
-          </div>
-        </div>
-        <div class="ec-footer">
-          <span class="ec-price ec-price-free">Free</span>
-          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="event-card">
-        <div class="ec-header">
-          <div class="ec-date-row">
-            <div class="ec-date-badge">
-              <div>
-                <div class="ec-month">Aug</div>
-                <div class="ec-day">7</div>
-              </div>
-            </div>
-            <span class="ec-type type-webinar">Webinar</span>
-          </div>
-        </div>
-        <div class="ec-body">
-          <h4>Seller Q&amp;A: Ask a Practice Broker Anything</h4>
-          <p>An open-format live session for sellers. Bring your questions about confidentiality, pricing, deal structure, taxes, and timing your exit.</p>
-          <div class="ec-meta">
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
-              Thursday, August 7 · 12:00–1:00 PM ET
-            </div>
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="9.5" rx="1.5" stroke="#73716C" stroke-width="1.3"/><path d="M1.5 6h11M5 1.5v3M9 1.5v3" stroke="#73716C" stroke-width="1.3" stroke-linecap="round"/></svg>
-              Host: PTP Senior Advisory Team
-            </div>
-          </div>
-        </div>
-        <div class="ec-footer">
-          <span class="ec-price ec-price-free">Free</span>
-          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="event-card">
-        <div class="ec-header">
-          <div class="ec-date-row">
-            <div class="ec-date-badge">
-              <div>
-                <div class="ec-month">Sep</div>
-                <div class="ec-day">18</div>
-              </div>
-            </div>
-            <span class="ec-type type-seminar">Seminar</span>
-          </div>
-        </div>
-        <div class="ec-body">
-          <h4>Transitioning Out: Tax, Legal &amp; Retirement Planning for Sellers</h4>
-          <p>A half-day seminar with CPAs and attorneys covering asset vs. stock sales, capital gains planning, and what to do with the proceeds.</p>
-          <div class="ec-meta">
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
-              Thursday, September 18 · 9:00 AM – 1:00 PM ET
-            </div>
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="#73716C" stroke-width="1.3"/><circle cx="7" cy="5" r="1.5" stroke="#73716C" stroke-width="1.3"/></svg>
-              Boston, MA · Limited to 40 attendees
-            </div>
-          </div>
-        </div>
-        <div class="ec-footer">
-          <span class="ec-price">$199</span>
-          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="event-card">
-        <div class="ec-header">
-          <div class="ec-date-row">
-            <div class="ec-date-badge">
-              <div>
-                <div class="ec-month">Oct</div>
-                <div class="ec-day">2</div>
-              </div>
-            </div>
-            <span class="ec-type type-conference">Conference</span>
-          </div>
-        </div>
-        <div class="ec-body">
-          <h4>Western Regional Practice Transition Forum</h4>
-          <p>A full-day conference for buyers and sellers in the western US. Includes practice tours, live deal case studies, and a networking reception.</p>
-          <div class="ec-meta">
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg>
-              Thursday, October 2 · 8:30 AM – 7:00 PM PT
-            </div>
-            <div class="ec-meta-line">
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" stroke="#73716C" stroke-width="1.3"/><circle cx="7" cy="5" r="1.5" stroke="#73716C" stroke-width="1.3"/></svg>
-              San Diego, CA · 150 seats
-            </div>
-          </div>
-        </div>
-        <div class="ec-footer">
-          <span class="ec-price">$299</span>
-          <a href="07_about.html" class="btn btn-primary btn-sm">Register</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- PODCAST SECTION -->
-<section class="section section-cream">
-  <div class="container">
-    <div class="section-header">
-      <div class="eyebrow">The Transition Table</div>
-      <h2 class="section-h2">Our podcast</h2>
-      <p class="section-sub">Straight talk for dentists and physicians on buying, selling, and planning the next chapter. New episodes every two weeks.</p>
-    </div>
-    <!-- Subscribe row -->
-    <div class="pod-subscribe">
-      <span class="pod-sub-label">Listen on:</span>
-      <a href="#" class="pod-sub-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="currentColor" stroke-width="1.5"/><path d="M12 6a4 4 0 014 4c0 3.5-2 7-4 9-2-2-4-5.5-4-9a4 4 0 014-4z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="1.5" fill="currentColor"/></svg>
-        Apple Podcasts
-      </a>
-      <a href="#" class="pod-sub-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Spotify
-      </a>
-      <a href="#" class="pod-sub-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        RSS Feed
-      </a>
+    <!-- EMPTY STATE -->
+    <div class="lib-empty" id="libEmpty">
+      <div class="lib-empty-icon">&#128269;</div>
+      <h3>No results found</h3>
+      <p>Try a different search term or clear your filters.</p>
     </div>
 
-    <div class="pod-grid">
+    <!-- ── PODCASTS ─────────────────────────────────── -->
 
-      <!-- Ep 42 -->
-      <div class="pod-card">
-        <div class="pod-card-art">
-          <span class="pod-ep-num">Ep. 42</span>
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
+    <div class="lib-card" data-type="podcast" data-title="when to sell timing your exit right episode 42">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#1D86E4 0%,#7C3AED 100%);">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="18" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="12" y="12" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="20" y="6" width="5" height="36" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="28" y="14" width="5" height="20" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="36" y="20" width="5" height="8" rx="2.5" fill="rgba(255,255,255,0.8)"/></svg>
         </div>
-        <div class="pod-card-body">
-          <h4>When to Sell: Timing Your Exit Right</h4>
-          <p>Five market signals that indicate the right time to sell, and why most dentists wait too long.</p>
-          <div class="pod-card-meta">
-            <span>May 6, 2026</span><span class="dot">·</span><span>38 min</span>
-          </div>
+        <div class="lc-play-overlay" onclick="lcPlay(this,0)">
+          <button class="lc-play-btn" id="lcBtn0" aria-label="Play episode"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg></button>
         </div>
-        <div class="pod-card-footer">
-          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3')">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
-            Play episode
-          </button>
-          <span style="font-size:11px;color:var(--text-m);">Latest</span>
-        </div>
+        <span class="lc-badge badge-podcast">Podcast</span>
+        <span class="lc-ep-tag">Ep. 42</span>
       </div>
-
-      <!-- Ep 41 -->
-      <div class="pod-card">
-        <div class="pod-card-art art-2">
-          <span class="pod-ep-num">Ep. 41</span>
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
-        </div>
-        <div class="pod-card-body">
-          <h4>SBA Loans Explained: What Buyers Need to Know</h4>
-          <p>A lender's-eye view of how SBA 7(a) loans work for practice acquisitions and what kills deals at the finish line.</p>
-          <div class="pod-card-meta">
-            <span>Apr 22, 2026</span><span class="dot">·</span><span>42 min</span>
-          </div>
-        </div>
-        <div class="pod-card-footer">
-          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3')">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
-            Play episode
-          </button>
-        </div>
+      <div class="lc-body">
+        <div class="lc-title">When to Sell: Timing Your Exit Right</div>
+        <div class="lc-desc">James Morrow breaks down five market signals that indicate the right time to sell — and why most dentists wait too long.</div>
+        <div class="lc-meta"><span>May 6, 2026</span><span class="sep">·</span><span>38 min</span></div>
       </div>
-
-      <!-- Ep 40 -->
-      <div class="pod-card">
-        <div class="pod-card-art art-3">
-          <span class="pod-ep-num">Ep. 40</span>
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
-        </div>
-        <div class="pod-card-body">
-          <h4>The Associate Path: Buy-In vs. Acquisition</h4>
-          <p>When does buying into a practice make more sense than acquiring one outright? We break down both models.</p>
-          <div class="pod-card-meta">
-            <span>Apr 8, 2026</span><span class="dot">·</span><span>35 min</span>
-          </div>
-        </div>
-        <div class="pod-card-footer">
-          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3')">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
-            Play episode
-          </button>
-        </div>
+      <div class="lc-audio-bar" id="lcBar0">
+        <button class="lc-mini-play" id="lcMini0" onclick="lcMiniPlay(0)"><svg id="lcIcon0" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 1l8 4.5L2 10V1z" fill="white"/></svg></button>
+        <div class="lc-prog-wrap" onclick="lcSeek(event,0)" id="lcProg0"><div class="lc-prog-fill" id="lcFill0"></div></div>
+        <span class="lc-prog-time" id="lcTime0">0:00</span>
       </div>
-
-    </div><!-- /pod-grid row 1 -->
-
-    <!-- Hidden rows -->
-    <div class="pod-grid pod-more" id="podMore">
-
-      <!-- Ep 39 -->
-      <div class="pod-card">
-        <div class="pod-card-art art-4">
-          <span class="pod-ep-num">Ep. 39</span>
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
-        </div>
-        <div class="pod-card-body">
-          <h4>Goodwill, Tangibles, and Real Estate: What's Really Being Sold</h4>
-          <p>Most sellers don't realize how much of their sale price is tied up in intangible goodwill — and what drives that number up or down.</p>
-          <div class="pod-card-meta">
-            <span>Mar 25, 2026</span><span class="dot">·</span><span>31 min</span>
-          </div>
-        </div>
-        <div class="pod-card-footer">
-          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3')">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
-            Play episode
-          </button>
-        </div>
+      <div class="lc-footer">
+        <span class="lc-meta">The Transition Table</span>
+        <button class="lc-cta" onclick="lcPlay(document.querySelector('[data-type=podcast]:nth-child(2) .lc-play-overlay'),0)">Play <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 2l7 4-7 4V2z" fill="currentColor"/></svg></button>
       </div>
-
-      <!-- Ep 38 -->
-      <div class="pod-card">
-        <div class="pod-card-art art-5">
-          <span class="pod-ep-num">Ep. 38</span>
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
-        </div>
-        <div class="pod-card-body">
-          <h4>Confidentiality in Practice Sales: How to Keep It Quiet</h4>
-          <p>The practical steps brokers and sellers take to market a practice without alerting staff, patients, or competitors.</p>
-          <div class="pod-card-meta">
-            <span>Mar 11, 2026</span><span class="dot">·</span><span>28 min</span>
-          </div>
-        </div>
-        <div class="pod-card-footer">
-          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3')">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
-            Play episode
-          </button>
-        </div>
-      </div>
-
-      <!-- Ep 37 -->
-      <div class="pod-card">
-        <div class="pod-card-art art-6">
-          <span class="pod-ep-num">Ep. 37</span>
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="16" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="13" y="10" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="22" y="6" width="5" height="32" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="31" y="13" width="5" height="18" rx="2.5" fill="rgba(255,255,255,0.85)"/><rect x="40" y="18" width="4" height="8" rx="2" fill="rgba(255,255,255,0.85)"/></svg>
-        </div>
-        <div class="pod-card-body">
-          <h4>Life After the Sale: Planning the Transition Period</h4>
-          <p>What happens in the 6–12 months after closing — and how sellers can set themselves and the incoming buyer up for success.</p>
-          <div class="pod-card-meta">
-            <span>Feb 25, 2026</span><span class="dot">·</span><span>44 min</span>
-          </div>
-        </div>
-        <div class="pod-card-footer">
-          <button class="pod-play-btn" onclick="playEpisode(this,'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3')">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M11 9.5l8 4.5-8 4.5V9.5z" fill="currentColor"/></svg>
-            Play episode
-          </button>
-        </div>
-      </div>
-
-    </div><!-- /pod-more -->
-
-    <!-- See More toggle -->
-    <div style="text-align:center;margin-top:28px;">
-      <button class="pod-see-more" id="podSeeMore" onclick="toggleMoreEpisodes()">
-        See more episodes
-        <svg id="podSeeMoreIcon" width="14" height="14" viewBox="0 0 14 14" fill="none" style="transition:transform .25s;"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
     </div>
 
-  </div>
+    <div class="lib-card" data-type="podcast" data-title="tax planning before you sell episode 41">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#022C51 0%,#115694 100%);">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="18" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="12" y="12" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="20" y="6" width="5" height="36" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="28" y="14" width="5" height="20" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="36" y="20" width="5" height="8" rx="2.5" fill="rgba(255,255,255,0.8)"/></svg>
+        </div>
+        <div class="lc-play-overlay" onclick="lcPlay(this,1)">
+          <button class="lc-play-btn" id="lcBtn1" aria-label="Play episode"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg></button>
+        </div>
+        <span class="lc-badge badge-podcast">Podcast</span>
+        <span class="lc-ep-tag">Ep. 41</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">Tax Planning Before You Sell</div>
+        <div class="lc-desc">A CPA and a practice broker discuss asset vs. stock sales, capital gains strategies, and what sellers consistently overlook at closing.</div>
+        <div class="lc-meta"><span>Apr 22, 2026</span><span class="sep">·</span><span>42 min</span></div>
+      </div>
+      <div class="lc-audio-bar" id="lcBar1">
+        <button class="lc-mini-play" id="lcMini1" onclick="lcMiniPlay(1)"><svg id="lcIcon1" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 1l8 4.5L2 10V1z" fill="white"/></svg></button>
+        <div class="lc-prog-wrap" onclick="lcSeek(event,1)" id="lcProg1"><div class="lc-prog-fill" id="lcFill1"></div></div>
+        <span class="lc-prog-time" id="lcTime1">0:00</span>
+      </div>
+      <div class="lc-footer">
+        <span class="lc-meta">The Transition Table</span>
+        <button class="lc-cta" onclick="lcPlay(this.closest('.lib-card').querySelector('.lc-play-overlay'),1)">Play <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 2l7 4-7 4V2z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="podcast" data-title="dso vs private buyer whats the difference episode 40">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#7C3AED 0%,#EC4899 100%);">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="18" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="12" y="12" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="20" y="6" width="5" height="36" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="28" y="14" width="5" height="20" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="36" y="20" width="5" height="8" rx="2.5" fill="rgba(255,255,255,0.8)"/></svg>
+        </div>
+        <div class="lc-play-overlay" onclick="lcPlay(this,2)">
+          <button class="lc-play-btn" id="lcBtn2" aria-label="Play episode"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg></button>
+        </div>
+        <span class="lc-badge badge-podcast">Podcast</span>
+        <span class="lc-ep-tag">Ep. 40</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">DSO vs. Private Buyer: What's the Difference?</div>
+        <div class="lc-desc">How to evaluate DSO offers alongside private buyer deals — earnouts, equity rollover, and what happens to your staff and brand.</div>
+        <div class="lc-meta"><span>Apr 8, 2026</span><span class="sep">·</span><span>35 min</span></div>
+      </div>
+      <div class="lc-audio-bar" id="lcBar2">
+        <button class="lc-mini-play" id="lcMini2" onclick="lcMiniPlay(2)"><svg id="lcIcon2" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 1l8 4.5L2 10V1z" fill="white"/></svg></button>
+        <div class="lc-prog-wrap" onclick="lcSeek(event,2)" id="lcProg2"><div class="lc-prog-fill" id="lcFill2"></div></div>
+        <span class="lc-prog-time" id="lcTime2">0:00</span>
+      </div>
+      <div class="lc-footer">
+        <span class="lc-meta">The Transition Table</span>
+        <button class="lc-cta" onclick="lcPlay(this.closest('.lib-card').querySelector('.lc-play-overlay'),2)">Play <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 2l7 4-7 4V2z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="podcast" data-title="financing your first practice acquisition episode 39">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#115694 0%,#1D86E4 100%);">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="18" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="12" y="12" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="20" y="6" width="5" height="36" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="28" y="14" width="5" height="20" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="36" y="20" width="5" height="8" rx="2.5" fill="rgba(255,255,255,0.8)"/></svg>
+        </div>
+        <div class="lc-play-overlay" onclick="lcPlay(this,3)">
+          <button class="lc-play-btn" id="lcBtn3" aria-label="Play episode"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg></button>
+        </div>
+        <span class="lc-badge badge-podcast">Podcast</span>
+        <span class="lc-ep-tag">Ep. 39</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">Financing Your First Practice Acquisition</div>
+        <div class="lc-desc">SBA loans, seller carry-backs, and what lenders actually look at when underwriting a practice deal — with a guest lender.</div>
+        <div class="lc-meta"><span>Mar 25, 2026</span><span class="sep">·</span><span>47 min</span></div>
+      </div>
+      <div class="lc-audio-bar" id="lcBar3">
+        <button class="lc-mini-play" id="lcMini3" onclick="lcMiniPlay(3)"><svg id="lcIcon3" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 1l8 4.5L2 10V1z" fill="white"/></svg></button>
+        <div class="lc-prog-wrap" onclick="lcSeek(event,3)" id="lcProg3"><div class="lc-prog-fill" id="lcFill3"></div></div>
+        <span class="lc-prog-time" id="lcTime3">0:00</span>
+      </div>
+      <div class="lc-footer">
+        <span class="lc-meta">The Transition Table</span>
+        <button class="lc-cta" onclick="lcPlay(this.closest('.lib-card').querySelector('.lc-play-overlay'),3)">Play <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 2l7 4-7 4V2z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="podcast" data-title="how to read a practice financial statements episode 38">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#064E3B 0%,#1D86E4 100%);">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="18" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="12" y="12" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="20" y="6" width="5" height="36" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="28" y="14" width="5" height="20" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="36" y="20" width="5" height="8" rx="2.5" fill="rgba(255,255,255,0.8)"/></svg>
+        </div>
+        <div class="lc-play-overlay" onclick="lcPlay(this,4)">
+          <button class="lc-play-btn" id="lcBtn4" aria-label="Play episode"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg></button>
+        </div>
+        <span class="lc-badge badge-podcast">Podcast</span>
+        <span class="lc-ep-tag">Ep. 38</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">How to Read a Practice's Financial Statements</div>
+        <div class="lc-desc">Breaking down the P&amp;L, collections reports, and overhead ratios — what they mean and what buyers are really looking for.</div>
+        <div class="lc-meta"><span>Mar 11, 2026</span><span class="sep">·</span><span>29 min</span></div>
+      </div>
+      <div class="lc-audio-bar" id="lcBar4">
+        <button class="lc-mini-play" id="lcMini4" onclick="lcMiniPlay(4)"><svg id="lcIcon4" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 1l8 4.5L2 10V1z" fill="white"/></svg></button>
+        <div class="lc-prog-wrap" onclick="lcSeek(event,4)" id="lcProg4"><div class="lc-prog-fill" id="lcFill4"></div></div>
+        <span class="lc-prog-time" id="lcTime4">0:00</span>
+      </div>
+      <div class="lc-footer">
+        <span class="lc-meta">The Transition Table</span>
+        <button class="lc-cta" onclick="lcPlay(this.closest('.lib-card').querySelector('.lc-play-overlay'),4)">Play <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 2l7 4-7 4V2z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="podcast" data-title="what buyers are really looking for episode 37">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#7A5800 0%,#ECB100 100%);">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="18" width="5" height="12" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="12" y="12" width="5" height="24" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="20" y="6" width="5" height="36" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="28" y="14" width="5" height="20" rx="2.5" fill="rgba(255,255,255,0.8)"/><rect x="36" y="20" width="5" height="8" rx="2.5" fill="rgba(255,255,255,0.8)"/></svg>
+        </div>
+        <div class="lc-play-overlay" onclick="lcPlay(this,5)">
+          <button class="lc-play-btn" id="lcBtn5" aria-label="Play episode"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg></button>
+        </div>
+        <span class="lc-badge badge-podcast">Podcast</span>
+        <span class="lc-ep-tag">Ep. 37</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">What Buyers Are Really Looking For</div>
+        <div class="lc-desc">Patient retention, staff stability, and the metrics that determine whether a buyer makes an offer — or walks away from your listing.</div>
+        <div class="lc-meta"><span>Feb 25, 2026</span><span class="sep">·</span><span>33 min</span></div>
+      </div>
+      <div class="lc-audio-bar" id="lcBar5">
+        <button class="lc-mini-play" id="lcMini5" onclick="lcMiniPlay(5)"><svg id="lcIcon5" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 1l8 4.5L2 10V1z" fill="white"/></svg></button>
+        <div class="lc-prog-wrap" onclick="lcSeek(event,5)" id="lcProg5"><div class="lc-prog-fill" id="lcFill5"></div></div>
+        <span class="lc-prog-time" id="lcTime5">0:00</span>
+      </div>
+      <div class="lc-footer">
+        <span class="lc-meta">The Transition Table</span>
+        <button class="lc-cta" onclick="lcPlay(this.closest('.lib-card').querySelector('.lc-play-overlay'),5)">Play <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 2l7 4-7 4V2z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+
+    <!-- ── VIDEOS ─────────────────────────────────── -->
+
+    <div class="lib-card" data-type="video" data-title="understanding ebitda in practice valuation webinar recording">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#022C51 0%,#1D86E4 100%);">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="10" width="28" height="20" rx="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/><path d="M32 16l8-5v18l-8-5V16z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linejoin="round" fill="none"/><path d="M13 15l9 5-9 5V15z" fill="rgba(255,255,255,0.7)"/></svg>
+        </div>
+        <div class="lc-play-overlay" style="cursor:default;">
+          <button class="lc-play-btn" aria-label="Watch video"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg></button>
+        </div>
+        <span class="lc-badge badge-video">Video</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">Understanding EBITDA in Practice Valuation</div>
+        <div class="lc-desc">A plain-language walkthrough of how EBITDA multiples work, what adjustments are made, and how valuation ranges are determined.</div>
+        <div class="lc-meta"><span>May 1, 2026</span><span class="sep">·</span><span>12 min</span><span class="sep">·</span><span>Webinar recording</span></div>
+      </div>
+      <div class="lc-footer">
+        <span style="font-size:12px;color:var(--text-m);">Free to watch</span>
+        <a href="07_about.html" class="lc-cta">Watch now <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="video" data-title="the nda process explained step by step tutorial">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#115694 0%,#7C3AED 100%);">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="10" width="28" height="20" rx="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/><path d="M32 16l8-5v18l-8-5V16z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linejoin="round" fill="none"/><path d="M13 15l9 5-9 5V15z" fill="rgba(255,255,255,0.7)"/></svg>
+        </div>
+        <div class="lc-play-overlay" style="cursor:default;">
+          <button class="lc-play-btn" aria-label="Watch video"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg></button>
+        </div>
+        <span class="lc-badge badge-video">Video</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">The NDA Process Explained Step by Step</div>
+        <div class="lc-desc">What you sign, what it protects, and what happens after — a short visual guide for both buyers and sellers entering the NDA process.</div>
+        <div class="lc-meta"><span>Apr 10, 2026</span><span class="sep">·</span><span>8 min</span><span class="sep">·</span><span>Tutorial</span></div>
+      </div>
+      <div class="lc-footer">
+        <span style="font-size:12px;color:var(--text-m);">Free to watch</span>
+        <a href="07_about.html" class="lc-cta">Watch now <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="video" data-title="how to prepare your practice for sale guide">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#ECB100 0%,#E27B00 100%);">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="10" width="28" height="20" rx="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/><path d="M32 16l8-5v18l-8-5V16z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linejoin="round" fill="none"/><path d="M13 15l9 5-9 5V15z" fill="rgba(255,255,255,0.7)"/></svg>
+        </div>
+        <div class="lc-play-overlay" style="cursor:default;">
+          <button class="lc-play-btn" aria-label="Watch video"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg></button>
+        </div>
+        <span class="lc-badge badge-video">Video</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">How to Prepare Your Practice for Sale</div>
+        <div class="lc-desc">The 6-month checklist: financials, staffing, operations, and the documentation every buyer will request before making an offer.</div>
+        <div class="lc-meta"><span>Mar 18, 2026</span><span class="sep">·</span><span>18 min</span><span class="sep">·</span><span>Guide</span></div>
+      </div>
+      <div class="lc-footer">
+        <span style="font-size:12px;color:var(--text-m);">Free to watch</span>
+        <a href="07_about.html" class="lc-cta">Watch now <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="video" data-title="practice transition summit 2025 highlights event recap">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#1D86E4 0%,#064E3B 100%);">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="10" width="28" height="20" rx="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/><path d="M32 16l8-5v18l-8-5V16z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linejoin="round" fill="none"/><path d="M13 15l9 5-9 5V15z" fill="rgba(255,255,255,0.7)"/></svg>
+        </div>
+        <div class="lc-play-overlay" style="cursor:default;">
+          <button class="lc-play-btn" aria-label="Watch video"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg></button>
+        </div>
+        <span class="lc-badge badge-video">Video</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">Practice Transition Summit 2025 Highlights</div>
+        <div class="lc-desc">Key moments and takeaways from our annual conference — panel discussions, market outlook, and seller Q&amp;A from 200+ attendees.</div>
+        <div class="lc-meta"><span>Feb 5, 2026</span><span class="sep">·</span><span>22 min</span><span class="sep">·</span><span>Event recap</span></div>
+      </div>
+      <div class="lc-footer">
+        <span style="font-size:12px;color:var(--text-m);">Free to watch</span>
+        <a href="07_about.html" class="lc-cta">Watch now <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <!-- ── BLOGS ──────────────────────────────────── -->
+
+    <div class="lib-card" data-type="blog" data-title="5 things that can derail a practice sale blog article">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#022C51 0%,#115694 80%);">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="8" y="6" width="28" height="32" rx="3" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/><path d="M14 14h16M14 20h16M14 26h10" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="lc-badge badge-blog">Blog</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">5 Things That Can Derail a Practice Sale</div>
+        <div class="lc-desc">From undisclosed liabilities to staffing issues discovered during due diligence — how to identify and address deal-breakers before they surface.</div>
+        <div class="lc-meta"><span>Apr 30, 2026</span><span class="sep">·</span><span>6 min read</span></div>
+      </div>
+      <div class="lc-footer">
+        <span style="font-size:12px;color:var(--text-m);">For Sellers</span>
+        <a href="03_selling.html" class="lc-cta">Read article <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="blog" data-title="what is goodwill value and why does it matter blog article">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#064E3B 0%,#059669 80%);">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="8" y="6" width="28" height="32" rx="3" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/><path d="M14 14h16M14 20h16M14 26h10" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="lc-badge badge-blog">Blog</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">What Is Goodwill Value — and Why Does It Matter?</div>
+        <div class="lc-desc">Goodwill is often the largest component of a practice's value. Here's how it's calculated, what drives it, and why buyers and sellers see it differently.</div>
+        <div class="lc-meta"><span>Apr 14, 2026</span><span class="sep">·</span><span>5 min read</span></div>
+      </div>
+      <div class="lc-footer">
+        <span style="font-size:12px;color:var(--text-m);">For Sellers &amp; Buyers</span>
+        <a href="05_opinion_of_value.html" class="lc-cta">Read article <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="blog" data-title="the sellers timeline 12 months before you list blog article">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#7C3AED 0%,#115694 80%);">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="8" y="6" width="28" height="32" rx="3" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/><path d="M14 14h16M14 20h16M14 26h10" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="lc-badge badge-blog">Blog</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">The Seller's Timeline: 12 Months Before You List</div>
+        <div class="lc-desc">A month-by-month guide to what you should be doing in the year before you put your practice on the market — from financial cleanup to advisor selection.</div>
+        <div class="lc-meta"><span>Mar 28, 2026</span><span class="sep">·</span><span>8 min read</span></div>
+      </div>
+      <div class="lc-footer">
+        <span style="font-size:12px;color:var(--text-m);">For Sellers</span>
+        <a href="03_selling.html" class="lc-cta">Read article <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="blog" data-title="questions every buyer should ask before making an offer blog article">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#1D86E4 0%,#7C3AED 80%);">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="8" y="6" width="28" height="32" rx="3" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/><path d="M14 14h16M14 20h16M14 26h10" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="lc-badge badge-blog">Blog</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">Questions Every Buyer Should Ask Before Making an Offer</div>
+        <div class="lc-desc">The 12 essential questions to ask during due diligence — and why the answers to most of them won't be in the listing documents.</div>
+        <div class="lc-meta"><span>Mar 10, 2026</span><span class="sep">·</span><span>6 min read</span></div>
+      </div>
+      <div class="lc-footer">
+        <span style="font-size:12px;color:var(--text-m);">For Buyers</span>
+        <a href="02_buying.html" class="lc-cta">Read article <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="blog" data-title="post-transition what happens after the sale closes blog article">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:linear-gradient(135deg,#ECB100 0%,#E27B00 80%);">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="8" y="6" width="28" height="32" rx="3" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/><path d="M14 14h16M14 20h16M14 26h10" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="lc-badge badge-blog">Blog</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">Post-Transition: What Happens After the Sale Closes</div>
+        <div class="lc-desc">Staff introductions, patient communication, licensing transfers, and the 90-day transition period that most sellers don't fully anticipate.</div>
+        <div class="lc-meta"><span>Feb 18, 2026</span><span class="sep">·</span><span>5 min read</span></div>
+      </div>
+      <div class="lc-footer">
+        <span style="font-size:12px;color:var(--text-m);">For Sellers &amp; Buyers</span>
+        <a href="03_selling.html" class="lc-cta">Read article <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <!-- ── EVENTS ──────────────────────────────────── -->
+
+    <div class="lib-card" data-type="event" data-title="valuation fundamentals webinar what your practice is really worth">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:var(--navy);">
+          <div class="lc-date-block">
+            <div class="lc-date-month">June</div>
+            <div class="lc-date-day">25</div>
+            <div class="lc-date-loc">Virtual &middot; Free</div>
+          </div>
+        </div>
+        <span class="lc-badge badge-webinar">Webinar</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">Valuation Fundamentals: What Your Practice Is Really Worth</div>
+        <div class="lc-desc">EBITDA multiples, goodwill, real estate and what buyers actually look at — a plain-language walkthrough. Hosted by James Morrow.</div>
+        <div class="lc-meta"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg><span>Wed, June 25 · 12:00–1:00 PM ET</span></div>
+      </div>
+      <div class="lc-footer">
+        <span class="lc-price lc-price-free">Free</span>
+        <a href="07_about.html" class="lc-cta">Register <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="event" data-title="buyer readiness workshop evaluating acquiring a practice seminar chicago">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:var(--navy);">
+          <div class="lc-date-block">
+            <div class="lc-date-month">July</div>
+            <div class="lc-date-day">10</div>
+            <div class="lc-date-loc">Chicago, IL</div>
+          </div>
+        </div>
+        <span class="lc-badge badge-event">In-Person</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">Buyer Readiness Workshop: Evaluating and Acquiring a Practice</div>
+        <div class="lc-desc">Half-day workshop covering due diligence, letter of intent negotiation, and transitioning an existing patient base. Seats limited.</div>
+        <div class="lc-meta"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg><span>Thu, July 10 · 9:00 AM – 1:00 PM CDT</span></div>
+      </div>
+      <div class="lc-footer">
+        <span class="lc-price">$149</span>
+        <a href="07_about.html" class="lc-cta">Register <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="event" data-title="financing your acquisition sba loans webinar bank financing">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:var(--navy);">
+          <div class="lc-date-block">
+            <div class="lc-date-month">July</div>
+            <div class="lc-date-day">22</div>
+            <div class="lc-date-loc">Virtual &middot; Free</div>
+          </div>
+        </div>
+        <span class="lc-badge badge-webinar">Webinar</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">Financing Your Acquisition: SBA Loans &amp; Creative Structures</div>
+        <div class="lc-desc">PTP's lending partners break down the full financing landscape — SBA 7(a), conventional, and seller-carry options for practice buyers.</div>
+        <div class="lc-meta"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg><span>Tue, July 22 · 1:00–2:00 PM ET</span></div>
+      </div>
+      <div class="lc-footer">
+        <span class="lc-price lc-price-free">Free</span>
+        <a href="07_about.html" class="lc-cta">Register <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-type="event" data-title="seller qa ask a practice broker anything webinar open format">
+      <div class="lc-thumb">
+        <div class="lc-art" style="background:var(--navy);">
+          <div class="lc-date-block">
+            <div class="lc-date-month">Aug</div>
+            <div class="lc-date-day">7</div>
+            <div class="lc-date-loc">Virtual &middot; Free</div>
+          </div>
+        </div>
+        <span class="lc-badge badge-webinar">Webinar</span>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title">Seller Q&amp;A: Ask a Practice Broker Anything</div>
+        <div class="lc-desc">Open-format live session for sellers. Bring your questions about confidentiality, pricing, deal structure, taxes, and timing your exit.</div>
+        <div class="lc-meta"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v5l3 2" stroke="#73716C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5.5" stroke="#73716C" stroke-width="1.3"/></svg><span>Thu, August 7 · 12:00–1:00 PM ET</span></div>
+      </div>
+      <div class="lc-footer">
+        <span class="lc-price lc-price-free">Free</span>
+        <a href="07_about.html" class="lc-cta">Register <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+  </div><!-- /lib-grid -->
 </section>
 
 <!-- NEWSLETTER -->
@@ -703,51 +786,16 @@ h1,h2,h3,h4{font-family:var(--serif);}
   <div class="container">
     <div class="newsletter" style="background:var(--white);">
       <div>
-        <div class="eyebrow">Stay in the Loop</div>
-        <h2 class="section-h2" style="margin-bottom:12px;">Get event announcements<br>before they fill up</h2>
-        <p style="font-size:15px;color:var(--text-m);line-height:1.7;">PTP events routinely sell out. Add your email to get first access to new events, recordings from past webinars, and exclusive advisor Q&amp;A sessions.</p>
+        <div class="eyebrow">Stay informed</div>
+        <h2 class="section-h2">New content, every week</h2>
+        <p class="section-sub" style="margin-bottom:0;">Get the latest podcast episodes, blog posts, and event announcements delivered to your inbox — no spam, unsubscribe any time.</p>
       </div>
       <div>
-        <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:14px;">Join 2,400+ practitioners already subscribed</div>
         <div class="nl-form">
-          <input type="email" class="nl-input" placeholder="your@email.com">
-          <button class="btn btn-navy" style="background:var(--navy);color:var(--white);border:none;border-radius:6px;padding:0 20px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Subscribe</button>
+          <input class="nl-input" type="email" placeholder="your@email.com">
+          <button class="btn btn-primary">Subscribe</button>
         </div>
-        <div class="nl-note" style="color:rgba(255,255,255,0.4);">No spam. Unsubscribe anytime. Your information stays confidential.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PAST EVENTS -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="eyebrow">Past Events</div>
-      <h2 class="section-h2">Recordings &amp; recaps available</h2>
-      <p class="section-sub">Missed a session? Most webinars are recorded and available to registered attendees. Reach out to request access.</p>
-    </div>
-    <div class="past-grid">
-      <div class="past-card">
-        <div class="past-card-label">Webinar · March 2026</div>
-        <h4>Understanding Practice Goodwill in Today's Market</h4>
-        <p>A deep dive into how goodwill is calculated, transferred, and taxed — with examples from recent PTP transactions.</p>
-        <div class="past-card-meta">Hosted by James Morrow · 89 attendees</div>
-        <a href="07_about.html" class="past-link">Request recording <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </div>
-      <div class="past-card">
-        <div class="past-card-label">Seminar · February 2026</div>
-        <h4>Associate-to-Owner Track: Making the Leap</h4>
-        <p>Panel discussion with four dentists who recently completed their first acquisition — what they'd do differently and what surprised them.</p>
-        <div class="past-card-meta">Dallas, TX · In-Person · 38 attendees</div>
-        <a href="07_about.html" class="past-link">Request recording <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </div>
-      <div class="past-card">
-        <div class="past-card-label">Webinar · January 2026</div>
-        <h4>2026 Practice Market Outlook: Pricing, Demand &amp; Hot Markets</h4>
-        <p>PTP's annual market review covering transaction volume, price trends, specialty demand, and which states are seeing the most activity.</p>
-        <div class="past-card-meta">Hosted by PTP Research Team · 214 attendees</div>
-        <a href="07_about.html" class="past-link">Request recording <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <p class="nl-note">Join 2,400+ dental and medical professionals who read our weekly newsletter.</p>
       </div>
     </div>
   </div>
@@ -1036,6 +1084,140 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeValuationModal();
 });
 </script>
+<script>
 
+/* ── LIBRARY FILTER + SEARCH ─────────────────────── */
+var libActiveFilter = 'all';
+
+function libSetFilter(tab) {
+  document.querySelectorAll('.lib-tab').forEach(function(t){ t.classList.remove('active'); });
+  tab.classList.add('active');
+  libActiveFilter = tab.dataset.filter;
+  libFilter();
+}
+
+function libFilter() {
+  var query = document.getElementById('libSearch').value.toLowerCase().trim();
+  var cards = document.querySelectorAll('#libGrid .lib-card');
+  var count = 0;
+  cards.forEach(function(card) {
+    var typeMatch = libActiveFilter === 'all' || card.dataset.type === libActiveFilter;
+    var textMatch = !query || card.dataset.title.indexOf(query) !== -1;
+    if (typeMatch && textMatch) {
+      card.classList.remove('hidden');
+      count++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  var countEl = document.getElementById('libCount');
+  countEl.innerHTML = '<strong>' + count + '</strong> item' + (count !== 1 ? 's' : '');
+  var empty = document.getElementById('libEmpty');
+  if (count === 0) { empty.classList.add('visible'); } else { empty.classList.remove('visible'); }
+}
+
+/* ── LIBRARY PODCAST MINI-PLAYER ─────────────────── */
+var lcPlaying = {};
+var lcPct = {};
+var lcSim = {};
+var lcDurations = [38*60, 42*60, 35*60, 47*60, 29*60, 33*60];
+
+function lcFmt(s) {
+  if (!s) return '0:00';
+  var m = Math.floor(s / 60), sec = Math.floor(s % 60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+function lcPlay(overlay, idx) {
+  // Show the audio bar
+  var bar = document.getElementById('lcBar' + idx);
+  if (bar) bar.classList.add('active');
+  // Pause all others
+  for (var i = 0; i < 6; i++) {
+    if (i !== idx && lcPlaying[i]) { lcPause(i); }
+  }
+  lcPlaying[idx] = true;
+  if (!lcPct[idx]) lcPct[idx] = 0;
+  lcSimulate(idx);
+  // Update overlay button to pause icon
+  var btn = document.getElementById('lcBtn' + idx);
+  if (btn) btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="2" width="4" height="10" rx="1" fill="#022C51"/><rect x="8" y="2" width="4" height="10" rx="1" fill="#022C51"/></svg>';
+}
+
+function lcMiniPlay(idx) {
+  if (lcPlaying[idx]) { lcPause(idx); }
+  else { lcPlay(null, idx); }
+}
+
+function lcPause(idx) {
+  lcPlaying[idx] = false;
+  clearInterval(lcSim[idx]);
+  var icon = document.getElementById('lcIcon' + idx);
+  if (icon) icon.innerHTML = '<path d="M2 1l8 4.5L2 10V1z" fill="white"/>';
+  var btn = document.getElementById('lcBtn' + idx);
+  if (btn) btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="#022C51"/></svg>';
+}
+
+function lcSimulate(idx) {
+  clearInterval(lcSim[idx]);
+  var dur = lcDurations[idx] || 1800;
+  lcSim[idx] = setInterval(function() {
+    if (!lcPlaying[idx]) { clearInterval(lcSim[idx]); return; }
+    lcPct[idx] = Math.min((lcPct[idx] || 0) + 0.3, 100);
+    var fill = document.getElementById('lcFill' + idx);
+    var time = document.getElementById('lcTime' + idx);
+    if (fill) fill.style.width = lcPct[idx] + '%';
+    if (time) time.textContent = lcFmt((lcPct[idx] / 100) * dur);
+    if (lcPct[idx] >= 100) {
+      clearInterval(lcSim[idx]);
+      lcPlaying[idx] = false; lcPct[idx] = 0;
+      if (fill) fill.style.width = '0%';
+      if (time) time.textContent = '0:00';
+      var icon = document.getElementById('lcIcon' + idx);
+      if (icon) icon.innerHTML = '<path d="M2 1l8 4.5L2 10V1z" fill="white"/>';
+    }
+    // Update mini icon to pause
+    var icon = document.getElementById('lcIcon' + idx);
+    if (icon && lcPlaying[idx]) icon.innerHTML = '<rect x="1" y="1" width="3.5" height="9" rx="1" fill="white"/><rect x="6.5" y="1" width="3.5" height="9" rx="1" fill="white"/>';
+  }, 200);
+}
+
+function lcSeek(e, idx) {
+  var wrap = document.getElementById('lcProg' + idx);
+  if (!wrap) return;
+  var rect = wrap.getBoundingClientRect();
+  var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  lcPct[idx] = pct * 100;
+  var fill = document.getElementById('lcFill' + idx);
+  if (fill) fill.style.width = lcPct[idx] + '%';
+  var dur = lcDurations[idx] || 1800;
+  var time = document.getElementById('lcTime' + idx);
+  if (time) time.textContent = lcFmt(pct * dur);
+}
+function openValuationModal(){
+  document.getElementById('valuationModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeValuationModal(){
+  document.getElementById('valuationModal').classList.remove('open');
+  document.body.style.overflow='';
+  setTimeout(function(){
+    document.getElementById('vmForm').style.display='block';
+    document.getElementById('vmSuccess').style.display='none';
+  },300);
+}
+function vmOverlayClick(e){
+  if(e.target===document.getElementById('valuationModal')) closeValuationModal();
+}
+function vmSubmit(){
+  document.getElementById('vmForm').style.display='none';
+  document.getElementById('vmSuccess').style.display='block';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeValuationModal();
+});
+</script>
+
+</script>
 </body>
 </html>

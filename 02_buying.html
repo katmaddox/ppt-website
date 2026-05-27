@@ -106,6 +106,32 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
 .tcard-author{font-size:14px;font-weight:700;color:var(--navy);}
 .tcard-role{font-size:12px;color:var(--text-m);margin-top:2px;}
 
+/* FINANCING */
+.fin-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.fin-blurb h3{font-family:var(--serif);font-size:28px;color:var(--navy);line-height:1.25;margin-bottom:16px;}
+.fin-blurb p{font-size:15px;color:var(--text-m);line-height:1.75;margin-bottom:28px;}
+.fin-points{display:flex;flex-direction:column;gap:16px;}
+.fin-point{display:flex;gap:14px;align-items:flex-start;}
+.fin-dot{width:8px;height:8px;border-radius:50%;background:var(--sky);flex-shrink:0;margin-top:7px;}
+.fin-point-text h5{font-family:var(--serif);font-size:15px;color:var(--navy);margin-bottom:3px;}
+.fin-point-text p{font-size:13px;color:var(--text-m);line-height:1.6;}
+.fin-form-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:36px;}
+.fin-form-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--royal);margin-bottom:8px;}
+.fin-form-card h3{font-family:var(--serif);font-size:22px;color:var(--navy);margin-bottom:8px;line-height:1.3;}
+.fin-form-card .fin-sub{font-size:14px;color:var(--text-m);margin-bottom:24px;line-height:1.6;}
+.fin-field{margin-bottom:16px;}
+.fin-field label{display:block;font-size:12px;font-weight:700;color:var(--text-b);margin-bottom:6px;letter-spacing:0.02em;}
+.fin-field input{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:14px;color:var(--text-b);background:var(--white);outline:none;transition:border-color .15s;}
+.fin-field input:focus{border-color:var(--royal);}
+.fin-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fin-submit{width:100%;padding:13px;background:var(--navy);color:var(--white);border:none;border-radius:8px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;transition:background .15s;}
+.fin-submit:hover{background:var(--royal);}
+.fin-note{font-size:12px;color:var(--text-m);text-align:center;margin-top:12px;}
+.fin-success{display:none;text-align:center;padding:24px 0;}
+.fin-success-icon{width:52px;height:52px;border-radius:50%;background:var(--navy-tint);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.fin-success h4{font-family:var(--serif);font-size:20px;color:var(--navy);margin-bottom:8px;}
+.fin-success p{font-size:14px;color:var(--text-m);}
+
 /* CTA */
 .cta-band{background:var(--royal);padding:72px 48px;text-align:center;}
 .cta-band h2{font-size:36px;color:var(--white);margin-bottom:12px;}
@@ -118,8 +144,8 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
 <nav class="nav">
   <a href="01_home.html"><img src="data:image/png;base64,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" alt="Practice Transition Partners"></a>
   <div class="nav-links">
-    <a href="02_buying.html" class="active">For Buyers</a>
     <a href="03_selling.html">For Sellers</a>
+    <a href="02_buying.html" class="active">For Buyers</a>
     <a href="04_listings.html">Listings</a>
     <a href="05_opinion_of_value.html">Opinion of Value</a>
     <a href="06_events.html">Education</a>
@@ -341,37 +367,65 @@ document.getElementById('buyerProcessDetail').innerHTML = renderBuyerStep(0);
   </div>
 </section>
 
-<!-- 2.3 SECURITY & TRUST -->
+<!-- 2.35 FINANCING -->
 <section class="section">
   <div class="container">
-    <div class="trust-split">
-      <div>
-        <div class="eyebrow">Security &amp; trust</div>
-        <h2 class="section-h2">Your identity and intentions stay protected</h2>
-        <p class="section-sub" style="margin-bottom:0;">We handle buyer confidentiality with the same care we give sellers. No one knows you're looking until you're ready.</p>
-        <div class="trust-items">
-          <div class="trust-item">
-            <div class="trust-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="8" width="12" height="8" rx="2" stroke="#115694" stroke-width="1.5"/><path d="M6 8V6a3 3 0 016 0v2" stroke="#115694" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-            <div><h4>NDA-protected access</h4><p>All listing financials are only shared after a mutual NDA is signed. Your name is never disclosed without your consent.</p></div>
+    <div class="fin-layout">
+
+      <!-- Left: blurb -->
+      <div class="fin-blurb">
+        <div class="eyebrow">Practice financing</div>
+        <h3>The right financing makes the right practice possible</h3>
+        <p>Most practice acquisitions are financed — and the right lender can make all the difference. We work with a network of lenders who specialize in medical and dental practice loans, understand the nuances of goodwill valuation, and move quickly so you don't lose a deal to a slow underwrite.</p>
+        <div class="fin-points">
+          <div class="fin-point">
+            <div class="fin-dot"></div>
+            <div class="fin-point-text">
+              <h5>SBA 7(a) loans up to $5M</h5>
+              <p>The most common structure for practice acquisitions — low down payment, long repayment terms, and lender familiarity with practice cash flows.</p>
+            </div>
           </div>
-          <div class="trust-item">
-            <div class="trust-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6" stroke="#115694" stroke-width="1.5"/><path d="M6 9l2 2 4-4" stroke="#115694" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div><h4>Pre-screened listings only</h4><p>Every practice on our platform has been vetted. We only show you real opportunities — no outdated or inaccurate listings.</p></div>
+          <div class="fin-point">
+            <div class="fin-dot"></div>
+            <div class="fin-point-text">
+              <h5>Conventional practice loans</h5>
+              <p>For buyers with strong financials, conventional options often close faster with fewer requirements than SBA programs.</p>
+            </div>
           </div>
-          <div class="trust-item">
-            <div class="trust-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3l1.8 4.2L15 7.5l-3 3 .8 4.5L9 13l-3.8 2 .8-4.5-3-3 4.2-.3z" stroke="#115694" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-            <div><h4>Licensed broker representation</h4><p>You're represented by a licensed broker at every step — not an algorithm or an unlicensed coordinator.</p></div>
+          <div class="fin-point">
+            <div class="fin-dot"></div>
+            <div class="fin-point-text">
+              <h5>Seller carry-back financing</h5>
+              <p>In some transactions, sellers finance a portion of the purchase — bridging gaps and demonstrating confidence in the practice's ongoing success.</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="trust-visual">
-        <div class="tv-title">What buyers tell us</div>
-        <div class="tv-item"><div class="tv-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#1D86E4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>"I never felt like I was being pushed into something."</span></div>
-        <div class="tv-item"><div class="tv-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#1D86E4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>"The financials matched what we were told. No surprises."</span></div>
-        <div class="tv-item"><div class="tv-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#1D86E4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>"My advisor answered every question — even late on a Friday."</span></div>
-        <div class="tv-item"><div class="tv-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#1D86E4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>"I had financing in place before I even made an offer."</span></div>
-        <div class="tv-item"><div class="tv-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#1D86E4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>"Closed in 52 days from first showing to signed docs."</span></div>
+
+      <!-- Right: lender connection form -->
+      <div class="fin-form-card">
+        <div id="finForm">
+          <div class="fin-form-eyebrow">Lender connection</div>
+          <h3>Do you want to be connected with a lender?</h3>
+          <p class="fin-sub">Tell us a little about yourself and we'll introduce you to a lender in our network who specializes in practice acquisitions — no obligation.</p>
+          <div class="fin-row">
+            <div class="fin-field"><label>First name</label><input type="text" placeholder="Jane" id="finFirst"></div>
+            <div class="fin-field"><label>Last name</label><input type="text" placeholder="Smith" id="finLast"></div>
+          </div>
+          <div class="fin-field"><label>Email address</label><input type="email" placeholder="jane@yourpractice.com" id="finEmail"></div>
+          <div class="fin-field"><label>Phone number</label><input type="tel" placeholder="(555) 000-0000" id="finPhone"></div>
+          <button class="fin-submit" onclick="finSubmit()">Connect me with a lender &rarr;</button>
+          <p class="fin-note">&#128274;&nbsp; Your information is kept strictly confidential and never shared without your permission.</p>
+        </div>
+        <div class="fin-success" id="finSuccess">
+          <div class="fin-success-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5 9-9" stroke="#115694" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>You're all set</h4>
+          <p>A member of our team will reach out within one business day to make the introduction.</p>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -532,6 +586,14 @@ document.getElementById('buyerProcessDetail').innerHTML = renderBuyerStep(0);
 </style>
 
 <script>
+function finSubmit(){
+  var first=document.getElementById('finFirst').value.trim();
+  var email=document.getElementById('finEmail').value.trim();
+  var phone=document.getElementById('finPhone').value.trim();
+  if(!first||!email||!phone){alert('Please fill in all fields.');return;}
+  document.getElementById('finForm').style.display='none';
+  document.getElementById('finSuccess').style.display='block';
+}
 function openValuationModal(){
   document.getElementById('valuationModal').classList.add('open');
   document.body.style.overflow='hidden';
