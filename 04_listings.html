@@ -605,6 +605,26 @@ document.addEventListener('keydown',function(e){
 });
 </script>
 
+
+<script>
+function navToggle(){
+  var l=document.querySelector('.nav-links');
+  var h=document.getElementById('navHam');
+  if(l) l.classList.toggle('mob-open');
+  if(h) h.classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  var nav=document.querySelector('.nav-links');
+  var ham=document.getElementById('navHam');
+  if(nav&&ham&&nav.classList.contains('mob-open')){
+    if(!nav.contains(e.target)&&!ham.contains(e.target)){
+      nav.classList.remove('mob-open');
+      ham.classList.remove('open');
+    }
+  }
+});
+</script>
+
 </body>
 </html>
 
