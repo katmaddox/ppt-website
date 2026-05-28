@@ -393,6 +393,17 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
         <input type="checkbox" id="connectLenders" checked> <span>Please connect me with excellent dental and medical practice lenders.</span>
       </label>
 
+      <label class="check-opt" style="margin-top:10px;">
+        <input type="checkbox" id="isPrequalified" onchange="togglePrequalified()"> <span>I am already prequalified.</span>
+      </label>
+
+      <div id="prequalifiedWith" style="display:none;margin-top:10px;">
+        <div class="field">
+          <label>With who?</label>
+          <input type="text" id="prequalifiedLender" placeholder="e.g. Bank of America, Live Oak Bank…">
+        </div>
+      </div>
+
       <div class="info-box" style="margin-top:14px;">
         <p>If you're already connected with a bank or lender, but they don't specialize in practice acquisitions, consider letting us introduce you to bankers who do.</p>
         <p>Practice finance professionals have access to loans tailored for dentists and physicians — often better terms than the open market.</p>
@@ -560,6 +571,12 @@ function completeRegistration(){
   }
   document.getElementById('panel-confirm').classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function togglePrequalified(){
+  var box = document.getElementById('isPrequalified');
+  var panel = document.getElementById('prequalifiedWith');
+  panel.style.display = box.checked ? 'block' : 'none';
 }
 
 function selectRadio(label, name){
