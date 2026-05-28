@@ -669,15 +669,19 @@ function initMap() {
   var LocateControl = L.Control.extend({
     options: { position: 'topleft' },
     onAdd: function() {
-      var btn = L.DomUtil.create('button', 'leaflet-bar leaflet-locate-btn');
-      btn.title = 'Use my location';
-      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3" stroke="#022C51" stroke-width="1.5"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2" stroke="#022C51" stroke-width="1.5" stroke-linecap="round"/></svg>';
-      btn.style.cssText = 'width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fff;border:none;margin-top:4px;';
-      L.DomEvent.on(btn, 'click', function(e) {
+      var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+      var a = L.DomUtil.create('a', '', container);
+      a.href = '#';
+      a.title = 'Use my location';
+      a.setAttribute('role', 'button');
+      a.style.cssText = 'display:flex;align-items:center;justify-content:center;width:26px;height:26px;';
+      a.innerHTML = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" stroke="#444" stroke-width="1.6"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2" stroke="#444" stroke-width="1.6" stroke-linecap="round"/></svg>';
+      L.DomEvent.on(a, 'click', function(e) {
         L.DomEvent.stopPropagation(e);
+        L.DomEvent.preventDefault(e);
         useLocation();
       });
-      return btn;
+      return container;
     }
   });
   new LocateControl().addTo(ptpMap);
