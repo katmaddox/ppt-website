@@ -664,6 +664,24 @@ function initMap() {
     attribution:'&copy; OpenStreetMap contributors &copy; CARTO',
     subdomains:'abcd', maxZoom:14
   }).addTo(ptpMap);
+
+  // Add locate button below zoom controls
+  var LocateControl = L.Control.extend({
+    options: { position: 'topleft' },
+    onAdd: function() {
+      var btn = L.DomUtil.create('button', 'leaflet-bar leaflet-locate-btn');
+      btn.title = 'Use my location';
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3" stroke="#022C51" stroke-width="1.5"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2" stroke="#022C51" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      btn.style.cssText = 'width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fff;border:none;margin-top:4px;';
+      L.DomEvent.on(btn, 'click', function(e) {
+        L.DomEvent.stopPropagation(e);
+        useLocation();
+      });
+      return btn;
+    }
+  });
+  new LocateControl().addTo(ptpMap);
+
   plotListings();
   // Check saved location
   const savedLat = localStorage.getItem('ptp_user_lat');
