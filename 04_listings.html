@@ -669,13 +669,12 @@ function initMap() {
   var LocateControl = L.Control.extend({
     options: { position: 'topleft' },
     onAdd: function() {
-      var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
-      var a = L.DomUtil.create('a', '', container);
+      var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-locate-control');
+      var a = L.DomUtil.create('a', 'leaflet-locate-btn', container);
       a.href = '#';
       a.title = 'Use my location';
       a.setAttribute('role', 'button');
-      a.style.cssText = 'display:block;width:26px;height:26px;line-height:26px;text-align:center;';
-      a.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;"><circle cx="8" cy="8" r="3" stroke="#444" stroke-width="1.6"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2" stroke="#444" stroke-width="1.6" stroke-linecap="round"/></svg>';
+      a.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" stroke="#444" stroke-width="1.6"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2" stroke="#444" stroke-width="1.6" stroke-linecap="round"/></svg>';
       L.DomEvent.on(a, 'click', function(e) {
         L.DomEvent.stopPropagation(e);
         L.DomEvent.preventDefault(e);
@@ -685,6 +684,19 @@ function initMap() {
     }
   });
   new LocateControl().addTo(ptpMap);
+
+  // Match locate button size to zoom controls after render
+  setTimeout(function(){
+    var zoomBtn = document.querySelector('.leaflet-control-zoom-in');
+    var locContainer = document.querySelector('.leaflet-locate-control');
+    var locBtn = document.querySelector('.leaflet-locate-btn');
+    if(zoomBtn && locBtn && locContainer){
+      var w = zoomBtn.offsetWidth;
+      var h = zoomBtn.offsetHeight;
+      locContainer.style.width = w + 'px';
+      locBtn.style.cssText = 'display:flex;align-items:center;justify-content:center;width:' + w + 'px;height:' + h + 'px;';
+    }
+  }, 300);
 
   plotListings();
   // Check saved location
