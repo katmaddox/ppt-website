@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seller Portal — Practice Transition Partners</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#022C51;--royal:#115694;--sky:#1D86E4;--gold:#ECB100;--cream:#FAF8F1;--white:#fff;--text-b:#3D3B37;--text-m:#73716C;--border:#D9D7CF;--navy-tint:#EAF1F8;--serif:'Libre Baskerville',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif;}
+body{font-family:var(--sans);color:var(--text-b);background:var(--cream);line-height:1.6;}
+a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3,h4{font-family:var(--serif);}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.nav img{height:64px;width:auto;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:14px;font-weight:600;color:var(--text-m);}
+.nav-links a:hover{color:var(--navy);}
+.nav-cta{background:var(--navy);color:var(--white)!important;font-size:13px;font-weight:700;padding:9px 20px;border-radius:6px;}
+.nav-user{font-size:14px;font-weight:700;color:var(--navy);}
+
+/* HAMBURGER */
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;background:none;border:none;padding:10px;flex-shrink:0;min-width:44px;min-height:44px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;z-index:101;position:relative;}
+.nav-hamburger span{width:22px;height:2px;background:var(--navy);display:block;border-radius:1px;transition:transform .2s,opacity .2s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* PORTAL LAYOUT */
+.portal-wrap{display:flex;min-height:calc(100vh - 72px);}
+
+/* SIDEBAR */
+.portal-sidebar{width:260px;flex-shrink:0;background:var(--white);border-right:1px solid var(--border);padding:32px 0 24px;display:flex;flex-direction:column;}
+.sidebar-label{font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--text-m);padding:0 24px;margin-bottom:10px;}
+.sidebar-nav{display:flex;flex-direction:column;gap:2px;padding:0 12px;}
+.sidebar-link{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:600;color:var(--text-m);cursor:pointer;transition:background .15s,color .15s;}
+.sidebar-link:hover{background:var(--cream);color:var(--navy);}
+.sidebar-link.active{background:var(--navy-tint);color:var(--navy);}
+.sidebar-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;background:#E5EDF5;color:var(--royal);}
+.sidebar-badge.green{background:#E6F4EA;color:#1E7E34;}
+.sidebar-badge.gold{background:#FFF3CD;color:#7A5800;}
+.sidebar-spacer{flex:1;}
+.sidebar-user{margin:16px 12px 0;padding:14px;background:var(--cream);border:1px solid var(--border);border-radius:10px;}
+.suc-name{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:2px;}
+.suc-email{font-size:12px;color:var(--text-m);margin-bottom:2px;}
+.suc-role{font-size:11px;font-weight:700;color:var(--text-m);text-transform:uppercase;letter-spacing:0.06em;}
+
+/* MAIN CONTENT */
+.portal-main{flex:1;padding:40px 48px 64px;overflow-x:hidden;}
+.view-title{font-family:var(--serif);font-size:36px;color:var(--navy);margin-bottom:6px;}
+.view-sub{font-size:15px;color:var(--text-m);margin-bottom:32px;}
+
+/* INFO CARDS GRID */
+.info-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;}
+.info-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.info-card-label{font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--text-m);margin-bottom:16px;}
+.info-row{margin-bottom:14px;}
+.info-row:last-child{margin-bottom:0;}
+.info-key{font-size:12px;color:var(--text-m);margin-bottom:2px;}
+.info-val{font-size:15px;font-weight:700;color:var(--text-b);}
+.info-val.navy{color:var(--navy);}
+.status-pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:4px 12px;border-radius:20px;}
+.status-pill.active{background:#E6F4EA;color:#1E7E34;}
+.status-pill.pending{background:#FFF3CD;color:#7A5800;}
+.status-pill.loi{background:#EAF1F8;color:var(--royal);}
+.status-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block;}
+.verified-pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#1E7E34;background:#E6F4EA;padding:3px 10px;border-radius:20px;}
+
+/* SECTION HEADER */
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.section-title{font-family:var(--serif);font-size:22px;color:var(--navy);}
+.section-sub{font-size:13px;color:var(--text-m);margin-top:2px;}
+
+/* ACTIVITY FEED */
+.activity-feed{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.activity-item{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border);}
+.activity-item:last-child{border-bottom:none;}
+.activity-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.activity-dot.blue{background:var(--navy-tint);}
+.activity-dot.green{background:#E6F4EA;}
+.activity-dot.gold{background:#FFF3CD;}
+.activity-body{flex:1;}
+.activity-title{font-size:14px;font-weight:600;color:var(--text-b);margin-bottom:2px;}
+.activity-meta{font-size:12px;color:var(--text-m);}
+
+/* VIEWS */
+.portal-view{display:none;}
+.portal-view.active{display:block;}
+
+/* LISTING CARD */
+.listing-preview{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px;}
+.listing-preview-img{width:100%;height:200px;object-fit:cover;}
+.listing-preview-body{padding:24px;}
+.listing-preview-title{font-family:var(--serif);font-size:22px;color:var(--navy);margin-bottom:6px;}
+.listing-preview-loc{font-size:13px;color:var(--text-m);margin-bottom:16px;display:flex;align-items:center;gap:6px;}
+.listing-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:20px;border-top:1px solid var(--border);background:var(--cream);}
+.metric-box{text-align:center;}
+.metric-val{font-family:var(--serif);font-size:20px;color:var(--navy);font-weight:700;}
+.metric-key{font-size:11px;color:var(--text-m);margin-top:2px;font-weight:600;letter-spacing:0.04em;}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:32px;}
+.timeline::before{content:'';position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:var(--border);}
+.tl-item{position:relative;margin-bottom:24px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-32px;top:4px;width:20px;height:20px;border-radius:50%;border:2px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;}
+.tl-dot.done{border-color:var(--royal);background:var(--royal);}
+.tl-dot.current{border-color:var(--gold);background:var(--gold);}
+.tl-label{font-size:14px;font-weight:700;color:var(--text-b);}
+.tl-label.done{color:var(--text-m);text-decoration:line-through;}
+.tl-label.current{color:var(--navy);}
+.tl-meta{font-size:12px;color:var(--text-m);margin-top:2px;}
+
+/* INQUIRY TABLE */
+.inquiry-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.inquiry-table th{font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--text-m);text-transform:uppercase;padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);background:var(--cream);}
+.inquiry-table td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-b);vertical-align:middle;}
+.inquiry-table tr:last-child td{border-bottom:none;}
+.inquiry-table tr:hover td{background:#FAFAF8;}
+.buyer-name{font-weight:700;color:var(--navy);margin-bottom:2px;}
+.buyer-loc{font-size:12px;color:var(--text-m);}
+.nda-pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;}
+.nda-pill.signed{background:#E6F4EA;color:#1E7E34;}
+.nda-pill.pending{background:#FFF3CD;color:#7A5800;}
+.nda-pill.sent{background:var(--navy-tint);color:var(--royal);}
+.btn-sm{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:7px 14px;border-radius:6px;border:none;cursor:pointer;font-family:var(--sans);}
+.btn-sm-ghost{background:transparent;border:1.5px solid var(--border);color:var(--navy);}
+.btn-sm-ghost:hover{border-color:var(--navy);}
+.btn-sm-primary{background:var(--navy);color:var(--white);}
+.btn-sm-primary:hover{background:var(--royal);}
+
+/* DOCUMENT LIST */
+.doc-list{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.doc-item{display:flex;align-items:center;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border);}
+.doc-item:last-child{border-bottom:none;}
+.doc-icon{width:40px;height:40px;border-radius:8px;background:var(--navy-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.doc-info{flex:1;}
+.doc-name{font-size:14px;font-weight:700;color:var(--text-b);margin-bottom:2px;}
+.doc-meta{font-size:12px;color:var(--text-m);}
+.doc-action{display:flex;align-items:center;gap:8px;}
+
+/* ACTION BANNER */
+.action-banner{display:flex;align-items:center;gap:14px;background:#FFF8E6;border:1.5px solid #F0C840;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.action-banner-icon{width:36px;height:36px;border-radius:50%;background:#FFF3CD;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.action-banner-body{flex:1;}
+.action-banner-title{font-size:14px;font-weight:700;color:#7A5800;margin-bottom:2px;}
+.action-banner-sub{font-size:13px;color:#7A5800;opacity:.85;}
+
+/* FINANCIAL NDA TABLE */
+.fin-nda-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:28px;}
+.fin-nda-table th{font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--text-m);text-transform:uppercase;padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);background:var(--cream);}
+.fin-nda-table td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-b);vertical-align:middle;}
+.fin-nda-table tr:last-child td{border-bottom:none;}
+
+/* INLINE NDA PANEL */
+.fin-nda-panel{display:none;border-top:1px solid var(--border);background:#FAFAF8;padding:24px;}
+.fin-nda-panel.open{display:block;}
+.nda-scroll{height:320px;overflow-y:auto;border:1.5px solid var(--border);border-radius:8px;padding:22px;font-size:13px;color:var(--text-b);line-height:1.8;margin-bottom:18px;background:var(--white);}
+.nda-scroll h3{font-family:var(--serif);font-size:15px;color:var(--navy);margin-bottom:14px;text-align:center;}
+.nda-scroll h4{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--navy);margin:16px 0 6px;}
+.nda-scroll p{margin-bottom:10px;}
+.nda-highlight{background:#FFF3CD;border-left:3px solid var(--gold);padding:9px 13px;margin:12px 0;font-size:13px;color:#7A5800;font-style:italic;}
+.nda-sign-row{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1.5px solid var(--border);border-radius:8px;margin-bottom:16px;background:var(--white);}
+.nda-sign-row input[type="checkbox"]{width:17px;height:17px;accent-color:var(--royal);flex-shrink:0;margin-top:2px;}
+.nda-sign-row p{font-size:13px;color:var(--text-b);line-height:1.6;}
+.nda-signed-confirm{display:none;align-items:center;gap:10px;padding:14px 16px;border:1.5px solid #A8D5B0;border-radius:8px;background:#E6F4EA;margin-bottom:16px;}
+.nda-signed-confirm.show{display:flex;}
+.nda-signed-confirm span{font-size:14px;font-weight:700;color:#1E7E34;}
+
+/* SETTINGS CARD */
+.settings-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;margin-bottom:20px;}
+.settings-card h3{font-family:var(--serif);font-size:18px;color:var(--navy);margin-bottom:4px;}
+.settings-card p{font-size:13px;color:var(--text-m);margin-bottom:20px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.field input,.field select{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:14px;color:var(--text-b);background:var(--white);}
+.field input:focus,.field select:focus{outline:none;border-color:var(--royal);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.check-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.check-row input{width:16px;height:16px;accent-color:var(--royal);}
+.check-row span{font-size:14px;color:var(--text-b);}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:14px;font-weight:700;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;}
+.btn-primary{background:var(--navy);color:var(--white);}
+.btn-primary:hover{background:var(--royal);}
+.btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--border);}
+.btn-ghost:hover{border-color:var(--navy);}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--border);margin:24px 0;}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:48px 24px;color:var(--text-m);}
+.empty-state svg{margin:0 auto 16px;}
+.empty-state h4{font-family:var(--serif);font-size:18px;color:var(--navy);margin-bottom:8px;}
+
+/* ADVISOR CARD */
+.advisor-card{background:var(--navy);border-radius:12px;padding:24px;color:var(--white);display:flex;align-items:center;gap:20px;margin-bottom:24px;}
+.advisor-avatar{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--serif);font-size:20px;font-weight:700;color:var(--white);}
+.advisor-info{flex:1;}
+.advisor-role{font-size:11px;font-weight:700;letter-spacing:0.1em;opacity:.6;margin-bottom:4px;}
+.advisor-name{font-size:17px;font-weight:700;margin-bottom:2px;}
+.advisor-contact{font-size:13px;opacity:.7;}
+.advisor-btns{display:flex;flex-direction:column;gap:8px;}
+.advisor-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;padding:8px 16px;border-radius:7px;border:1.5px solid rgba(255,255,255,0.3);color:var(--white);background:transparent;cursor:pointer;white-space:nowrap;text-decoration:none;}
+.advisor-btn:hover{background:rgba(255,255,255,0.12);}
+
+/* FOOTER */
+.footer{background:#0D1F30;padding:24px 48px;}
+.f-bottom{display:flex;justify-content:space-between;}
+.f-copy{font-size:12px;color:rgba(255,255,255,0.3);}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav{padding:0 20px!important;height:60px!important;}
+  .nav>a img{height:40px!important;}
+  .nav-hamburger{display:flex!important;}
+  .nav-links{display:none;flex-direction:column;position:fixed;top:60px;left:0;right:0;bottom:0;background:var(--white);padding:0;border-top:1px solid var(--border);z-index:199;overflow-y:auto;gap:0;}
+  .nav-links.mob-open{display:flex!important;}
+  .nav-links a{font-size:15px;padding:14px 24px;border-bottom:1px solid var(--border);color:var(--text-b)!important;text-align:left;}
+  .nav-links a:last-child{border-bottom:none;}
+  .nav-links .nav-cta,.nav-links a.nav-cta{border-bottom:none!important;margin:12px 24px 24px;text-align:center;padding:14px 24px!important;border-radius:8px;background:var(--navy)!important;color:var(--white)!important;display:block!important;}
+  .portal-wrap{flex-direction:column;}
+  .portal-sidebar{width:100%;border-right:none;border-bottom:1px solid var(--border);padding:16px 0 8px;}
+  .sidebar-nav{flex-direction:row;flex-wrap:wrap;gap:4px;padding:0 12px;}
+  .sidebar-link{padding:8px 10px;font-size:13px;}
+  .sidebar-user{display:none;}
+  .portal-main{padding:24px 16px 40px;}
+  .info-cards{grid-template-columns:1fr;}
+  .listing-metrics{grid-template-columns:1fr 1fr;}
+  .inquiry-table th:nth-child(3),.inquiry-table td:nth-child(3){display:none;}
+  .field-row{grid-template-columns:1fr!important;}
+  .advisor-card{flex-direction:column;align-items:flex-start;}
+  .advisor-btns{flex-direction:row;}
+  .f-bottom{flex-direction:column;gap:6px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="01_home.html"><img src="data:image/png;base64,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" alt="Practice Transition Partners"></a>
+  <button class="nav-hamburger" id="navHam" aria-label="Open menu" type="button"><span></span><span></span><span></span></button>
+  <div class="nav-links">
+    <a href="03_selling.html">For Sellers</a>
+    <a href="02_buying.html">For Buyers</a>
+    <a href="04_listings.html">Listings</a>
+    <a href="05_opinion_of_value.html">Opinion of Value</a>
+    <a href="06_events.html">Education</a>
+    <a href="07_about.html">About</a>
+    <span class="nav-user">Hi, Dr. Chen</span>
+    <a href="#">Sign out</a>
+    <a href="05_opinion_of_value.html" class="nav-cta">Get a Valuation</a>
+  </div>
+</nav>
+
+<!-- PORTAL WRAP -->
+<div class="portal-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="portal-sidebar">
+    <div class="sidebar-label">ACCOUNT</div>
+    <nav class="sidebar-nav">
+      <a class="sidebar-link active" data-view="overview" onclick="showView('overview',this);return false;" href="#">Your account</a>
+      <a class="sidebar-link" data-view="listing" onclick="showView('listing',this);return false;" href="#">Your listing <span class="sidebar-badge green">Active</span></a>
+      <a class="sidebar-link" data-view="inquiries" onclick="showView('inquiries',this);return false;" href="#">Buyer inquiries <span class="sidebar-badge">4</span></a>
+      <a class="sidebar-link" data-view="documents" onclick="showView('documents',this);return false;" href="#">Documents &amp; NDAs</a>
+      <a class="sidebar-link" data-view="settings" onclick="showView('settings',this);return false;" href="#">Account settings</a>
+    </nav>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-user">
+      <div class="suc-name">Dr. Sarah Chen</div>
+      <div class="suc-email">s.chen@example.com</div>
+      <div class="suc-role">Seller</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="portal-main">
+
+    <!-- ═══ VIEW: OVERVIEW ═══ -->
+    <div class="portal-view active" id="view-overview">
+      <h1 class="view-title">Your account</h1>
+      <p class="view-sub">Track your listing and review buyer activity from the sidebar.</p>
+
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="info-card-label">PROFILE</div>
+          <div class="info-row">
+            <div class="info-key">Name</div>
+            <div class="info-val navy">Dr. Sarah Chen, DDS</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Email</div>
+            <div class="info-val">s.chen@example.com</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Phone</div>
+            <div class="info-val">(805) 555-0182</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Email status</div>
+            <div class="info-val">
+              <span class="verified-pill">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Verified
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-label">LISTING STATUS</div>
+          <div class="info-row">
+            <div class="info-key">Role</div>
+            <div class="info-val navy">Seller</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Listing status</div>
+            <div class="info-val"><span class="status-pill active">Active</span></div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Days on market</div>
+            <div class="info-val">47 days</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key">Buyer inquiries</div>
+            <div class="info-val navy">4 buyers · 3 NDAs signed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advisor card -->
+      <div class="advisor-card">
+        <div class="advisor-avatar">JV</div>
+        <div class="advisor-info">
+          <div class="advisor-role">YOUR ADVISOR</div>
+          <div class="advisor-name">Jose Veit</div>
+          <div class="advisor-contact">jose@ptransitions.com · (805) 555-0100</div>
+        </div>
+        <div class="advisor-btns">
+          <a href="https://mail.google.com/mail/?view=cm&to=jose@ptransitions.com&su=Seller Portal Question" target="_blank" class="advisor-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 3h11l-5.5 5L1.5 3z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><rect x="1.5" y="3" width="11" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/></svg>
+            Email Us
+          </a>
+        </div>
+      </div>
+
+      <!-- Recent activity -->
+      <div class="section-head">
+        <div>
+          <div class="section-title">Recent activity</div>
+          <div class="section-sub">Updates from the last 30 days.</div>
+        </div>
+      </div>
+      <div class="activity-feed">
+        <div class="activity-item">
+          <div class="activity-dot blue">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" stroke="#115694" stroke-width="1.3"/><path d="M7 4.5v3l2 1.5" stroke="#115694" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="activity-body">
+            <div class="activity-title">New buyer inquiry — Dr. Marcus Webb</div>
+            <div class="activity-meta">NDA sent · June 27, 2026</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot green">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-6" stroke="#1E7E34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="activity-body">
+            <div class="activity-title">NDA signed — Dr. Priya Mehta</div>
+            <div class="activity-meta">Full financials unlocked · June 24, 2026</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot green">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-6" stroke="#1E7E34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="activity-body">
+            <div class="activity-title">NDA signed — Dr. James Okafor</div>
+            <div class="activity-meta">Full financials unlocked · June 19, 2026</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot blue">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" stroke="#115694" stroke-width="1.3"/><path d="M7 4.5v3l2 1.5" stroke="#115694" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="activity-body">
+            <div class="activity-title">Listing went live on Practice Transition Partners</div>
+            <div class="activity-meta">June 12, 2026</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot gold">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2l1.5 3 3.5.5-2.5 2.5.5 3.5L7 10l-3 1.5.5-3.5L2 5.5l3.5-.5L7 2z" stroke="#7A5800" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="activity-body">
+            <div class="activity-title">Opinion of Value completed</div>
+            <div class="activity-meta">Listing price established · June 5, 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ VIEW: YOUR LISTING ═══ -->
+    <div class="portal-view" id="view-listing">
+      <h1 class="view-title">Your listing</h1>
+      <p class="view-sub">Your practice is live on Practice Transition Partners. Contact your advisor to request any updates.</p>
+
+      <div class="listing-preview">
+        <img class="listing-preview-img" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=80" alt="Dental practice">
+        <div class="listing-preview-body">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <div>
+              <div class="listing-preview-title">General Dentistry Practice — Camarillo, CA</div>
+              <div class="listing-preview-loc">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1C4.3 1 2.5 2.8 2.5 5c0 3.3 4 7 4 7s4-3.7 4-7c0-2.2-1.8-4-4-4z" stroke="#73716C" stroke-width="1.2"/><circle cx="6.5" cy="5" r="1.3" stroke="#73716C" stroke-width="1.2"/></svg>
+                Camarillo, CA 93010 &nbsp;·&nbsp; Listed June 12, 2026
+              </div>
+              <span class="status-pill active">Active</span>
+            </div>
+            <a href="04b_listing_detail.html" target="_blank" class="btn-sm btn-sm-ghost" style="text-decoration:none;margin-top:4px;">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5h10M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              View public listing
+            </a>
+          </div>
+        </div>
+        <div class="listing-metrics">
+          <div class="metric-box">
+            <div class="metric-val">$1.42M</div>
+            <div class="metric-key">ASKING PRICE</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">$987K</div>
+            <div class="metric-key">2025 COLLECTIONS</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">4</div>
+            <div class="metric-key">BUYER INQUIRIES</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transition timeline -->
+      <div class="section-head" style="margin-bottom:20px;">
+        <div>
+          <div class="section-title">Transition timeline</div>
+          <div class="section-sub">Where you are in the process.</div>
+        </div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px 32px;">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot done">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="tl-label done">Opinion of Value</div>
+            <div class="tl-meta">Completed June 5, 2026</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot done">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="tl-label done">Listing package prepared</div>
+            <div class="tl-meta">Financials, photos, and practice summary submitted</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot done">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="tl-label done">Listing live</div>
+            <div class="tl-meta">June 12, 2026 · 47 days on market</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot current"></div>
+            <div class="tl-label current">Buyer qualification &amp; showings</div>
+            <div class="tl-meta">4 inquiries · 3 NDAs signed · Showings available upon request</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-label" style="color:var(--text-m);">Letter of Intent (LOI)</div>
+            <div class="tl-meta">Pending buyer qualification</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-label" style="color:var(--text-m);">Due diligence &amp; purchase agreement</div>
+            <div class="tl-meta">Estimated 60–90 days after LOI</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-label" style="color:var(--text-m);">Close of escrow</div>
+            <div class="tl-meta">Target Q4 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ VIEW: BUYER INQUIRIES ═══ -->
+    <div class="portal-view" id="view-inquiries">
+      <h1 class="view-title">Buyer inquiries</h1>
+      <p class="view-sub">Qualified buyers who have expressed interest in your practice. Your advisor manages all direct communication.</p>
+
+      <table class="inquiry-table">
+        <thead>
+          <tr>
+            <th>Buyer</th>
+            <th>NDA Status</th>
+            <th>Inquiry Date</th>
+            <th>Advisor Notes</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="buyer-name">Dr. Priya Mehta, DDS</div>
+              <div class="buyer-loc">San Jose, CA · General Dentistry</div>
+            </td>
+            <td><span class="nda-pill signed">✓ NDA Signed</span></td>
+            <td style="font-size:13px;color:var(--text-m);">June 18, 2026</td>
+            <td style="font-size:13px;color:var(--text-m);">Pre-qualified · Live Oak Bank · Reviewing financials</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="buyer-name">Dr. James Okafor, DMD</div>
+              <div class="buyer-loc">Los Angeles, CA · General Dentistry</div>
+            </td>
+            <td><span class="nda-pill signed">✓ NDA Signed</span></td>
+            <td style="font-size:13px;color:var(--text-m);">June 21, 2026</td>
+            <td style="font-size:13px;color:var(--text-m);">First-time buyer · Lender intro completed</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="buyer-name">Dr. Carla Romero, DDS</div>
+              <div class="buyer-loc">Thousand Oaks, CA · General Dentistry</div>
+            </td>
+            <td><span class="nda-pill signed">✓ NDA Signed</span></td>
+            <td style="font-size:13px;color:var(--text-m);">June 23, 2026</td>
+            <td style="font-size:13px;color:var(--text-m);">Strong candidate · Requested site visit</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="buyer-name">Dr. Marcus Webb, DDS</div>
+              <div class="buyer-loc">Ventura, CA · General Dentistry</div>
+            </td>
+            <td><span class="nda-pill sent">NDA Sent</span></td>
+            <td style="font-size:13px;color:var(--text-m);">June 27, 2026</td>
+            <td style="font-size:13px;color:var(--text-m);">Awaiting NDA signature</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:20px;padding:16px 20px;background:var(--navy-tint);border:1px solid #C8DFEE;border-radius:10px;font-size:13px;color:var(--royal);line-height:1.7;">
+        <strong>Your advisor handles all buyer communication on your behalf.</strong> Sellers are kept anonymous until a qualified buyer signs the NDA and your advisor has screened them. Contact Jose Veit with any questions about a specific buyer.
+      </div>
+    </div>
+
+    <!-- ═══ VIEW: DOCUMENTS ═══ -->
+    <div class="portal-view" id="view-documents">
+      <h1 class="view-title">Documents &amp; NDAs</h1>
+      <p class="view-sub">All documents related to your practice transition, organized in one place.</p>
+
+      <!-- ACTION REQUIRED BANNER -->
+      <div class="action-banner" id="finNdaBanner">
+        <div class="action-banner-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L2 15h14L9 2z" stroke="#7A5800" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 8v3.5M9 13.5v.5" stroke="#7A5800" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="action-banner-body">
+          <div class="action-banner-title">Your signature is required — Financial Disclosure Agreement</div>
+          <div class="action-banner-sub">Dr. Priya Mehta has requested access to your full financial summary. You must co-sign the Financial Disclosure Agreement before she can view it.</div>
+        </div>
+        <button class="btn-sm btn-sm-primary" onclick="openFinNda('mehta')">Review &amp; Sign</button>
+      </div>
+
+      <!-- FINANCIAL DISCLOSURE NDA SECTION -->
+      <div class="section-head" style="margin-bottom:16px;">
+        <div>
+          <div class="section-title" style="font-size:17px;">Financial Disclosure Agreements</div>
+          <div class="section-sub">Both you and the buyer must sign before full financials are released. Your advisor initiates this when a qualified buyer requests access.</div>
+        </div>
+      </div>
+
+      <table class="fin-nda-table">
+        <thead>
+          <tr>
+            <th>Buyer</th>
+            <th>Buyer signature</th>
+            <th>Your signature</th>
+            <th>Financials released</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ROW: Priya Mehta — needs seller signature -->
+          <tr id="row-mehta">
+            <td>
+              <div class="buyer-name">Dr. Priya Mehta</div>
+              <div class="buyer-loc">Requested June 27, 2026</div>
+            </td>
+            <td><span class="nda-pill signed">✓ Signed</span></td>
+            <td id="seller-status-mehta"><span class="nda-pill pending">Signature needed</span></td>
+            <td id="release-status-mehta"><span class="nda-pill pending">Pending your signature</span></td>
+            <td id="action-mehta">
+              <button class="btn-sm btn-sm-primary" onclick="openFinNda('mehta')">Review &amp; Sign</button>
+            </td>
+          </tr>
+          <!-- Expanded NDA panel for Mehta -->
+          <tr id="panel-row-mehta" style="display:none;">
+            <td colspan="5" style="padding:0;">
+              <div class="fin-nda-panel open" id="fin-panel-mehta">
+                <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:14px;">Financial Disclosure Agreement — Dr. Priya Mehta</div>
+                <div class="nda-scroll">
+                  <h3>Practice Transition Partners<br>Financial Disclosure &amp; Confidentiality Agreement</h3>
+
+                  <h4>1. Purpose</h4>
+                  <p>This Financial Disclosure &amp; Confidentiality Agreement ("Agreement") is entered into between the Seller and the Buyer named above (collectively, the "Parties"), facilitated by Practice Transition Partners ("Broker"). The purpose of this Agreement is to authorize the release of detailed financial records pertaining to the practice listed for sale and to establish the terms under which such information may be used.</p>
+
+                  <h4>2. Authorized Financial Information</h4>
+                  <p>Upon execution of this Agreement by both Parties, Broker is authorized to release to Buyer the following categories of financial information ("Financial Information"): federal and state tax returns for the prior three (3) fiscal years; profit and loss statements; accounts receivable aging reports; overhead and expense summaries; production and collections reports; and any additional financial schedules prepared by or on behalf of Seller.</p>
+
+                  <h4>3. Restrictions on Use</h4>
+                  <p>Buyer agrees that the Financial Information is disclosed solely for the purpose of evaluating a potential purchase of the practice. Buyer shall not use the Financial Information for any other purpose, including but not limited to competitive analysis, solicitation of Seller's patients or employees, or disclosure to third parties other than Buyer's legal counsel, accountants, and lenders who are bound by equivalent confidentiality obligations.</p>
+
+                  <h4>4. Seller Authorization</h4>
+                  <p>By signing below, Seller confirms that the Financial Information provided to Broker is accurate and complete to the best of Seller's knowledge, and that Seller consents to its release to the named Buyer under the terms of this Agreement. Seller acknowledges that Broker does not independently verify the accuracy of financial documents.</p>
+
+                  <h4>5. Return or Destruction of Information</h4>
+                  <p>If Buyer does not proceed with the purchase, Buyer shall promptly destroy or return all Financial Information and any copies or summaries thereof. Buyer shall confirm in writing to Broker that such destruction or return has occurred within ten (10) business days of either Party's decision not to proceed.</p>
+
+                  <h4>6. Term and Governing Law</h4>
+                  <p>The confidentiality obligations under this Agreement shall survive for a period of three (3) years from the date of execution. This Agreement shall be governed by the laws of the State of California. Electronic signatures are considered legally binding originals.</p>
+
+                  <div class="nda-highlight">By signing this Agreement, Seller authorizes the release of detailed financial records to the named Buyer exclusively for the purpose of evaluating a practice acquisition. Seller may revoke consent in writing at any time prior to closing if negotiations terminate.</div>
+                </div>
+
+                <!-- Signed confirmation (hidden until signed) -->
+                <div class="nda-signed-confirm" id="signed-confirm-mehta">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#1E7E34"/><path d="M6 10l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>Signed — financials released to Dr. Priya Mehta</span>
+                </div>
+
+                <!-- Sign form -->
+                <div id="sign-form-mehta">
+                  <label class="nda-sign-row">
+                    <input type="checkbox" id="ndaCheck-mehta">
+                    <p>By checking this box, I confirm my identity as the Seller and authorize the release of my practice's financial records to Dr. Priya Mehta under the terms of this Agreement. I understand this digital signature is legally binding. <span style="color:var(--royal);">*</span></p>
+                  </label>
+                  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                    <div class="field" style="margin-bottom:0;min-width:200px;">
+                      <label style="font-size:13px;font-weight:700;color:var(--navy);display:block;margin-bottom:6px;">Today's Date <span style="color:var(--royal);">*</span></label>
+                      <input type="date" id="ndaDate-mehta" style="padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:14px;color:var(--text-b);">
+                    </div>
+                    <button class="btn btn-primary" style="margin-top:22px;" onclick="signFinNda('mehta')">Sign &amp; Release Financials</button>
+                    <button class="btn btn-ghost" style="margin-top:22px;" onclick="closeFinNda('mehta')">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- ROW: James Okafor — not yet requested -->
+          <tr>
+            <td>
+              <div class="buyer-name">Dr. James Okafor</div>
+              <div class="buyer-loc">Not yet requested</div>
+            </td>
+            <td><span class="nda-pill" style="background:var(--cream);color:var(--text-m);">—</span></td>
+            <td><span class="nda-pill" style="background:var(--cream);color:var(--text-m);">—</span></td>
+            <td><span class="nda-pill" style="background:var(--cream);color:var(--text-m);">Not requested</span></td>
+            <td></td>
+          </tr>
+
+          <!-- ROW: Carla Romero — not yet requested -->
+          <tr>
+            <td>
+              <div class="buyer-name">Dr. Carla Romero</div>
+              <div class="buyer-loc">Not yet requested</div>
+            </td>
+            <td><span class="nda-pill" style="background:var(--cream);color:var(--text-m);">—</span></td>
+            <td><span class="nda-pill" style="background:var(--cream);color:var(--text-m);">—</span></td>
+            <td><span class="nda-pill" style="background:var(--cream);color:var(--text-m);">Not requested</span></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="section-head" style="margin-bottom:16px;">
+        <div class="section-title" style="font-size:17px;">Your documents</div>
+      </div>
+      <div class="doc-list" style="margin-bottom:28px;">
+        <div class="doc-item">
+          <div class="doc-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="2" stroke="#115694" stroke-width="1.4"/><path d="M7 7h6M7 10h6M7 13h4" stroke="#115694" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="doc-info">
+            <div class="doc-name">Seller Listing Agreement</div>
+            <div class="doc-meta">Signed June 5, 2026 · PDF</div>
+          </div>
+          <div class="doc-action">
+            <span class="nda-pill signed">Signed</span>
+            <button class="btn-sm btn-sm-ghost" onclick="alert('In production, this would download the document.')">Download</button>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="2" stroke="#115694" stroke-width="1.4"/><path d="M7 7h6M7 10h6M7 13h4" stroke="#115694" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="doc-info">
+            <div class="doc-name">Practice Financial Summary — 2023–2025</div>
+            <div class="doc-meta">Uploaded June 8, 2026 · PDF · Shared with NDA-signed buyers only</div>
+          </div>
+          <div class="doc-action">
+            <span class="nda-pill signed">Uploaded</span>
+            <button class="btn-sm btn-sm-ghost" onclick="alert('In production, this would download the document.')">Download</button>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="2" stroke="#115694" stroke-width="1.4"/><path d="M7 7h6M7 10h6M7 13h4" stroke="#115694" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="doc-info">
+            <div class="doc-name">Opinion of Value Report</div>
+            <div class="doc-meta">Completed June 5, 2026 · PDF · Confidential</div>
+          </div>
+          <div class="doc-action">
+            <span class="nda-pill signed">Received</span>
+            <button class="btn-sm btn-sm-ghost" onclick="alert('In production, this would download the document.')">Download</button>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="2" stroke="#ECB100" stroke-width="1.4"/><path d="M7 7h6M7 10h6M7 13h4" stroke="#ECB100" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="doc-info">
+            <div class="doc-name">Letter of Intent (LOI)</div>
+            <div class="doc-meta">Awaiting buyer offer · Not yet received</div>
+          </div>
+          <div class="doc-action">
+            <span class="nda-pill pending">Pending</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head" style="margin-bottom:16px;">
+        <div class="section-title" style="font-size:17px;">Buyer NDAs</div>
+      </div>
+      <div class="doc-list">
+        <div class="doc-item">
+          <div class="doc-info">
+            <div class="doc-name">Dr. Priya Mehta — Buyer NDA</div>
+            <div class="doc-meta">Signed June 18, 2026</div>
+          </div>
+          <div class="doc-action">
+            <span class="nda-pill signed">Signed</span>
+            <button class="btn-sm btn-sm-ghost" onclick="alert('In production, this would download the NDA.')">Download</button>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-info">
+            <div class="doc-name">Dr. James Okafor — Buyer NDA</div>
+            <div class="doc-meta">Signed June 21, 2026</div>
+          </div>
+          <div class="doc-action">
+            <span class="nda-pill signed">Signed</span>
+            <button class="btn-sm btn-sm-ghost" onclick="alert('In production, this would download the NDA.')">Download</button>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-info">
+            <div class="doc-name">Dr. Carla Romero — Buyer NDA</div>
+            <div class="doc-meta">Signed June 23, 2026</div>
+          </div>
+          <div class="doc-action">
+            <span class="nda-pill signed">Signed</span>
+            <button class="btn-sm btn-sm-ghost" onclick="alert('In production, this would download the NDA.')">Download</button>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-info">
+            <div class="doc-name">Dr. Marcus Webb — Buyer NDA</div>
+            <div class="doc-meta">Sent June 27, 2026 · Awaiting signature</div>
+          </div>
+          <div class="doc-action">
+            <span class="nda-pill sent">Sent</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ VIEW: ACCOUNT SETTINGS ═══ -->
+    <div class="portal-view" id="view-settings">
+      <h1 class="view-title">Account settings</h1>
+      <p class="view-sub">Update your contact information and notification preferences.</p>
+
+      <div class="settings-card">
+        <h3>Personal information</h3>
+        <p>Your name and contact details on file with Practice Transition Partners.</p>
+        <div class="field-row">
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" value="Sarah">
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input type="text" value="Chen">
+          </div>
+        </div>
+        <div class="field">
+          <label>Degree / Credential</label>
+          <input type="text" value="DDS">
+        </div>
+        <div class="field">
+          <label>Mobile Phone</label>
+          <input type="tel" value="(805) 555-0182">
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" value="s.chen@example.com">
+        </div>
+        <button class="btn btn-primary" onclick="alert('In production, this would save your information.')">Save changes</button>
+      </div>
+
+      <div class="settings-card">
+        <h3>Change password</h3>
+        <p>Use a strong password with at least 8 characters.</p>
+        <div class="field">
+          <label>Current password</label>
+          <input type="password" placeholder="••••••••">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>New password</label>
+            <input type="password" placeholder="Min. 8 characters">
+          </div>
+          <div class="field">
+            <label>Confirm new password</label>
+            <input type="password" placeholder="Repeat password">
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="alert('In production, this would update your password.')">Update password</button>
+      </div>
+
+      <div class="settings-card">
+        <h3>Email notifications</h3>
+        <p>Choose which updates you'd like to receive by email.</p>
+        <label class="check-row">
+          <input type="checkbox" checked> <span>New buyer inquiry received</span>
+        </label>
+        <label class="check-row">
+          <input type="checkbox" checked> <span>Buyer NDA signed</span>
+        </label>
+        <label class="check-row">
+          <input type="checkbox" checked> <span>Message from your advisor</span>
+        </label>
+        <label class="check-row">
+          <input type="checkbox"> <span>Weekly listing performance summary</span>
+        </label>
+        <label class="check-row">
+          <input type="checkbox" checked> <span>Document updates (LOI, purchase agreement, etc.)</span>
+        </label>
+        <div style="margin-top:8px;">
+          <button class="btn btn-primary" onclick="alert('In production, this would save your preferences.')">Save preferences</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="f-bottom">
+    <span class="f-copy">© 2026 Practice Transition Partners. All rights reserved.</span>
+    <span class="f-copy">Confidential · Licensed · Nationwide</span>
+  </div>
+</footer>
+
+<script>
+// Set today's date on fin NDA date fields
+window.addEventListener('DOMContentLoaded', function(){
+  var today = new Date().toISOString().split('T')[0];
+  document.querySelectorAll('[id^="ndaDate-"]').forEach(function(el){ el.value = today; });
+});
+
+function openFinNda(buyer) {
+  var panelRow = document.getElementById('panel-row-' + buyer);
+  if(panelRow) panelRow.style.display = '';
+  // Scroll to it
+  var panel = document.getElementById('fin-panel-' + buyer);
+  if(panel) setTimeout(function(){ panel.scrollIntoView({behavior:'smooth', block:'center'}); }, 50);
+}
+
+function closeFinNda(buyer) {
+  var panelRow = document.getElementById('panel-row-' + buyer);
+  if(panelRow) panelRow.style.display = 'none';
+}
+
+function signFinNda(buyer) {
+  var checkbox = document.getElementById('ndaCheck-' + buyer);
+  var dateField = document.getElementById('ndaDate-' + buyer);
+  if(!checkbox || !checkbox.checked) {
+    alert('Please check the box to confirm your agreement before signing.');
+    return;
+  }
+  if(!dateField || !dateField.value) {
+    alert('Please enter today\'s date.');
+    return;
+  }
+  // Update seller status pill
+  var sellerStatus = document.getElementById('seller-status-' + buyer);
+  if(sellerStatus) sellerStatus.innerHTML = '<span class="nda-pill signed">✓ Signed</span>';
+  // Update release status pill
+  var releaseStatus = document.getElementById('release-status-' + buyer);
+  if(releaseStatus) releaseStatus.innerHTML = '<span class="nda-pill signed">✓ Released</span>';
+  // Hide action button
+  var actionCell = document.getElementById('action-' + buyer);
+  if(actionCell) actionCell.innerHTML = '<button class="btn-sm btn-sm-ghost" onclick="alert(\'In production, this would download the signed agreement.\')">Download</button>';
+  // Hide sign form, show confirmation
+  var signForm = document.getElementById('sign-form-' + buyer);
+  if(signForm) signForm.style.display = 'none';
+  var confirm = document.getElementById('signed-confirm-' + buyer);
+  if(confirm) confirm.classList.add('show');
+  // Hide the action banner if it was for this buyer
+  if(buyer === 'mehta') {
+    var banner = document.getElementById('finNdaBanner');
+    if(banner) banner.style.display = 'none';
+  }
+}
+
+function showView(id, linkEl) {
+  // Hide all views
+  document.querySelectorAll('.portal-view').forEach(function(v){ v.classList.remove('active'); });
+  // Show target
+  var el = document.getElementById('view-' + id);
+  if(el) el.classList.add('active');
+  // Update sidebar active state
+  document.querySelectorAll('.sidebar-link').forEach(function(a){ a.classList.remove('active'); });
+  if(linkEl) linkEl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Hamburger nav
+(function(){
+  function ready(fn){ if(document.readyState!=='loading'){fn();}else{document.addEventListener('DOMContentLoaded',fn);} }
+  ready(function(){
+    var ham=document.getElementById('navHam');
+    var nav=document.querySelector('.nav-links');
+    if(!ham||!nav) return;
+    ham.addEventListener('click',function(e){
+      e.stopPropagation();
+      nav.classList.toggle('mob-open');
+      ham.classList.toggle('open');
+    });
+    document.addEventListener('click',function(e){
+      if(nav.classList.contains('mob-open')){
+        if(!nav.contains(e.target)&&!ham.contains(e.target)){
+          nav.classList.remove('mob-open');
+          ham.classList.remove('open');
+        }
+      }
+    });
+    nav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){
+        nav.classList.remove('mob-open');
+        ham.classList.remove('open');
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
