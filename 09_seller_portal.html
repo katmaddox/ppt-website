@@ -140,6 +140,61 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
 .doc-meta{font-size:12px;color:var(--text-m);}
 .doc-action{display:flex;align-items:center;gap:8px;}
 
+
+/* NEW SELLER STATE */
+html.new-seller .established-only{display:none!important;}
+.new-seller-only{display:none;}
+html.new-seller .new-seller-only{display:block;}
+html.new-seller .new-seller-flex{display:flex!important;}
+
+/* WELCOME BANNER */
+.welcome-banner{background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 100%);border-radius:14px;padding:28px 32px;color:var(--white);margin-bottom:28px;}
+.welcome-banner h2{font-family:var(--serif);font-size:24px;margin-bottom:6px;}
+.welcome-banner p{font-size:14px;opacity:.8;line-height:1.6;margin-bottom:0;}
+
+/* ONBOARDING STEPS */
+.onboard-steps{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:28px;}
+.onboard-step{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border);}
+.onboard-step:last-child{border-bottom:none;}
+.onboard-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.onboard-icon.done{background:#E6F4EA;}
+.onboard-icon.current{background:#FFF3CD;}
+.onboard-icon.todo{background:var(--cream);border:2px solid var(--border);}
+.onboard-body{flex:1;}
+.onboard-title{font-size:14px;font-weight:700;color:var(--text-b);}
+.onboard-title.done{color:var(--text-m);text-decoration:line-through;}
+.onboard-meta{font-size:12px;color:var(--text-m);margin-top:2px;}
+.onboard-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;}
+.onboard-badge.done{background:#E6F4EA;color:#1E7E34;}
+.onboard-badge.current{background:#FFF3CD;color:#7A5800;}
+.onboard-badge.todo{background:var(--cream);color:var(--text-m);}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:56px 24px;background:var(--white);border:1px solid var(--border);border-radius:12px;}
+.empty-state-icon{width:56px;height:56px;background:var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.empty-state h3{font-family:var(--serif);font-size:20px;color:var(--navy);margin-bottom:8px;}
+.empty-state p{font-size:14px;color:var(--text-m);line-height:1.7;max-width:380px;margin:0 auto;}
+
+/* DOCUMENT UPLOAD CHECKLIST */
+.doc-checklist{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px;}
+.doc-section-head{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m);padding:12px 20px;background:var(--cream);border-bottom:1px solid var(--border);}
+.doc-check-item{padding:14px 20px;border-bottom:1px solid var(--border);}
+.doc-check-item:last-child{border-bottom:none;}
+.doc-check-label{display:flex;align-items:flex-start;gap:12px;cursor:pointer;}
+.doc-check-label input[type="checkbox"]{width:16px;height:16px;accent-color:var(--royal);flex-shrink:0;margin-top:2px;}
+.doc-check-label span{font-size:13px;color:var(--text-b);line-height:1.5;}
+.remote-choice{margin-top:10px;margin-left:28px;display:flex;flex-direction:column;gap:6px;}
+.remote-opt{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-b);cursor:pointer;}
+.remote-opt input[type="radio"]{width:14px;height:14px;accent-color:var(--royal);flex-shrink:0;}
+.remote-tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:4px;}
+.remote-tag.auto{background:#E6F4EA;color:#1E7E34;}
+.remote-tag.manual{background:var(--navy-tint);color:var(--royal);}
+
+/* PENDING DOC ITEM */
+.doc-item-pending .doc-name{color:var(--text-m);}
+.doc-upload-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:6px 12px;border-radius:6px;border:1.5px dashed var(--border);color:var(--text-m);background:none;cursor:pointer;}
+.doc-upload-btn:hover{border-color:var(--royal);color:var(--royal);}
+
 /* ACTION BANNER */
 .action-banner{display:flex;align-items:center;gap:14px;background:#FFF8E6;border:1.5px solid #F0C840;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
 .action-banner-icon{width:36px;height:36px;border-radius:50%;background:#FFF3CD;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -220,6 +275,13 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
   .nav-links a{font-size:15px;padding:14px 24px;border-bottom:1px solid var(--border);color:var(--text-b)!important;text-align:left;}
   .nav-links a:last-child{border-bottom:none;}
   .nav-links .nav-cta,.nav-links a.nav-cta{border-bottom:none!important;margin:12px 24px 24px;text-align:center;padding:14px 24px!important;border-radius:8px;background:var(--navy)!important;color:var(--white)!important;display:block!important;}
+  .nav-links .nav-reg,.nav-links a.nav-reg{
+    border:1.5px solid var(--border)!important;border-bottom:none!important;
+    text-align:center;justify-content:center;padding:14px 24px!important;
+    border-radius:8px;margin:8px 24px 0;
+    display:block!important;color:var(--navy)!important;background:var(--white)!important;
+  }
+
   .portal-wrap{flex-direction:column;}
   .portal-sidebar{width:100%;border-right:none;border-bottom:1px solid var(--border);padding:16px 0 8px;}
   .sidebar-nav{flex-direction:row;flex-wrap:wrap;gap:4px;padding:0 12px;}
@@ -233,6 +295,30 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
   .advisor-card{flex-direction:column;align-items:flex-start;}
   .advisor-btns{flex-direction:row;}
   .f-bottom{flex-direction:column;gap:6px;text-align:center;}
+}
+
+/* REGISTER PICKER MODAL */
+.nav-reg{font-size:13px;font-weight:700;padding:9px 18px;border-radius:6px;border:1.5px solid var(--border);color:var(--navy)!important;background:var(--white);transition:border-color .15s,background .15s;}
+.nav-reg:hover{border-color:var(--navy)!important;background:var(--cream)!important;}
+.reg-pick-overlay{display:none;position:fixed;inset:0;background:rgba(2,44,81,0.45);z-index:9000;align-items:center;justify-content:center;padding:24px;}
+.reg-pick-overlay.open{display:flex;}
+.reg-pick-modal{background:var(--white);border-radius:20px;padding:40px 36px;max-width:560px;width:100%;position:relative;box-shadow:0 24px 64px rgba(2,44,81,0.18);}
+.reg-pick-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-m);line-height:1;padding:4px 8px;border-radius:6px;}
+.reg-pick-close:hover{background:var(--cream);color:var(--navy);}
+.reg-pick-title{font-family:var(--serif);font-size:26px;color:var(--navy);margin-bottom:6px;text-align:center;}
+.reg-pick-sub{font-size:15px;color:var(--text-m);text-align:center;margin-bottom:28px;}
+.reg-pick-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.reg-pick-card{display:flex;flex-direction:column;align-items:flex-start;padding:24px;border:2px solid var(--border);border-radius:14px;text-decoration:none;color:inherit;transition:border-color .15s,background .15s,transform .1s;}
+.reg-pick-card:hover{border-color:var(--royal);background:var(--navy-tint);transform:translateY(-2px);}
+.reg-pick-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.reg-pick-icon.buyer{background:#EAF1F8;}
+.reg-pick-icon.seller{background:#FFF3CD;}
+.reg-pick-card h3{font-family:var(--serif);font-size:18px;color:var(--navy);margin-bottom:6px;}
+.reg-pick-card p{font-size:13px;color:var(--text-m);line-height:1.6;margin-bottom:16px;flex:1;}
+.reg-pick-cta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--royal);}
+@media(max-width:540px){
+  .reg-pick-cards{grid-template-columns:1fr;}
+  .reg-pick-modal{padding:28px 20px;}
 }
 </style>
 </head>
@@ -251,6 +337,7 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
     <a href="07_about.html">About</a>
     <span class="nav-user">Hi, Dr. Chen</span>
     <a href="#">Sign out</a>
+    <a onclick="openRegPick();return false;" href="#" class="nav-reg">Register</a>
     <a href="05_opinion_of_value.html" class="nav-cta">Get a Valuation</a>
   </div>
 </nav>
@@ -331,6 +418,44 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
         </div>
       </div>
 
+
+      <!-- NEW SELLER: Welcome + onboarding -->
+      <div class="new-seller-only">
+        <div class="welcome-banner">
+          <h2>Welcome to Practice Transition Partners!</h2>
+          <p>Your registration is complete and your listing agreement is signed. Here's what to expect over the next few days.</p>
+        </div>
+        <div class="section-head" style="margin-bottom:16px;">
+          <div class="section-title">Getting started</div>
+        </div>
+        <div class="onboard-steps" style="margin-bottom:28px;">
+          <div class="onboard-step">
+            <div class="onboard-icon done"><svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5l3 3 6-6" stroke="#1E7E34" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="onboard-body"><div class="onboard-title done">Registration complete</div><div class="onboard-meta">Listing agreement signed · Today</div></div>
+            <span class="onboard-badge done">Done</span>
+          </div>
+          <div class="onboard-step">
+            <div class="onboard-icon current"><svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 2v4l2.5 2" stroke="#7A5800" stroke-width="1.5" stroke-linecap="round"/><circle cx="7.5" cy="7.5" r="6" stroke="#7A5800" stroke-width="1.3"/></svg></div>
+            <div class="onboard-body"><div class="onboard-title current">Upload your documents</div><div class="onboard-meta">See Documents &amp; NDAs for your checklist — your advisor will follow up within 1 business day</div></div>
+            <span class="onboard-badge current">Action needed</span>
+          </div>
+          <div class="onboard-step">
+            <div class="onboard-icon todo"></div>
+            <div class="onboard-body"><div class="onboard-title">Intro call with your advisor</div><div class="onboard-meta">Jose will reach out to schedule within 1 business day</div></div>
+            <span class="onboard-badge todo">Upcoming</span>
+          </div>
+          <div class="onboard-step">
+            <div class="onboard-icon todo"></div>
+            <div class="onboard-body"><div class="onboard-title">Listing package prepared</div><div class="onboard-meta">Photos, financials, and practice summary reviewed by PTP team</div></div>
+            <span class="onboard-badge todo">Upcoming</span>
+          </div>
+          <div class="onboard-step">
+            <div class="onboard-icon todo"></div>
+            <div class="onboard-body"><div class="onboard-title">Your listing goes live</div><div class="onboard-meta">Practice marketed to our qualified buyer network</div></div>
+            <span class="onboard-badge todo">Upcoming</span>
+          </div>
+        </div>
+      </div>
       <!-- Advisor card -->
       <div class="advisor-card">
         <div class="advisor-avatar">JV</div>
@@ -348,13 +473,13 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
       </div>
 
       <!-- Recent activity -->
-      <div class="section-head">
+      <div class="section-head established-only">
         <div>
           <div class="section-title">Recent activity</div>
           <div class="section-sub">Updates from the last 30 days.</div>
         </div>
       </div>
-      <div class="activity-feed">
+      <div class="activity-feed established-only">
         <div class="activity-item">
           <div class="activity-dot blue">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" stroke="#115694" stroke-width="1.3"/><path d="M7 4.5v3l2 1.5" stroke="#115694" stroke-width="1.3" stroke-linecap="round"/></svg>
@@ -406,9 +531,38 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
     <!-- ═══ VIEW: YOUR LISTING ═══ -->
     <div class="portal-view" id="view-listing">
       <h1 class="view-title">Your listing</h1>
-      <p class="view-sub">Your practice is live on Practice Transition Partners. Contact your advisor to request any updates.</p>
+      <p class="view-sub established-only">Your practice is live on Practice Transition Partners. Contact your advisor to request any updates.</p>
+      <p class="view-sub new-seller-only">Your listing is being set up. Here's where things stand.</p>
 
-      <div class="listing-preview">
+      <!-- NEW SELLER: Listing pending -->
+      <div class="new-seller-only" style="margin-bottom:24px;">
+        <div class="empty-state">
+          <div class="empty-state-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="3" y="6" width="20" height="15" rx="2" stroke="#73716C" stroke-width="1.4"/><path d="M3 10h20" stroke="#73716C" stroke-width="1.4"/><path d="M9 3v4M17 3v4" stroke="#73716C" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Your listing is being prepared</h3>
+          <p>Once your documents are uploaded and your advisor has reviewed everything, your listing will be built and go live. This typically takes 5–10 business days after document receipt.</p>
+        </div>
+      </div>
+      <!-- NEW SELLER: Early timeline -->
+      <div class="new-seller-only">
+        <div class="section-head" style="margin-bottom:20px;"><div><div class="section-title">Transition timeline</div></div></div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px 32px;">
+          <div class="timeline">
+            <div class="tl-item"><div class="tl-dot done"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="tl-label done">Opinion of Value</div><div class="tl-meta">Completed prior to registration</div></div>
+            <div class="tl-item"><div class="tl-dot done"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="tl-label done">Registration &amp; listing agreement signed</div><div class="tl-meta">Completed today</div></div>
+            <div class="tl-item"><div class="tl-dot current"></div><div class="tl-label current">Document upload</div><div class="tl-meta">Complete your checklist in Documents &amp; NDAs</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-label" style="color:var(--text-m);">Listing package prepared</div><div class="tl-meta">5–10 business days after document receipt</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-label" style="color:var(--text-m);">Listing live &amp; buyer qualification</div><div class="tl-meta">Marketed to PTP's qualified buyer network</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-label" style="color:var(--text-m);">Letter of Intent (LOI)</div><div class="tl-meta">Pending buyer qualification</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-label" style="color:var(--text-m);">Due diligence &amp; purchase agreement</div><div class="tl-meta">Estimated 60–90 days after LOI</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-label" style="color:var(--text-m);">Close of escrow</div><div class="tl-meta">Target timeline TBD with advisor</div></div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="listing-preview established-only">
         <img class="listing-preview-img" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=80" alt="Dental practice">
         <div class="listing-preview-body">
           <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
@@ -443,13 +597,13 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
       </div>
 
       <!-- Transition timeline -->
-      <div class="section-head" style="margin-bottom:20px;">
+      <div class="section-head established-only" style="margin-bottom:20px;">
         <div>
           <div class="section-title">Transition timeline</div>
           <div class="section-sub">Where you are in the process.</div>
         </div>
       </div>
-      <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px 32px;">
+      <div class="established-only" style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px 32px;">
         <div class="timeline">
           <div class="tl-item">
             <div class="tl-dot done">
@@ -499,9 +653,20 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
     <!-- ═══ VIEW: BUYER INQUIRIES ═══ -->
     <div class="portal-view" id="view-inquiries">
       <h1 class="view-title">Buyer inquiries</h1>
-      <p class="view-sub">Qualified buyers who have expressed interest in your practice. Your advisor manages all direct communication.</p>
+      <p class="view-sub established-only">Qualified buyers who have expressed interest in your practice. Your advisor manages all direct communication.</p>
 
-      <table class="inquiry-table">
+
+      <!-- NEW SELLER: No inquiries yet -->
+      <div class="new-seller-only">
+        <div class="empty-state">
+          <div class="empty-state-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="11" cy="11" r="7" stroke="#73716C" stroke-width="1.4"/><path d="M16.5 16.5L22 22" stroke="#73716C" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <h3>No inquiries yet</h3>
+          <p>Buyer inquiries will appear here once your listing is live. Complete your document upload to help get your listing live faster.</p>
+        </div>
+      </div>
+      <table class="inquiry-table established-only">
         <thead>
           <tr>
             <th>Buyer</th>
@@ -555,7 +720,7 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
         </tbody>
       </table>
 
-      <div style="margin-top:20px;padding:16px 20px;background:var(--navy-tint);border:1px solid #C8DFEE;border-radius:10px;font-size:13px;color:var(--royal);line-height:1.7;">
+      <div class="established-only" style="margin-top:20px;padding:16px 20px;background:var(--navy-tint);border:1px solid #C8DFEE;border-radius:10px;font-size:13px;color:var(--royal);line-height:1.7;">
         <strong>Your advisor handles all buyer communication on your behalf.</strong> Sellers are kept anonymous until a qualified buyer signs the NDA and your advisor has screened them. Contact Jose Veit with any questions about a specific buyer.
       </div>
     </div>
@@ -565,8 +730,107 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
       <h1 class="view-title">Documents &amp; NDAs</h1>
       <p class="view-sub">All documents related to your practice transition, organized in one place.</p>
 
+
+      <!-- NEW SELLER: Your documents (only listing agreement signed) -->
+      <div class="new-seller-only">
+        <div class="section-head" style="margin-bottom:16px;"><div class="section-title" style="font-size:17px;">Your documents</div></div>
+        <div class="doc-list" style="margin-bottom:28px;">
+          <div class="doc-item">
+            <div class="doc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="2" stroke="#115694" stroke-width="1.4"/><path d="M7 7h6M7 10h6M7 13h4" stroke="#115694" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+            <div class="doc-info"><div class="doc-name">Seller Listing Agreement</div><div class="doc-meta">Signed today · PDF</div></div>
+            <div class="doc-action"><span class="nda-pill signed">✓ Signed</span><button class="btn-sm btn-sm-ghost" onclick="alert('In production, this would download your signed agreement.')">Download</button></div>
+          </div>
+          <div class="doc-item doc-item-pending">
+            <div class="doc-icon" style="background:var(--cream);"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="2" stroke="#D9D7CF" stroke-width="1.4"/><path d="M7 7h6M7 10h6M7 13h4" stroke="#D9D7CF" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+            <div class="doc-info"><div class="doc-name">Practice Financial Summary</div><div class="doc-meta">Upload needed — see checklist below</div></div>
+            <div class="doc-action"><span class="nda-pill pending">Pending upload</span></div>
+          </div>
+          <div class="doc-item doc-item-pending">
+            <div class="doc-icon" style="background:var(--cream);"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="2" stroke="#D9D7CF" stroke-width="1.4"/><path d="M7 7h6M7 10h6M7 13h4" stroke="#D9D7CF" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+            <div class="doc-info"><div class="doc-name">Letter of Intent (LOI)</div><div class="doc-meta">Not yet received — awaiting buyer offer</div></div>
+            <div class="doc-action"><span class="nda-pill" style="background:var(--cream);color:var(--text-m);">Not yet</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW SELLER: Document Upload Checklist -->
+      <div class="new-seller-only">
+        <div class="section-head" style="margin-bottom:6px;"><div class="section-title" style="font-size:17px;">Document upload checklist</div></div>
+        <p style="font-size:14px;color:var(--text-m);margin-bottom:16px;line-height:1.7;">Upload each item to your Dropbox folder, labelled and sorted by category. Check items off as you complete them. Your advisor will be notified when each document is received.</p>
+
+        <div class="doc-checklist">
+          <div class="doc-section-head">Standard documents</div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Dental equipment list</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Office equipment and furnishings listing</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Last 3 years complete business tax returns (Schedule C / corporate return, including all itemized expense statements; or 1040 if Sole Proprietor)</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Last 3 years Profit &amp; Loss statements and current year YTD P&amp;L (through last full month)</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Current fee schedule</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Credit balance report</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Accounts receivable aging report (30 / 60 / 90 days)</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Last 3 years W-2 &amp; W-3 forms (or wage breakdown) for each employee, corporate officer, and associate</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Last 3 years 1099 forms</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Written agreements with all associates</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Copy of office lease including all addendums</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>2024 &amp; 2025 annual employee payroll taxes</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Practice summary with zip code analysis</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Banking statements — last 3 years</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Pension / 401(k) plan documents</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Delta Plan insurance 1099s</span></label></div>
+          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Practice photos — parking, signage, entrance, reception, operatories, sterilization, lab, private office</span></label></div>
+        </div>
+
+        <div class="doc-checklist">
+          <div class="doc-section-head">Computer-generated practice reports — last 3 years through last full month</div>
+          <div class="doc-check-item">
+            <label class="doc-check-label"><input type="checkbox"><span>Itemized Production Breakdown by Category</span></label>
+            <div class="remote-choice">
+              <label class="remote-opt"><input type="radio" name="p-prodCat" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-prodCat" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+          </div>
+          <div class="doc-check-item">
+            <label class="doc-check-label"><input type="checkbox"><span>Itemized Production Breakdown by ADA Code</span></label>
+            <div class="remote-choice">
+              <label class="remote-opt"><input type="radio" name="p-prodADA" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-prodADA" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+          </div>
+          <div class="doc-check-item">
+            <label class="doc-check-label"><input type="checkbox"><span>Itemized Production Breakdown by Provider</span></label>
+            <div class="remote-choice">
+              <label class="remote-opt"><input type="radio" name="p-prodProv" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-prodProv" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+          </div>
+          <div class="doc-check-item">
+            <label class="doc-check-label"><input type="checkbox"><span>Itemized Collection Breakdown by Category</span></label>
+            <div class="remote-choice">
+              <label class="remote-opt"><input type="radio" name="p-collCat" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-collCat" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+          </div>
+          <div class="doc-check-item">
+            <label class="doc-check-label"><input type="checkbox"><span>Itemized Collection Breakdown by ADA Code</span></label>
+            <div class="remote-choice">
+              <label class="remote-opt"><input type="radio" name="p-collADA" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-collADA" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+          </div>
+          <div class="doc-check-item">
+            <label class="doc-check-label"><input type="checkbox"><span>Itemized Collection Breakdown by Provider</span></label>
+            <div class="remote-choice">
+              <label class="remote-opt"><input type="radio" name="p-collProv" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-collProv" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--navy-tint);border:1px solid #C8DFEE;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--royal);line-height:1.7;">
+          <strong>Security note:</strong> Your office alarm code should be shared directly with your advisor by phone — not uploaded here.
+        </div>
+      </div>
       <!-- ACTION REQUIRED BANNER -->
-      <div class="action-banner" id="finNdaBanner">
+      <div class="action-banner established-only" id="finNdaBanner">
         <div class="action-banner-icon">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L2 15h14L9 2z" stroke="#7A5800" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 8v3.5M9 13.5v.5" stroke="#7A5800" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
@@ -578,14 +842,14 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
       </div>
 
       <!-- FINANCIAL DISCLOSURE NDA SECTION -->
-      <div class="section-head" style="margin-bottom:16px;">
+      <div class="section-head established-only" style="margin-bottom:16px;">
         <div>
           <div class="section-title" style="font-size:17px;">Financial Disclosure Agreements</div>
           <div class="section-sub">Both you and the buyer must sign before full financials are released. Your advisor initiates this when a qualified buyer requests access.</div>
         </div>
       </div>
 
-      <table class="fin-nda-table">
+      <table class="fin-nda-table established-only">
         <thead>
           <tr>
             <th>Buyer</th>
@@ -692,7 +956,7 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
       <div class="section-head" style="margin-bottom:16px;">
         <div class="section-title" style="font-size:17px;">Your documents</div>
       </div>
-      <div class="doc-list" style="margin-bottom:28px;">
+      <div class="doc-list established-only" style="margin-bottom:28px;">
         <div class="doc-item">
           <div class="doc-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="2" stroke="#115694" stroke-width="1.4"/><path d="M7 7h6M7 10h6M7 13h4" stroke="#115694" stroke-width="1.3" stroke-linecap="round"/></svg>
@@ -746,10 +1010,10 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
         </div>
       </div>
 
-      <div class="section-head" style="margin-bottom:16px;">
+      <div class="section-head established-only" style="margin-bottom:16px;">
         <div class="section-title" style="font-size:17px;">Buyer NDAs</div>
       </div>
-      <div class="doc-list">
+      <div class="doc-list established-only">
         <div class="doc-item">
           <div class="doc-info">
             <div class="doc-name">Dr. Priya Mehta — Buyer NDA</div>
@@ -932,6 +1196,25 @@ function signFinNda(buyer) {
   }
 }
 
+
+// NEW SELLER STATE — detect ?new=true
+(function(){
+  var isNew = new URLSearchParams(window.location.search).get('new') === 'true';
+  if(!isNew) return;
+  document.documentElement.classList.add('new-seller');
+  // Update sidebar listing badge
+  var listingBadge = document.querySelector('[data-view="listing"] .sidebar-badge');
+  if(listingBadge){ listingBadge.textContent = 'Pending'; listingBadge.classList.remove('green'); listingBadge.classList.add('gold'); }
+  // Remove buyer inquiries count badge
+  var inquiriesBadge = document.querySelector('[data-view="inquiries"] .sidebar-badge');
+  if(inquiriesBadge) inquiriesBadge.remove();
+  // Auto-navigate to documents view with brief delay so page renders first
+  window.addEventListener('DOMContentLoaded', function(){
+    var docsLink = document.querySelector('[data-view="documents"]');
+    if(docsLink) setTimeout(function(){ showView('documents', docsLink); }, 150);
+  });
+})();
+
 function showView(id, linkEl) {
   // Hide all views
   document.querySelectorAll('.portal-view').forEach(function(v){ v.classList.remove('active'); });
@@ -972,7 +1255,48 @@ function showView(id, linkEl) {
     });
   });
 })();
+
+function openRegPick(){document.getElementById('regPickOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeRegPick(e){if(e&&e.target!==document.getElementById('regPickOverlay'))return;document.getElementById('regPickOverlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeRegPick();});
 </script>
+
+
+<!-- REGISTER PICKER MODAL -->
+<div class="reg-pick-overlay" id="regPickOverlay" onclick="closeRegPick(event)">
+  <div class="reg-pick-modal" role="dialog" aria-modal="true" aria-labelledby="regPickTitle">
+    <button class="reg-pick-close" onclick="closeRegPick()" aria-label="Close">&times;</button>
+    <h2 class="reg-pick-title" id="regPickTitle">How are you registering?</h2>
+    <p class="reg-pick-sub">Choose your role to get started — it only takes a few minutes.</p>
+    <div class="reg-pick-cards">
+      <a href="08_register.html" class="reg-pick-card">
+        <div class="reg-pick-icon buyer">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="4" stroke="#115694" stroke-width="1.6"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#115694" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>I'm a Buyer</h3>
+        <p>I'm looking to acquire a dental or medical practice and want access to listings and advisors.</p>
+        <span class="reg-pick-cta">Register as a Buyer <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="10_seller_register.html" class="reg-pick-card">
+        <div class="reg-pick-icon seller">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="6" width="18" height="13" rx="2" stroke="#ECB100" stroke-width="1.6"/>
+            <path d="M3 10h18" stroke="#ECB100" stroke-width="1.6"/>
+            <path d="M7 14h4M7 17h2" stroke="#ECB100" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M16 3v3" stroke="#ECB100" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M8 3v3" stroke="#ECB100" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>I'm a Seller</h3>
+        <p>I'm looking to sell or transition my practice and want to connect with qualified buyers.</p>
+        <span class="reg-pick-cta">Register as a Seller <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

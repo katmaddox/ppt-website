@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seller Registration — Practice Transition Partners</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#022C51;--royal:#115694;--sky:#1D86E4;--gold:#ECB100;--cream:#FAF8F1;--white:#fff;--text-b:#3D3B37;--text-m:#73716C;--border:#D9D7CF;--navy-tint:#EAF1F8;--serif:'Libre Baskerville',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif;}
+body{font-family:var(--sans);color:var(--text-b);background:var(--cream);line-height:1.6;}
+a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3,h4{font-family:var(--serif);}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.nav img{height:64px;width:auto;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:14px;font-weight:600;color:var(--text-m);}
+.nav-links a:hover{color:var(--navy);}
+.nav-cta{background:var(--navy);color:var(--white)!important;font-size:13px;font-weight:700;padding:9px 20px;border-radius:6px;}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;background:none;border:none;padding:10px;flex-shrink:0;min-width:44px;min-height:44px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;z-index:101;position:relative;}
+.nav-hamburger span{width:22px;height:2px;background:var(--navy);display:block;border-radius:1px;transition:transform .2s,opacity .2s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* SHELL */
+.reg-shell{max-width:820px;margin:56px auto 80px;padding:0 24px;}
+
+/* STEPPER */
+.stepper{display:flex;align-items:flex-start;justify-content:center;margin-bottom:48px;gap:0;}
+.step-item{display:flex;flex-direction:column;align-items:center;position:relative;flex:1;}
+.step-item:not(:last-child)::after{content:'';position:absolute;top:18px;left:calc(50% + 22px);right:calc(-50% + 22px);height:2px;background:var(--border);z-index:0;}
+.step-item.completed:not(:last-child)::after{background:var(--royal);}
+.step-circle{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--text-m);position:relative;z-index:1;transition:all .25s;}
+.step-item.active .step-circle{border-color:var(--royal);background:var(--royal);color:var(--white);}
+.step-item.completed .step-circle{border-color:var(--royal);background:var(--royal);color:var(--white);}
+.step-label{font-size:11px;font-weight:600;color:var(--text-m);text-align:center;margin-top:8px;line-height:1.3;max-width:80px;}
+.step-item.active .step-label{color:var(--navy);font-weight:700;}
+.step-item.completed .step-label{color:var(--royal);}
+
+/* CARD */
+.reg-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:48px;}
+.step-panel{display:none;}
+.step-panel.active{display:block;}
+
+/* FORM ELEMENTS */
+.reg-title{font-family:var(--serif);font-size:28px;color:var(--navy);margin-bottom:8px;}
+.reg-sub{font-size:15px;color:var(--text-m);line-height:1.7;margin-bottom:32px;}
+.field{margin-bottom:20px;}
+.field label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.field .hint{font-size:12px;color:var(--text-m);margin-bottom:6px;}
+.field input,.field select,.field textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:14px;color:var(--text-b);background:var(--white);transition:border-color .15s;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--royal);}
+.field textarea{resize:vertical;min-height:90px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.field-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.req{color:var(--royal);}
+
+/* SECTION DIVIDERS */
+.reg-divider{border:none;border-top:1px solid var(--border);margin:28px 0;}
+.section-head{font-family:var(--serif);font-size:20px;color:var(--navy);margin-bottom:6px;}
+.section-sub{font-size:13px;color:var(--text-m);margin-bottom:20px;}
+
+/* RADIO */
+.radio-group{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.radio-opt{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .15s,background .15s;}
+.radio-opt:hover{border-color:var(--royal);background:var(--navy-tint);}
+.radio-opt.selected{border-color:var(--royal);background:var(--navy-tint);}
+.radio-opt input[type="radio"]{width:16px;height:16px;accent-color:var(--royal);flex-shrink:0;}
+.radio-opt span{font-size:14px;color:var(--text-b);}
+.radio-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+
+/* CHECKBOX */
+.check-opt{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .15s;}
+.check-opt:hover{border-color:var(--royal);}
+.check-opt input[type="checkbox"]{width:16px;height:16px;accent-color:var(--royal);flex-shrink:0;margin-top:2px;}
+.check-opt span{font-size:14px;color:var(--text-b);}
+
+/* INFO BOX */
+.info-box{background:var(--navy-tint);border:1px solid #C8DFEE;border-radius:10px;padding:16px 20px;font-size:13px;color:var(--royal);line-height:1.7;}
+
+/* TOGGLE TABS */
+.tab-toggle{display:flex;gap:0;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:20px;width:fit-content;}
+.tab-btn{padding:9px 20px;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--text-m);background:var(--white);border:none;cursor:pointer;transition:background .15s,color .15s;}
+.tab-btn:not(:last-child){border-right:1.5px solid var(--border);}
+.tab-btn.active{background:var(--navy);color:var(--white);}
+
+/* STAFF TABLE */
+.staff-table-wrap{overflow-x:auto;margin-bottom:16px;}
+.staff-table{width:100%;border-collapse:collapse;min-width:700px;}
+.staff-table th{font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--text-m);text-transform:uppercase;padding:10px 12px;text-align:left;border-bottom:2px solid var(--border);background:var(--cream);white-space:nowrap;}
+.staff-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.staff-table td input,.staff-table td select{width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:6px;font-family:var(--sans);font-size:13px;color:var(--text-b);background:var(--white);min-width:100px;}
+.staff-table td input:focus,.staff-table td select:focus{outline:none;border-color:var(--royal);}
+.remove-row-btn{background:none;border:none;cursor:pointer;color:var(--text-m);padding:4px;border-radius:4px;}
+.remove-row-btn:hover{color:#c0392b;background:#FEE;}
+.add-row-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--royal);background:var(--navy-tint);border:1.5px solid #C8DFEE;padding:8px 16px;border-radius:7px;cursor:pointer;margin-top:8px;}
+.add-row-btn:hover{background:#D4E8F4;}
+
+/* UPLOAD AREA */
+.upload-area{border:2px dashed var(--border);border-radius:10px;padding:32px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;}
+.upload-area:hover{border-color:var(--royal);background:var(--navy-tint);}
+.upload-area svg{margin:0 auto 10px;}
+.upload-area p{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.upload-area span{font-size:12px;color:var(--text-m);}
+.upload-area input[type="file"]{display:none;}
+
+/* HOURS TABLE */
+.hours-table{width:100%;border-collapse:collapse;margin-top:8px;}
+.hours-table th{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-m);padding:8px 12px;text-align:center;border-bottom:2px solid var(--border);background:var(--cream);}
+.hours-table th:first-child{text-align:left;}
+.hours-table td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:center;}
+.hours-table td:first-child{text-align:left;font-size:13px;font-weight:700;color:var(--navy);}
+.hours-table td input{width:90px;padding:6px 8px;border:1.5px solid var(--border);border-radius:6px;font-family:var(--sans);font-size:12px;text-align:center;}
+.hours-table td input:focus{outline:none;border-color:var(--royal);}
+
+/* PERCENT ROW */
+.pct-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.pct-field{display:flex;flex-direction:column;gap:4px;}
+.pct-field label{font-size:11px;font-weight:700;color:var(--text-m);text-transform:uppercase;letter-spacing:0.06em;}
+.pct-field-wrap{position:relative;}
+.pct-field-wrap input{width:100%;padding:10px 28px 10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:14px;}
+.pct-field-wrap input:focus{outline:none;border-color:var(--royal);}
+.pct-field-wrap::after{content:'%';position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:700;color:var(--text-m);}
+
+/* NDA / LISTING AGREEMENT */
+.agree-scroll{height:380px;overflow-y:auto;border:1.5px solid var(--border);border-radius:8px;padding:24px;font-size:13px;color:var(--text-b);line-height:1.8;margin-bottom:20px;background:#FAFAFA;}
+.agree-scroll h3{font-family:var(--serif);font-size:16px;color:var(--navy);margin-bottom:14px;text-align:center;}
+.agree-scroll h4{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--navy);margin:18px 0 8px;}
+.agree-scroll p{margin-bottom:10px;}
+.agree-highlight{background:#FFF3CD;border-left:3px solid var(--gold);padding:10px 14px;margin:12px 0;font-size:13px;color:#7A5800;font-style:italic;}
+.sign-row{display:flex;align-items:flex-start;gap:12px;padding:16px;border:1.5px solid var(--border);border-radius:8px;margin-bottom:20px;}
+.sign-row input[type="checkbox"]{width:18px;height:18px;accent-color:var(--royal);flex-shrink:0;margin-top:2px;}
+.sign-row p{font-size:13px;color:var(--text-b);line-height:1.6;}
+
+/* CONFIRMATION */
+.conf-icon{width:64px;height:64px;background:var(--navy-tint);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.conf-title{font-family:var(--serif);font-size:32px;color:var(--navy);text-align:center;margin-bottom:10px;}
+.conf-sub{font-size:16px;color:var(--text-m);text-align:center;line-height:1.7;max-width:520px;margin:0 auto 32px;}
+
+/* DOCUMENT CHECKLIST */
+.doc-checklist{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px;}
+.doc-section-head{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m);padding:12px 20px;background:var(--cream);border-bottom:1px solid var(--border);}
+.doc-check-item{padding:14px 20px;border-bottom:1px solid var(--border);}
+.doc-check-item:last-child{border-bottom:none;}
+.doc-check-label{display:flex;align-items:flex-start;gap:12px;margin-bottom:0;}
+.doc-check-label input[type="checkbox"]{width:16px;height:16px;accent-color:var(--royal);flex-shrink:0;margin-top:2px;}
+.doc-check-label span{font-size:13px;color:var(--text-b);line-height:1.5;}
+.remote-choice{margin-top:10px;margin-left:28px;display:flex;flex-direction:column;gap:6px;}
+.remote-opt{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-b);}
+.remote-opt input[type="radio"]{width:14px;height:14px;accent-color:var(--royal);flex-shrink:0;}
+.remote-tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:8px;}
+.remote-tag.auto{background:#E6F4EA;color:#1E7E34;}
+.remote-tag.manual{background:var(--navy-tint);color:var(--royal);}
+
+/* BUTTONS */
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:32px;}
+.btn-row.first{justify-content:flex-end;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:14px;font-weight:700;padding:12px 28px;border-radius:8px;border:none;cursor:pointer;transition:background .15s,transform .1s;}
+.btn:active{transform:scale(0.98);}
+.btn-primary{background:var(--navy);color:var(--white);}
+.btn-primary:hover{background:var(--royal);}
+.btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--border);}
+.btn-ghost:hover{border-color:var(--navy);}
+.btn-gold{background:var(--gold);color:var(--navy);}
+.btn-gold:hover{background:#d4a000;}
+.btn-full{width:100%;justify-content:center;}
+
+/* CONDITIONAL FIELDS */
+.cond-field{display:none;}
+.cond-field.show{display:block;}
+
+/* FOOTER */
+.footer{background:#0D1F30;padding:24px 48px;}
+.f-bottom{display:flex;justify-content:space-between;}
+.f-copy{font-size:12px;color:rgba(255,255,255,0.3);}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav{padding:0 20px!important;height:60px!important;}
+  .nav>a img{height:40px!important;}
+  .nav-hamburger{display:flex!important;}
+  .nav-links{display:none;flex-direction:column;position:fixed;top:60px;left:0;right:0;bottom:0;background:var(--white);padding:0;border-top:1px solid var(--border);z-index:199;overflow-y:auto;gap:0;}
+  .nav-links.mob-open{display:flex!important;}
+  .nav-links a{font-size:15px;padding:14px 24px;border-bottom:1px solid var(--border);color:var(--text-b)!important;text-align:left;}
+  .nav-links a:last-child{border-bottom:none;}
+  .nav-links .nav-cta,.nav-links a.nav-cta{border-bottom:none!important;margin:12px 24px 24px;text-align:center;padding:14px 24px!important;border-radius:8px;background:var(--navy)!important;color:var(--white)!important;display:block!important;}
+  .nav-links .nav-reg,.nav-links a.nav-reg{
+    border:1.5px solid var(--border)!important;border-bottom:none!important;
+    text-align:center;justify-content:center;padding:14px 24px!important;
+    border-radius:8px;margin:8px 24px 0;
+    display:block!important;color:var(--navy)!important;background:var(--white)!important;
+  }
+
+  .reg-shell{margin:24px auto 40px;padding:0 16px;}
+  .reg-card{padding:24px 20px!important;}
+  .field-row,.field-row-3,.radio-row,.pct-row{grid-template-columns:1fr!important;}
+  .footer{padding:24px 20px;}
+  .f-bottom{flex-direction:column;gap:6px;text-align:center;}
+}
+
+/* REGISTER PICKER MODAL */
+.nav-reg{font-size:13px;font-weight:700;padding:9px 18px;border-radius:6px;border:1.5px solid var(--border);color:var(--navy)!important;background:var(--white);transition:border-color .15s,background .15s;}
+.nav-reg:hover{border-color:var(--navy)!important;background:var(--cream)!important;}
+.reg-pick-overlay{display:none;position:fixed;inset:0;background:rgba(2,44,81,0.45);z-index:9000;align-items:center;justify-content:center;padding:24px;}
+.reg-pick-overlay.open{display:flex;}
+.reg-pick-modal{background:var(--white);border-radius:20px;padding:40px 36px;max-width:560px;width:100%;position:relative;box-shadow:0 24px 64px rgba(2,44,81,0.18);}
+.reg-pick-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-m);line-height:1;padding:4px 8px;border-radius:6px;}
+.reg-pick-close:hover{background:var(--cream);color:var(--navy);}
+.reg-pick-title{font-family:var(--serif);font-size:26px;color:var(--navy);margin-bottom:6px;text-align:center;}
+.reg-pick-sub{font-size:15px;color:var(--text-m);text-align:center;margin-bottom:28px;}
+.reg-pick-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.reg-pick-card{display:flex;flex-direction:column;align-items:flex-start;padding:24px;border:2px solid var(--border);border-radius:14px;text-decoration:none;color:inherit;transition:border-color .15s,background .15s,transform .1s;}
+.reg-pick-card:hover{border-color:var(--royal);background:var(--navy-tint);transform:translateY(-2px);}
+.reg-pick-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.reg-pick-icon.buyer{background:#EAF1F8;}
+.reg-pick-icon.seller{background:#FFF3CD;}
+.reg-pick-card h3{font-family:var(--serif);font-size:18px;color:var(--navy);margin-bottom:6px;}
+.reg-pick-card p{font-size:13px;color:var(--text-m);line-height:1.6;margin-bottom:16px;flex:1;}
+.reg-pick-cta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--royal);}
+@media(max-width:540px){
+  .reg-pick-cards{grid-template-columns:1fr;}
+  .reg-pick-modal{padding:28px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="01_home.html"><img src="data:image/png;base64,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" alt="Practice Transition Partners"></a>
+  <button class="nav-hamburger" id="navHam" aria-label="Open menu" type="button"><span></span><span></span><span></span></button>
+  <div class="nav-links">
+    <a href="03_selling.html">For Sellers</a>
+    <a href="02_buying.html">For Buyers</a>
+    <a href="04_listings.html">Listings</a>
+    <a href="05_opinion_of_value.html">Opinion of Value</a>
+    <a href="06_events.html">Education</a>
+    <a href="07_about.html">About</a>
+    <a href="05_opinion_of_value.html" class="nav-cta">Get a Valuation</a>
+  </div>
+</nav>
+
+<!-- SHELL -->
+<div class="reg-shell">
+
+  <!-- STEPPER -->
+  <div class="stepper" id="stepper">
+    <div class="step-item active" id="si-1"><div class="step-circle" id="sc-1">1</div><div class="step-label">Personal Info</div></div>
+    <div class="step-item" id="si-2"><div class="step-circle" id="sc-2">2</div><div class="step-label">Practice Details</div></div>
+    <div class="step-item" id="si-3"><div class="step-circle" id="sc-3">3</div><div class="step-label">Team &amp; Hours</div></div>
+    <div class="step-item" id="si-4"><div class="step-circle" id="sc-4">4</div><div class="step-label">Practice Profile</div></div>
+    <div class="step-item" id="si-5"><div class="step-circle" id="sc-5">5</div><div class="step-label">Sign Agreement</div></div>
+  </div>
+
+  <div class="reg-card">
+
+    <!-- ══════════════════════════════════════
+         STEP 1 — PERSONAL INFO
+    ══════════════════════════════════════ -->
+    <div class="step-panel active" id="panel-1">
+      <h2 class="reg-title">Personal information</h2>
+      <p class="reg-sub">Let's start with your contact details and a bit about why you're considering a transition.</p>
+
+      <div class="field-row">
+        <div class="field"><label>First Name <span class="req">*</span></label><input type="text" id="firstName" placeholder="Sarah"></div>
+        <div class="field"><label>Last Name <span class="req">*</span></label><input type="text" id="lastName" placeholder="Chen"></div>
+      </div>
+
+      <div class="field">
+        <label>Credentials <span class="req">*</span></label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'title')"><input type="radio" name="title" value="DDS"> <span>D.D.S.</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'title')"><input type="radio" name="title" value="DMD"> <span>D.M.D.</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'title')"><input type="radio" name="title" value="MD"> <span>M.D.</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'title')"><input type="radio" name="title" value="other"> <span>Other</span></label>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field"><label>Cell Phone <span class="req">*</span></label><input type="tel" id="cell" placeholder="(805) 555-0182"></div>
+        <div class="field"><label>Email Address <span class="req">*</span></label><input type="email" id="email" placeholder="you@example.com"></div>
+      </div>
+
+      <div class="field">
+        <label>Home Address</label>
+        <input type="text" id="homeAddress" placeholder="123 Main St, City, State ZIP">
+      </div>
+
+      <div class="field">
+        <label>Preferred contact method</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'contactPref')"><input type="radio" name="contactPref" value="cell"> <span>Cell</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'contactPref')"><input type="radio" name="contactPref" value="email"> <span>Email</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'contactPref')"><input type="radio" name="contactPref" value="home"> <span>Home</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'contactPref')"><input type="radio" name="contactPref" value="office"> <span>Office</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Handedness</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'hand')"><input type="radio" name="hand" value="right"> <span>Right-handed</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'hand')"><input type="radio" name="hand" value="left"> <span>Left-handed</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Dental / Medical License Number</label>
+        <div class="hint">State and number (e.g. CA-DDS-12345)</div>
+        <input type="text" id="license" placeholder="State — License number">
+      </div>
+
+      <div class="field">
+        <label>Professional associations</label>
+        <input type="text" id="associations" placeholder="e.g. ADA, CDA, AGD…">
+      </div>
+
+      <div class="field">
+        <label>Educational background</label>
+        <div class="hint">Institution(s), degree(s), and year(s) completed</div>
+        <input type="text" id="education" placeholder="e.g. UCLA School of Dentistry, DDS, 1998">
+      </div>
+
+      <hr class="reg-divider">
+
+      <h3 class="section-head">Your transition</h3>
+      <p class="section-sub">This information helps us position your practice correctly from the start.</p>
+
+      <div class="field">
+        <label>Reason for selling <span class="req">*</span></label>
+        <div class="radio-group">
+          <label class="radio-opt" onclick="selectRadio(this,'sellReason')"><input type="radio" name="sellReason" value="retirement"> <span>Retirement</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'sellReason')"><input type="radio" name="sellReason" value="relocation"> <span>Relocation</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'sellReason')"><input type="radio" name="sellReason" value="health"> <span>Health reasons</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'sellReason')"><input type="radio" name="sellReason" value="burnout"> <span>Burnout / lifestyle change</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'sellReason')"><input type="radio" name="sellReason" value="other"> <span>Other</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Business entity type <span class="req">*</span></label>
+        <select id="entityType">
+          <option value="">Select entity type</option>
+          <option>Sole Proprietor (Schedule C)</option>
+          <option>S Corporation</option>
+          <option>C Corporation</option>
+          <option>LLC</option>
+          <option>Partnership</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Spouse / partner name</label>
+        <div class="hint">Optional — only if they have a role in the practice</div>
+        <input type="text" id="spouseName" placeholder="Full name">
+      </div>
+      <div class="field">
+        <label>Spouse / partner role in practice</label>
+        <input type="text" id="spouseRole" placeholder="e.g. Office Manager, Dental Hygienist, None">
+      </div>
+
+      <hr class="reg-divider">
+
+      <h3 class="section-head">Create your password</h3>
+      <p class="section-sub">You'll use this to log in and manage your listing and documents.</p>
+      <div class="field-row">
+        <div class="field"><label>Password <span class="req">*</span></label><input type="password" id="password" placeholder="Min. 8 characters"></div>
+        <div class="field"><label>Confirm password <span class="req">*</span></label><input type="password" id="confirmPw" placeholder="Repeat password"></div>
+      </div>
+
+      <div class="btn-row first">
+        <button class="btn btn-primary" onclick="goToStep(2)">Next <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div><!-- /panel-1 -->
+
+
+    <!-- ══════════════════════════════════════
+         STEP 2 — PRACTICE DETAILS
+    ══════════════════════════════════════ -->
+    <div class="step-panel" id="panel-2">
+      <h2 class="reg-title">Practice details</h2>
+      <p class="reg-sub">Tell us about your practice location, facility, and technology setup.</p>
+
+      <div class="field"><label>Practice / Business Name <span class="req">*</span></label><input type="text" id="bizName" placeholder="Camarillo Family Dentistry"></div>
+      <div class="field"><label>Office Address <span class="req">*</span></label><input type="text" id="officeAddress" placeholder="123 Practice Blvd, Camarillo, CA 93010"></div>
+      <div class="field-row">
+        <div class="field"><label>Office Phone <span class="req">*</span></label><input type="tel" id="officePhone" placeholder="(805) 555-0100"></div>
+        <div class="field"><label>Office Fax</label><input type="tel" id="officeFax" placeholder="(805) 555-0101"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Website</label><input type="url" id="website" placeholder="https://www.yourpractice.com"></div>
+        <div class="field"><label>Business Email</label><input type="email" id="bizEmail" placeholder="hello@yourpractice.com"></div>
+      </div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">Practice history</h3>
+      <p class="section-sub">Include time under previous ownership where applicable.</p>
+
+      <div class="field-row">
+        <div class="field"><label>Total age of practice (years)</label><input type="number" id="practiceAge" placeholder="e.g. 22" min="0"></div>
+        <div class="field"><label>At current location since</label><input type="text" id="locationSince" placeholder="Month / Year (e.g. Jan 2005)"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>You have owned this practice since</label><input type="text" id="ownerSince" placeholder="Month / Year"></div>
+        <div class="field">
+          <label>Was this practice purchased from a prior owner?</label>
+          <select id="wasPurchased" onchange="toggleCond('priorOwnerStatus','wasPurchased','yes')">
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No — I started it</option>
+          </select>
+        </div>
+      </div>
+      <div class="field cond-field" id="priorOwnerStatus">
+        <label>Status of prior owner</label>
+        <input type="text" placeholder="e.g. Retired, still in area, deceased…">
+      </div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">Location &amp; facility</h3>
+
+      <div class="field">
+        <label>Building type <span class="req">*</span></label>
+        <select id="buildingType">
+          <option value="">Select building type</option>
+          <option>Professional building</option>
+          <option>All-dental building</option>
+          <option>Free-standing building</option>
+          <option>Shopping center / strip center</option>
+          <option>Industrial / business park</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Location description</label>
+        <div class="hint">Describe proximity to freeways, shopping, other businesses, etc.</div>
+        <textarea id="locationDesc" placeholder="e.g. Free-standing building off Highway 101, adjacent to a Starbucks and CVS with high foot traffic…"></textarea>
+      </div>
+
+      <div class="field-row">
+        <div class="field"><label>Approximate office square footage</label><input type="number" id="sqft" placeholder="e.g. 2400" min="0"></div>
+        <div class="field"><label>Approx. number of competing dentists in area</label><input type="number" id="competitors" placeholder="e.g. 8" min="0"></div>
+      </div>
+
+      <div class="field">
+        <label>Parking &amp; access</label>
+        <input type="text" id="parking" placeholder="e.g. 20 dedicated spaces, ADA accessible, shared lot">
+      </div>
+
+      <div class="field-row-3">
+        <div class="field"><label>Total operatories</label><input type="number" id="opsTotal" placeholder="0" min="0"></div>
+        <div class="field"><label>Fully equipped</label><input type="number" id="opsEquipped" placeholder="0" min="0"></div>
+        <div class="field"><label>Plumbed / unequipped</label><input type="number" id="opsPlumbed" placeholder="0" min="0"></div>
+      </div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">Technology</h3>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Practice management software</label>
+          <select id="software">
+            <option value="">Select software</option>
+            <option>Dentrix</option>
+            <option>Eaglesoft</option>
+            <option>Curve Dental</option>
+            <option>Open Dental</option>
+            <option>Carestream Dental</option>
+            <option>Dentimax</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Paperless office?</label>
+          <select id="paperless">
+            <option value="">Select</option>
+            <option value="yes">Yes — fully paperless</option>
+            <option value="partial">Partially paperless</option>
+            <option value="no">No — paper charts</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Digital X-rays?</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'digitalXray');toggleCond('sensorCount','digitalXray','yes')"><input type="radio" name="digitalXray" value="yes"> <span>Yes</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'digitalXray');toggleCond('sensorCount','digitalXray','yes')"><input type="radio" name="digitalXray" value="no"> <span>No</span></label>
+        </div>
+      </div>
+      <div class="field cond-field" id="sensorCount">
+        <label>Number of sensors</label>
+        <input type="number" placeholder="e.g. 3" min="0">
+      </div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">Lease or ownership</h3>
+
+      <div class="field">
+        <label>Do you own or lease the office space? <span class="req">*</span></label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'ownLease');showLeaseOrOwn(this.querySelector('input').value)"><input type="radio" name="ownLease" value="lease"> <span>I lease</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'ownLease');showLeaseOrOwn(this.querySelector('input').value)"><input type="radio" name="ownLease" value="own"> <span>I own the building</span></label>
+        </div>
+      </div>
+
+      <!-- Lease fields -->
+      <div class="cond-field" id="leaseFields">
+        <div class="field-row">
+          <div class="field"><label>Monthly lease payment</label><input type="text" placeholder="e.g. $4,200/mo"></div>
+          <div class="field"><label>Lease expiration date</label><input type="text" placeholder="Month / Year"></div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Options to renew?</label>
+            <select><option value="">Select</option><option>Yes</option><option>No</option></select>
+          </div>
+          <div class="field">
+            <label>Utilities included?</label>
+            <select><option value="">Select</option><option>Yes</option><option>No</option></select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Landlord contact information</label>
+          <input type="text" placeholder="Name, phone, email">
+        </div>
+      </div>
+
+      <!-- Own fields -->
+      <div class="cond-field" id="ownFields">
+        <div class="field-row">
+          <div class="field">
+            <label>Property ownership structure</label>
+            <select>
+              <option value="">Select</option>
+              <option>Individual</option>
+              <option>Jointly by two or more individuals</option>
+              <option>Trust</option>
+              <option>LLC</option>
+              <option>Corporation</option>
+              <option>Partnership</option>
+            </select>
+          </div>
+          <div class="field"><label>Name on title</label><input type="text" placeholder="Legal name on title"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Assessor's Parcel Number (APN)</label><input type="text" placeholder="e.g. 123-456-789"></div>
+          <div class="field"><label>Equivalent monthly rent value</label><input type="text" placeholder="e.g. $5,000/mo"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Recent leasehold improvements</label>
+        <div class="hint">List any significant improvements, year installed, and approximate cost</div>
+        <textarea placeholder="e.g. New HVAC system (2023, $18,000); flooring replaced (2022, $6,500)…"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Approximate age of dental equipment</label>
+        <input type="text" id="equipAge" placeholder="e.g. Chairs 2015, X-ray units 2019, sterilizer 2021">
+      </div>
+
+      <div class="field">
+        <label>Unique or special features of the office</label>
+        <textarea placeholder="Anything that sets your practice apart — design, location, equipment, specialty services…"></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goToStep(1)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" onclick="goToStep(3)">Next <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div><!-- /panel-2 -->
+
+
+    <!-- ══════════════════════════════════════
+         STEP 3 — TEAM & HOURS
+    ══════════════════════════════════════ -->
+    <div class="step-panel" id="panel-3">
+      <h2 class="reg-title">Team &amp; hours</h2>
+      <p class="reg-sub">Share your office schedule, associate history, and staff information.</p>
+
+      <h3 class="section-head">Office hours</h3>
+      <p class="section-sub">Enter hours in any format (e.g. 8am–5pm, Closed).</p>
+      <div style="overflow-x:auto;">
+        <table class="hours-table">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Staff</td>
+              <td><input type="text" placeholder="8am–5pm"></td>
+              <td><input type="text" placeholder="8am–5pm"></td>
+              <td><input type="text" placeholder="8am–5pm"></td>
+              <td><input type="text" placeholder="8am–5pm"></td>
+              <td><input type="text" placeholder="Closed"></td>
+            </tr>
+            <tr>
+              <td>Dentist</td>
+              <td><input type="text" placeholder="8am–5pm"></td>
+              <td><input type="text" placeholder="8am–5pm"></td>
+              <td><input type="text" placeholder="8am–5pm"></td>
+              <td><input type="text" placeholder="8am–5pm"></td>
+              <td><input type="text" placeholder="Closed"></td>
+            </tr>
+            <tr>
+              <td>Associate</td>
+              <td><input type="text" placeholder="—"></td>
+              <td><input type="text" placeholder="—"></td>
+              <td><input type="text" placeholder="—"></td>
+              <td><input type="text" placeholder="—"></td>
+              <td><input type="text" placeholder="—"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="field-row" style="margin-top:20px;">
+        <div class="field"><label>Hygiene pre-booked how far in advance?</label><input type="text" placeholder="e.g. 4–6 weeks"></div>
+        <div class="field"><label>Patients seen per hygienist per day</label><input type="number" placeholder="e.g. 8" min="0"></div>
+      </div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">Patient days worked</h3>
+      <p class="section-sub">Total clinical days per year for each provider.</p>
+      <div class="field-row-3">
+        <div class="field"><label>2023</label><div class="hint">Dentist / Associate</div><input type="text" placeholder="e.g. 200 / 80"></div>
+        <div class="field"><label>2024</label><div class="hint">Dentist / Associate</div><input type="text" placeholder="e.g. 210 / 90"></div>
+        <div class="field"><label>2025</label><div class="hint">Dentist / Associate</div><input type="text" placeholder="e.g. 205 / 95"></div>
+      </div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">Associates</h3>
+      <p class="section-sub">Include all current and former associates from the past 3 years.</p>
+
+      <div class="field">
+        <label>Do you currently have or have you had associates in the past 3 years?</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'hasAssoc');toggleCond('assocTable','hasAssoc','yes')"><input type="radio" name="hasAssoc" value="yes"> <span>Yes</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'hasAssoc');toggleCond('assocTable','hasAssoc','yes')"><input type="radio" name="hasAssoc" value="no"> <span>No</span></label>
+        </div>
+      </div>
+
+      <div class="cond-field" id="assocTable">
+        <div class="staff-table-wrap">
+          <table class="staff-table" id="assocTableEl">
+            <thead>
+              <tr>
+                <th>Associate Name</th>
+                <th>Dates (from → to)</th>
+                <th>Days/Week</th>
+                <th>Compensation</th>
+                <th>Non-Compete?</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="assocRows">
+              <tr>
+                <td><input type="text" placeholder="Dr. First Last"></td>
+                <td><input type="text" placeholder="Jan 2022 – Present"></td>
+                <td><input type="number" placeholder="3" min="1" max="7"></td>
+                <td><input type="text" placeholder="e.g. 30% collections"></td>
+                <td><select><option value="">Select</option><option>Yes</option><option>No</option></select></td>
+                <td><button type="button" class="remove-row-btn" onclick="removeRow(this)" title="Remove">✕</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button type="button" class="add-row-btn" onclick="addAssocRow()">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v11M1 6.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Add associate
+        </button>
+        <div class="info-box" style="margin-top:14px;">Please also attach W-2 statements, 1099 forms, or a wage breakdown for each associate for the past 3 years in your post-registration document upload.</div>
+      </div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">Staff information</h3>
+      <p class="section-sub">Choose how you'd like to provide your team details.</p>
+
+      <div class="tab-toggle">
+        <button class="tab-btn active" id="staffTabOnline" onclick="setStaffTab('online')">Fill out online</button>
+        <button class="tab-btn" id="staffTabUpload" onclick="setStaffTab('upload')">Upload a document</button>
+      </div>
+
+      <!-- Online staff table -->
+      <div id="staffOnlineSection">
+        <div class="staff-table-wrap">
+          <table class="staff-table" id="staffTableEl">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Days/Wk</th>
+                <th>Hired</th>
+                <th>Pay Rate</th>
+                <th>Vacation Days</th>
+                <th>Medical Ins.</th>
+                <th>Bonus</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="staffRows">
+              <tr>
+                <td><input type="text" placeholder="Jane Smith"></td>
+                <td><select>
+                  <option value="">Role</option>
+                  <option>Dental Hygienist</option>
+                  <option>Dental Assistant</option>
+                  <option>Front Desk / Receptionist</option>
+                  <option>Office Manager</option>
+                  <option>Billing Coordinator</option>
+                  <option>Treatment Coordinator</option>
+                  <option>Other</option>
+                </select></td>
+                <td><input type="number" placeholder="5" min="1" max="7"></td>
+                <td><input type="text" placeholder="MM/YYYY"></td>
+                <td><input type="text" placeholder="$28/hr"></td>
+                <td><input type="number" placeholder="10" min="0"></td>
+                <td><input type="text" placeholder="$250/mo"></td>
+                <td><input type="text" placeholder="e.g. 5% of prod."></td>
+                <td><button type="button" class="remove-row-btn" onclick="removeRow(this)" title="Remove">✕</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button type="button" class="add-row-btn" onclick="addStaffRow()">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v11M1 6.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Add staff member
+        </button>
+        <p style="font-size:12px;color:var(--text-m);margin-top:10px;">Additional benefit details (uniforms, CE allowance, anniversary gifts, etc.) can be added in your post-registration document upload.</p>
+      </div>
+
+      <!-- Upload staff section -->
+      <div id="staffUploadSection" style="display:none;">
+
+        <!-- Download form prompt -->
+        <div style="display:flex;align-items:flex-start;gap:16px;background:var(--navy-tint);border:1px solid #C8DFEE;border-radius:12px;padding:20px;margin-bottom:20px;">
+          <div style="width:44px;height:44px;background:var(--white);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid #C8DFEE;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="2" width="14" height="18" rx="2" stroke="#115694" stroke-width="1.4"/><path d="M6 7h8M6 10h8M6 13h5" stroke="#115694" stroke-width="1.3" stroke-linecap="round"/><path d="M14 17l2 2 4-4" stroke="#1E7E34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">Don't have a staff export? Use our form.</div>
+            <div style="font-size:13px;color:var(--text-m);line-height:1.6;margin-bottom:12px;">Download our staff information form, fill it in, then scan or photograph the completed pages and upload below. Works great on any device — you can even take a photo with your phone.</div>
+            <a href="staff_form_template.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13px;font-weight:700;padding:9px 18px;border-radius:7px;background:var(--navy);color:var(--white);text-decoration:none;">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v7M4 6l3 3 3-3M2 11v.5A1.5 1.5 0 003.5 13h7A1.5 1.5 0 0012 11.5V11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Open staff form
+            </a>
+            <span style="font-size:12px;color:var(--text-m);margin-left:12px;">Opens in a new tab · Print or save as PDF</span>
+          </div>
+        </div>
+
+        <!-- File upload -->
+        <label class="upload-area" onclick="document.getElementById('staffFile').click()">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="24" height="24" rx="4" stroke="#D9D7CF" stroke-width="1.5"/><path d="M16 10v12M10 16h12" stroke="#73716C" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p>Upload your completed staff document</p>
+          <span>PDF, photo, Excel, or Word · Scanned form, payroll export, or photo of handwritten pages</span>
+          <input type="file" id="staffFile" accept=".pdf,.xls,.xlsx,.doc,.docx,image/*" onchange="showFileName(this,'staffFileName')">
+        </label>
+        <p id="staffFileName" style="font-size:13px;color:var(--royal);margin-top:8px;display:none;"></p>
+      </div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">CPA / Accountant</h3>
+      <p class="section-sub">Your CPA will be contacted during due diligence.</p>
+      <div class="field"><label>CPA / Accountant name</label><input type="text" placeholder="Jane Doe, CPA"></div>
+      <div class="field-row">
+        <div class="field"><label>Phone</label><input type="tel" placeholder="(555) 000-0000"></div>
+        <div class="field"><label>Email</label><input type="email" placeholder="cpa@firm.com"></div>
+      </div>
+      <div class="field"><label>Firm name &amp; address</label><input type="text" placeholder="Smith &amp; Associates, 100 Main St, City, CA"></div>
+
+      <div class="field">
+        <label>OSHA &amp; HIPAA compliance</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'osha')"><input type="radio" name="osha" value="yes"> <span>Yes, we operate in compliance</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'osha')"><input type="radio" name="osha" value="no"> <span>No / needs review</span></label>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goToStep(2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" onclick="goToStep(4)">Next <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div><!-- /panel-3 -->
+
+
+    <!-- ══════════════════════════════════════
+         STEP 4 — PRACTICE PROFILE
+    ══════════════════════════════════════ -->
+    <div class="step-panel" id="panel-4">
+      <h2 class="reg-title">Practice profile</h2>
+      <p class="reg-sub">Help us understand your patient base, production mix, and financial structure.</p>
+
+      <h3 class="section-head">Patient base</h3>
+      <div class="field-row">
+        <div class="field"><label>Total active patients <span class="req">*</span></label><div class="hint">Define "active" below</div><input type="number" placeholder="e.g. 1,800" min="0"></div>
+        <div class="field"><label>How do you define "active"?</label><input type="text" placeholder="e.g. seen within past 18 months"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Average patients seen per day</label><input type="number" placeholder="e.g. 14" min="0"></div>
+        <div class="field"><label>Average new patients per month</label><input type="number" placeholder="e.g. 25" min="0"></div>
+      </div>
+      <div class="field"><label>Patient demographics</label><input type="text" placeholder="e.g. Average age 40–60, middle income, primarily English-speaking…"></div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">Production mix</h3>
+      <p class="section-sub">Approximate percentages — totals per row should add to 100%.</p>
+
+      <div class="field">
+        <label>Production attributable to each provider</label>
+        <div class="pct-row" style="margin-top:8px;">
+          <div class="pct-field"><label>Dentist</label><div class="pct-field-wrap"><input type="number" placeholder="55" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Associate</label><div class="pct-field-wrap"><input type="number" placeholder="15" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Hygiene</label><div class="pct-field-wrap"><input type="number" placeholder="30" min="0" max="100"></div></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Production breakdown by procedure type</label>
+        <div class="pct-row" style="margin-top:8px;">
+          <div class="pct-field"><label>Preventative</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Restorative</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Crown &amp; Bridge</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Endodontics</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Periodontics</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Oral Surgery</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Implants</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Ortho</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Cosmetic / Veneers</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Pediatric</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Dentures</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Other</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+        </div>
+      </div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">Financial structure</h3>
+
+      <div class="field">
+        <label>Financial / collection policy</label>
+        <div class="hint">How much do you collect at time of service? Do you offer senior discounts, waive co-pays, etc.?</div>
+        <textarea placeholder="e.g. We collect co-pays at time of service and bill insurance for the balance. We do not offer payment plans…"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Income sources</label>
+        <div class="pct-row" style="margin-top:8px;">
+          <div class="pct-field"><label>Insurance payments</label><div class="pct-field-wrap"><input type="number" placeholder="70" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Patient (out of pocket)</label><div class="pct-field-wrap"><input type="number" placeholder="30" min="0" max="100"></div></div>
+          <div class="pct-field"><label>Other</label><div class="pct-field-wrap"><input type="number" placeholder="0" min="0" max="100"></div></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Are you a member of any insurance plan? (PPO, HMO, Delta, etc.)</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'hasPPO');toggleCond('ppoList','hasPPO','yes')"><input type="radio" name="hasPPO" value="yes"> <span>Yes</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'hasPPO');toggleCond('ppoList','hasPPO','yes')"><input type="radio" name="hasPPO" value="no"> <span>No — fee for service only</span></label>
+        </div>
+      </div>
+      <div class="field cond-field" id="ppoList">
+        <label>List all accepted insurance plans</label>
+        <textarea placeholder="e.g. Delta Dental Premier, Cigna PPO, Aetna PPO, MetLife…"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Recall system</label>
+        <input type="text" placeholder="e.g. Automated via Lighthouse 360, postcards at 6 months…">
+      </div>
+
+      <div class="field">
+        <label>Advertising &amp; marketing</label>
+        <div class="hint">Type of advertising used and approximate monthly or annual cost</div>
+        <textarea placeholder="e.g. Google Ads $500/mo, Yelp listing (free), dental-specific mailers $200/qtr…"></textarea>
+      </div>
+
+      <hr class="reg-divider">
+      <h3 class="section-head">Legal &amp; financial disclosures</h3>
+
+      <div class="field">
+        <label>Are there any liens, encumbrances, or outstanding loans against yourself, your practice, or your property?</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'hasLiens');toggleCond('liensDetail','hasLiens','yes')"><input type="radio" name="hasLiens" value="yes"> <span>Yes</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'hasLiens');toggleCond('liensDetail','hasLiens','yes')"><input type="radio" name="hasLiens" value="no"> <span>No</span></label>
+        </div>
+      </div>
+      <div class="field cond-field" id="liensDetail">
+        <label>Please describe</label>
+        <textarea placeholder="Describe any IRS, tax, lease, or bank liens…"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Are you aware of any dental board complaints or current / potential litigation against yourself or your practice?</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'hasLitigation');toggleCond('litigationDetail','hasLitigation','yes')"><input type="radio" name="hasLitigation" value="yes"> <span>Yes</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'hasLitigation');toggleCond('litigationDetail','hasLitigation','yes')"><input type="radio" name="hasLitigation" value="no"> <span>No</span></label>
+        </div>
+      </div>
+      <div class="field cond-field" id="litigationDetail">
+        <label>Please describe</label>
+        <textarea placeholder="Describe the nature of any complaints or proceedings…"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Do you engage in any bartering arrangements?</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'bartering');toggleCond('barterDetail','bartering','yes')"><input type="radio" name="bartering" value="yes"> <span>Yes</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'bartering');toggleCond('barterDetail','bartering','yes')"><input type="radio" name="bartering" value="no"> <span>No</span></label>
+        </div>
+      </div>
+      <div class="field cond-field" id="barterDetail">
+        <label>Please explain</label>
+        <textarea placeholder="Describe any bartering arrangements…"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Anything you'd like a potential buyer to know about your practice?</label>
+        <textarea placeholder="Share anything that sets your practice apart, context about your transition, or anything you feel is important for a buyer to understand…"></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goToStep(3)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" onclick="goToStep(5)">Next: Sign Agreement <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div><!-- /panel-4 -->
+
+
+    <!-- ══════════════════════════════════════
+         STEP 5 — SIGN LISTING AGREEMENT
+    ══════════════════════════════════════ -->
+    <div class="step-panel" id="panel-5">
+      <h2 class="reg-title">Seller listing agreement</h2>
+      <p class="reg-sub">Please read and sign the agreement below. This authorizes Practice Transition Partners to market your practice on your behalf.</p>
+
+      <div class="agree-scroll">
+        <h3>Practice Transition Partners<br>Exclusive Seller Listing &amp; Marketing Agreement</h3>
+        <p style="text-align:center;font-size:12px;color:var(--text-m);margin-bottom:16px;">[PLACEHOLDER — Final agreement language to be provided by Practice Transition Partners]</p>
+
+        <h4>1. Appointment of Broker</h4>
+        <p>The undersigned Seller hereby appoints Practice Transition Partners ("Broker") as Seller's exclusive agent for the purpose of marketing, advertising, and facilitating the sale of Seller's dental practice ("Practice") during the term of this Agreement. Seller agrees not to engage any other broker, agent, or intermediary for the sale of the Practice during the term without Broker's prior written consent.</p>
+
+        <h4>2. Term of Agreement</h4>
+        <p>This Agreement shall commence on the date of execution and shall remain in effect for a period of twelve (12) months ("Initial Term"). Following the Initial Term, this Agreement shall automatically renew on a month-to-month basis unless either party provides thirty (30) days' written notice of termination. In the event of termination, Broker's commission obligations survive for a period of twenty-four (24) months for any buyer introduced by Broker during the term.</p>
+
+        <h4>3. Broker's Duties</h4>
+        <p>Broker agrees to: (a) prepare and distribute a confidential practice profile; (b) market the Practice through Broker's proprietary buyer network, website, and professional channels; (c) qualify prospective buyers and obtain signed Non-Disclosure Agreements prior to releasing any confidential information; (d) coordinate site visits and buyer meetings on Seller's behalf; (e) present all offers to Seller and assist in negotiation of terms; and (f) coordinate the due diligence and closing process.</p>
+
+        <h4>4. Seller's Duties</h4>
+        <p>Seller agrees to: (a) provide accurate and complete financial and operational information as requested by Broker; (b) make the Practice available for qualified buyer site visits upon reasonable notice; (c) maintain the Practice in its current operating condition during the marketing period; (d) promptly inform Broker of any material changes to the Practice's financial condition, staff, patient base, or physical premises; and (e) direct all buyer inquiries received directly to Broker.</p>
+
+        <h4>5. Commission</h4>
+        <p>Seller agrees to pay Broker a commission upon the successful closing of a sale of the Practice. The commission rate and structure will be set forth in a separate commission schedule provided by Broker and incorporated herein by reference. Commission shall be earned upon execution of a binding purchase agreement and shall be payable at the close of escrow. [SPECIFIC COMMISSION RATE AND TERMS TO BE INSERTED BY PTP]</p>
+
+        <h4>6. Confidentiality</h4>
+        <p>Broker agrees to maintain the confidentiality of Seller's identity and practice details. All prospective buyers will be required to execute a Buyer Non-Disclosure Agreement prior to receiving any identifying information about Seller or the Practice. Seller acknowledges that general, non-identifying marketing materials may be distributed publicly.</p>
+
+        <h4>7. Accuracy of Information</h4>
+        <p>Seller represents and warrants that all information provided to Broker, including but not limited to financial statements, production reports, lease documents, and staff records, is true, accurate, and complete to the best of Seller's knowledge. Seller agrees to indemnify Broker against any claims arising from material inaccuracies in the information provided.</p>
+
+        <h4>8. Governing Law</h4>
+        <p>This Agreement shall be governed by the laws of the State of California. Any disputes arising hereunder shall be resolved by binding arbitration in Ventura County, California. Electronic signatures shall be deemed original signatures and are legally binding.</p>
+
+        <div class="agree-highlight">By signing below, Seller confirms they have read, understand, and agree to the terms of this Exclusive Listing &amp; Marketing Agreement, and authorize Practice Transition Partners to market their practice on their behalf.</div>
+      </div>
+
+      <label class="sign-row">
+        <input type="checkbox" id="agreeSign">
+        <p>By checking this box, I confirm my identity as the Seller named in this registration and agree that this digital signature is legally binding and constitutes my acceptance of this Exclusive Listing &amp; Marketing Agreement. <span class="req">*</span></p>
+      </label>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Full legal name (signature) <span class="req">*</span></label>
+          <input type="text" id="signName" placeholder="Dr. Sarah Chen">
+        </div>
+        <div class="field">
+          <label>Today's date <span class="req">*</span></label>
+          <input type="date" id="signDate">
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goToStep(4)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" onclick="completeRegistration()">Complete Registration <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div><!-- /panel-5 -->
+
+
+    <!-- ══════════════════════════════════════
+         CONFIRMATION + DOCUMENT CHECKLIST
+    ══════════════════════════════════════ -->
+    <div class="step-panel" id="panel-confirm">
+      <div class="conf-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M5 14l6 6L23 8" stroke="#115694" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2 class="conf-title">You're registered!</h2>
+      <p class="conf-sub">Your listing is in good hands. A member of our team will reach out within one business day to confirm next steps and schedule an intro call.</p>
+
+      <a href="#" onclick="alert('In production, this would download your signed agreement.');return false;" class="btn btn-gold btn-full" style="margin-bottom:16px;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download your signed listing agreement
+      </a>
+
+      <hr style="border:none;border-top:1px solid var(--border);margin:28px 0;">
+
+      <h3 style="font-family:var(--serif);font-size:22px;color:var(--navy);margin-bottom:6px;">Your document checklist</h3>
+      <p style="font-size:14px;color:var(--text-m);margin-bottom:20px;line-height:1.7;">Upload these documents to your secure Dropbox folder. Check each item off as you complete it — you can return to your seller portal at any time to track progress. Incorrect labelling or uploading to the wrong folder will delay the marketing of your practice.</p>
+
+      <!-- STANDARD DOCUMENTS -->
+      <div class="doc-checklist">
+        <div class="doc-section-head">Standard documents</div>
+
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Dental equipment list</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Office equipment and furnishings listing</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Last 3 years complete business tax returns (Schedule C or corporate return, including all itemized expense/deduction statements; or 1040 if Sole Proprietor)</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Last 3 years Profit &amp; Loss statements <em>and</em> current year YTD P&amp;L (through last full month)</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Current fee schedule</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Credit balance report</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Accounts receivable aging report (A/R totals — 30 / 60 / 90 days)</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Last 3 years W-2 &amp; W-3 forms (or breakdown of wages paid) for each employee, corporate officer, and associate. Note if employee is a family member.</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Last 3 years 1099 forms</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Written agreements with associates (signed copies)</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Copy of office lease including all addendums</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>2024 &amp; 2025 annual employee payroll taxes</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Practice summary with zip code analysis</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Banking statements — last 3 years</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Pension / 401(k) plan documents</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Delta Plan insurance 1099s</span></label>
+        </div>
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox"><span>Practice photos — parking area, signage, front entrance, reception, business area, operatories, consultation room, sterilization, lab, and private office</span></label>
+        </div>
+      </div>
+
+      <!-- COMPUTER-GENERATED REPORTS -->
+      <div class="doc-checklist">
+        <div class="doc-section-head">Computer-generated practice reports — Last 3 years through last full month</div>
+
+        <!-- Production by Category -->
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox" id="chk-prodCat"><span>Itemized Production Breakdown by Category — procedure code, number performed, and total dollar amount per procedure</span></label>
+          <div class="remote-choice">
+            <label class="remote-opt"><input type="radio" name="r-prodCat" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+            <label class="remote-opt"><input type="radio" name="r-prodCat" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+          </div>
+        </div>
+
+        <!-- Production by ADA Code -->
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox" id="chk-prodADA"><span>Itemized Production Breakdown by ADA Code — procedure code, number performed, and total dollar amount</span></label>
+          <div class="remote-choice">
+            <label class="remote-opt"><input type="radio" name="r-prodADA" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+            <label class="remote-opt"><input type="radio" name="r-prodADA" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+          </div>
+        </div>
+
+        <!-- Production by Provider -->
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox" id="chk-prodProv"><span>Itemized Production Breakdown by Provider — procedure code, number performed, and total dollar amount per provider</span></label>
+          <div class="remote-choice">
+            <label class="remote-opt"><input type="radio" name="r-prodProv" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+            <label class="remote-opt"><input type="radio" name="r-prodProv" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+          </div>
+        </div>
+
+        <!-- Collection by Category -->
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox" id="chk-collCat"><span>Itemized Collection Breakdown by Category — through last full month</span></label>
+          <div class="remote-choice">
+            <label class="remote-opt"><input type="radio" name="r-collCat" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+            <label class="remote-opt"><input type="radio" name="r-collCat" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+          </div>
+        </div>
+
+        <!-- Collection by ADA Code -->
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox" id="chk-collADA"><span>Itemized Collection Breakdown by ADA Code — through last full month</span></label>
+          <div class="remote-choice">
+            <label class="remote-opt"><input type="radio" name="r-collADA" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+            <label class="remote-opt"><input type="radio" name="r-collADA" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+          </div>
+        </div>
+
+        <!-- Collection by Provider -->
+        <div class="doc-check-item">
+          <label class="doc-check-label"><input type="checkbox" id="chk-collProv"><span>Itemized Collection Breakdown by Provider — through last full month</span></label>
+          <div class="remote-choice">
+            <label class="remote-opt"><input type="radio" name="r-collProv" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+            <label class="remote-opt"><input type="radio" name="r-collProv" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-bottom:24px;">
+        <strong>Security note:</strong> Your alarm code and any other sensitive access credentials should be shared directly with your PTP advisor by phone or via your secure seller portal — not via this checklist.
+      </div>
+
+      <a href="09_seller_portal.html?new=true" class="btn btn-primary btn-full">
+        Go to your seller portal <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div><!-- /panel-confirm -->
+
+  </div><!-- /reg-card -->
+</div><!-- /reg-shell -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="f-bottom">
+    <span class="f-copy">© 2026 Practice Transition Partners. All rights reserved.</span>
+    <span class="f-copy">Confidential · Licensed · Nationwide</span>
+  </div>
+</footer>
+
+<script>
+// ── STEPPER ──────────────────────────────────────────────
+let currentStep = 1;
+const TOTAL_STEPS = 5;
+
+function goToStep(n) {
+  document.getElementById('panel-' + currentStep).classList.remove('active');
+  const prev = document.getElementById('si-' + currentStep);
+  prev.classList.remove('active');
+  if (n > currentStep) {
+    prev.classList.add('completed');
+    document.getElementById('sc-' + currentStep).innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+  if (n < currentStep) {
+    for (let i = n; i <= currentStep; i++) {
+      const si = document.getElementById('si-' + i);
+      if (si) { si.classList.remove('completed','active'); document.getElementById('sc-' + i).innerHTML = i; }
+    }
+  }
+  currentStep = n;
+  const nextItem = document.getElementById('si-' + n);
+  if (nextItem) { nextItem.classList.add('active'); nextItem.classList.remove('completed'); }
+  const panel = document.getElementById('panel-' + n);
+  if (panel) panel.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function completeRegistration() {
+  if (!document.getElementById('agreeSign').checked) {
+    alert('Please check the box to confirm your agreement before signing.');
+    return;
+  }
+  if (!document.getElementById('signName').value.trim()) {
+    alert('Please enter your full legal name.');
+    return;
+  }
+  if (!document.getElementById('signDate').value) {
+    alert('Please enter today\'s date.');
+    return;
+  }
+  document.getElementById('panel-5').classList.remove('active');
+  for (let i = 1; i <= TOTAL_STEPS; i++) {
+    const si = document.getElementById('si-' + i);
+    if (si) { si.classList.remove('active'); si.classList.add('completed'); }
+    const sc = document.getElementById('sc-' + i);
+    if (sc) sc.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+  document.getElementById('panel-confirm').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── RADIO SELECTION ──────────────────────────────────────
+function selectRadio(label, name) {
+  document.querySelectorAll('input[name="' + name + '"]').forEach(r => {
+    r.closest('.radio-opt').classList.remove('selected');
+  });
+  label.classList.add('selected');
+}
+
+// ── CONDITIONAL FIELDS ───────────────────────────────────
+function toggleCond(fieldId, radioName, showValue) {
+  const radios = document.querySelectorAll('input[name="' + radioName + '"]');
+  let val = '';
+  radios.forEach(r => { if (r.checked) val = r.value; });
+  const el = document.getElementById(fieldId);
+  if (el) el.classList.toggle('show', val === showValue);
+}
+
+function showLeaseOrOwn(val) {
+  document.getElementById('leaseFields').classList.toggle('show', val === 'lease');
+  document.getElementById('ownFields').classList.toggle('show', val === 'own');
+}
+
+// ── STAFF TAB TOGGLE ─────────────────────────────────────
+function setStaffTab(tab) {
+  document.getElementById('staffTabOnline').classList.toggle('active', tab === 'online');
+  document.getElementById('staffTabUpload').classList.toggle('active', tab === 'upload');
+  document.getElementById('staffOnlineSection').style.display = tab === 'online' ? 'block' : 'none';
+  document.getElementById('staffUploadSection').style.display = tab === 'upload' ? 'block' : 'none';
+}
+
+// ── DYNAMIC TABLE ROWS ───────────────────────────────────
+function removeRow(btn) {
+  const row = btn.closest('tr');
+  const tbody = row.parentElement;
+  if (tbody.rows.length > 1) row.remove();
+}
+
+function addAssocRow() {
+  const tbody = document.getElementById('assocRows');
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td><input type="text" placeholder="Dr. First Last"></td>
+    <td><input type="text" placeholder="Jan 2022 – Present"></td>
+    <td><input type="number" placeholder="3" min="1" max="7"></td>
+    <td><input type="text" placeholder="e.g. 30% collections"></td>
+    <td><select><option value="">Select</option><option>Yes</option><option>No</option></select></td>
+    <td><button type="button" class="remove-row-btn" onclick="removeRow(this)" title="Remove">✕</button></td>`;
+  tbody.appendChild(row);
+}
+
+function addStaffRow() {
+  const tbody = document.getElementById('staffRows');
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td><input type="text" placeholder="First Last"></td>
+    <td><select>
+      <option value="">Role</option>
+      <option>Dental Hygienist</option>
+      <option>Dental Assistant</option>
+      <option>Front Desk / Receptionist</option>
+      <option>Office Manager</option>
+      <option>Billing Coordinator</option>
+      <option>Treatment Coordinator</option>
+      <option>Other</option>
+    </select></td>
+    <td><input type="number" placeholder="5" min="1" max="7"></td>
+    <td><input type="text" placeholder="MM/YYYY"></td>
+    <td><input type="text" placeholder="$28/hr"></td>
+    <td><input type="number" placeholder="10" min="0"></td>
+    <td><input type="text" placeholder="$250/mo"></td>
+    <td><input type="text" placeholder="e.g. 5% of prod."></td>
+    <td><button type="button" class="remove-row-btn" onclick="removeRow(this)" title="Remove">✕</button></td>`;
+  tbody.appendChild(row);
+}
+
+// ── FILE UPLOAD LABEL ────────────────────────────────────
+function showFileName(input, labelId) {
+  const el = document.getElementById(labelId);
+  if (input.files && input.files[0]) {
+    el.textContent = '✓ ' + input.files[0].name;
+    el.style.display = 'block';
+  }
+}
+
+// ── SET TODAY'S DATE ─────────────────────────────────────
+window.addEventListener('DOMContentLoaded', function () {
+  const today = new Date().toISOString().split('T')[0];
+  const d = document.getElementById('signDate');
+  if (d) d.value = today;
+});
+
+// ── HAMBURGER NAV ────────────────────────────────────────
+(function () {
+  function ready(fn) { if (document.readyState !== 'loading') { fn(); } else { document.addEventListener('DOMContentLoaded', fn); } }
+  ready(function () {
+    var ham = document.getElementById('navHam');
+    var nav = document.querySelector('.nav-links');
+    if (!ham || !nav) return;
+    ham.addEventListener('click', function (e) { e.stopPropagation(); nav.classList.toggle('mob-open'); ham.classList.toggle('open'); });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('mob-open')) {
+        if (!nav.contains(e.target) && !ham.contains(e.target)) { nav.classList.remove('mob-open'); ham.classList.remove('open'); }
+      }
+    });
+    nav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { nav.classList.remove('mob-open'); ham.classList.remove('open'); }); });
+  });
+})();
+</script>
+
+
+<!-- REGISTER PICKER MODAL -->
+<div class="reg-pick-overlay" id="regPickOverlay" onclick="closeRegPick(event)">
+  <div class="reg-pick-modal" role="dialog" aria-modal="true" aria-labelledby="regPickTitle">
+    <button class="reg-pick-close" onclick="closeRegPick()" aria-label="Close">&times;</button>
+    <h2 class="reg-pick-title" id="regPickTitle">How are you registering?</h2>
+    <p class="reg-pick-sub">Choose your role to get started — it only takes a few minutes.</p>
+    <div class="reg-pick-cards">
+      <a href="08_register.html" class="reg-pick-card">
+        <div class="reg-pick-icon buyer">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="4" stroke="#115694" stroke-width="1.6"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#115694" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>I'm a Buyer</h3>
+        <p>I'm looking to acquire a dental or medical practice and want access to listings and advisors.</p>
+        <span class="reg-pick-cta">Register as a Buyer <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="10_seller_register.html" class="reg-pick-card">
+        <div class="reg-pick-icon seller">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="6" width="18" height="13" rx="2" stroke="#ECB100" stroke-width="1.6"/>
+            <path d="M3 10h18" stroke="#ECB100" stroke-width="1.6"/>
+            <path d="M7 14h4M7 17h2" stroke="#ECB100" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M16 3v3" stroke="#ECB100" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M8 3v3" stroke="#ECB100" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>I'm a Seller</h3>
+        <p>I'm looking to sell or transition my practice and want to connect with qualified buyers.</p>
+        <span class="reg-pick-cta">Register as a Seller <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

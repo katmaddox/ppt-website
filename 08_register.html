@@ -163,6 +163,30 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
   .field-row,.radio-row{grid-template-columns:1fr!important;}
 }
 
+
+/* REGISTER PICKER MODAL */
+.nav-reg{font-size:13px;font-weight:700;padding:9px 18px;border-radius:6px;border:1.5px solid var(--border);color:var(--navy)!important;background:var(--white);transition:border-color .15s,background .15s;}
+.nav-reg:hover{border-color:var(--navy)!important;background:var(--cream)!important;}
+.reg-pick-overlay{display:none;position:fixed;inset:0;background:rgba(2,44,81,0.45);z-index:9000;align-items:center;justify-content:center;padding:24px;}
+.reg-pick-overlay.open{display:flex;}
+.reg-pick-modal{background:var(--white);border-radius:20px;padding:40px 36px;max-width:560px;width:100%;position:relative;box-shadow:0 24px 64px rgba(2,44,81,0.18);}
+.reg-pick-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-m);line-height:1;padding:4px 8px;border-radius:6px;}
+.reg-pick-close:hover{background:var(--cream);color:var(--navy);}
+.reg-pick-title{font-family:var(--serif);font-size:26px;color:var(--navy);margin-bottom:6px;text-align:center;}
+.reg-pick-sub{font-size:15px;color:var(--text-m);text-align:center;margin-bottom:28px;}
+.reg-pick-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.reg-pick-card{display:flex;flex-direction:column;align-items:flex-start;padding:24px;border:2px solid var(--border);border-radius:14px;text-decoration:none;color:inherit;transition:border-color .15s,background .15s,transform .1s;}
+.reg-pick-card:hover{border-color:var(--royal);background:var(--navy-tint);transform:translateY(-2px);}
+.reg-pick-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.reg-pick-icon.buyer{background:#EAF1F8;}
+.reg-pick-icon.seller{background:#FFF3CD;}
+.reg-pick-card h3{font-family:var(--serif);font-size:18px;color:var(--navy);margin-bottom:6px;}
+.reg-pick-card p{font-size:13px;color:var(--text-m);line-height:1.6;margin-bottom:16px;flex:1;}
+.reg-pick-cta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--royal);}
+@media(max-width:540px){
+  .reg-pick-cards{grid-template-columns:1fr;}
+  .reg-pick-modal{padding:28px 20px;}
+}
 </style>
 </head>
 <body>
@@ -627,6 +651,43 @@ window.addEventListener('DOMContentLoaded',function(){
   });
 })();
 </script>
+
+
+<!-- REGISTER PICKER MODAL -->
+<div class="reg-pick-overlay" id="regPickOverlay" onclick="closeRegPick(event)">
+  <div class="reg-pick-modal" role="dialog" aria-modal="true" aria-labelledby="regPickTitle">
+    <button class="reg-pick-close" onclick="closeRegPick()" aria-label="Close">&times;</button>
+    <h2 class="reg-pick-title" id="regPickTitle">How are you registering?</h2>
+    <p class="reg-pick-sub">Choose your role to get started — it only takes a few minutes.</p>
+    <div class="reg-pick-cards">
+      <a href="08_register.html" class="reg-pick-card">
+        <div class="reg-pick-icon buyer">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="4" stroke="#115694" stroke-width="1.6"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#115694" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>I'm a Buyer</h3>
+        <p>I'm looking to acquire a dental or medical practice and want access to listings and advisors.</p>
+        <span class="reg-pick-cta">Register as a Buyer <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="10_seller_register.html" class="reg-pick-card">
+        <div class="reg-pick-icon seller">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="6" width="18" height="13" rx="2" stroke="#ECB100" stroke-width="1.6"/>
+            <path d="M3 10h18" stroke="#ECB100" stroke-width="1.6"/>
+            <path d="M7 14h4M7 17h2" stroke="#ECB100" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M16 3v3" stroke="#ECB100" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M8 3v3" stroke="#ECB100" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>I'm a Seller</h3>
+        <p>I'm looking to sell or transition my practice and want to connect with qualified buyers.</p>
+        <span class="reg-pick-cta">Register as a Seller <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
