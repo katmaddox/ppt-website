@@ -448,8 +448,8 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
       </div>
 
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goToStep(1)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
-        <button class="btn btn-primary" onclick="goToStep(3)">Next <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <a href="09_seller_portal.html" class="btn btn-ghost" style="text-decoration:none;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to portal</a>
+        <button class="btn btn-primary" onclick="goToStep(2)">Next <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div><!-- /panel-1 -->
 
@@ -663,8 +663,8 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
       </div>
 
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goToStep(2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
-        <button class="btn btn-primary" onclick="goToStep(4)">Next <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="btn btn-ghost" onclick="goToStep(1)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" onclick="goToStep(3)">Next <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div><!-- /panel-2 -->
 
@@ -804,8 +804,8 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
       </div>
 
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goToStep(3)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
-        <button class="btn btn-primary" onclick="goToStep(5)">Next: Sign Agreement <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="btn btn-ghost" onclick="goToStep(2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" onclick="goToStep(4)">Next: Sign Agreement <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div><!-- /panel-3 -->
 
@@ -865,7 +865,7 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
       </div>
 
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goToStep(4)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-ghost" onclick="goToStep(3)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
         <button class="btn btn-primary" onclick="completeRegistration()">Complete Registration <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div><!-- /panel-4 -->
@@ -1030,7 +1030,7 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
 <script>
 // ── STEPPER ──────────────────────────────────────────────
 let currentStep = 1;
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 4;
 
 function goToStep(n) {
   document.getElementById('panel-' + currentStep).classList.remove('active');
