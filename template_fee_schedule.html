@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Current Fee Schedule — Practice Transition Partners</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@0,400;0,600;0,700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#022C51;--royal:#115694;--sky:#1D86E4;--gold:#ECB100;--cream:#FAF8F1;--white:#fff;--text-b:#3D3B37;--text-m:#73716C;--border:#D9D7CF;--serif:'Libre Baskerville',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif;}
+body{font-family:var(--sans);color:var(--text-b);background:var(--white);padding:32px 40px;max-width:900px;margin:0 auto;}
+
+/* SCREEN ONLY */
+@media screen {
+  body{background:var(--cream);}
+  .form-wrap{background:var(--white);border-radius:16px;padding:40px;box-shadow:0 4px 24px rgba(2,44,81,0.08);}
+  .print-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:14px;font-weight:700;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;background:var(--navy);color:var(--white);margin-bottom:28px;}
+  .print-btn:hover{background:var(--royal);}
+  .screen-note{background:#EAF1F8;border:1px solid #C8DFEE;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--royal);margin-bottom:28px;line-height:1.6;}
+}
+
+/* PRINT ONLY */
+@media print {
+  body{padding:16px;max-width:100%;}
+  .form-wrap{padding:0;}
+  .no-print{display:none!important;}
+  .page-break{page-break-before:always;}
+  table{font-size:10px;}
+}
+
+/* SHARED */
+.form-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid var(--navy);}
+.form-header-left h1{font-family:var(--serif);font-size:22px;color:var(--navy);margin-bottom:4px;}
+.form-header-left p{font-size:13px;color:var(--text-m);}
+.form-header-right{text-align:right;font-size:12px;color:var(--text-m);}
+.ptp-name{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--navy);}
+
+.practice-info{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:20px;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.pi-field{padding:12px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.pi-field:nth-child(even){border-right:none;}
+.pi-field:nth-last-child(-n+2){border-bottom:none;}
+.pi-field label{display:block;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m);margin-bottom:6px;}
+.pi-field .write-line{border-bottom:1px solid var(--border);height:22px;width:100%;}
+
+.top-note{background:#FFF8E5;border:1px solid #F0D680;border-radius:8px;padding:12px 16px;font-size:12px;color:#5A4A00;margin-bottom:24px;line-height:1.6;}
+
+/* FEE TABLE */
+.fee-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:28px;}
+.fee-table th{background:var(--navy);color:var(--white);padding:9px 12px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+.fee-table td{border:1px solid var(--border);padding:7px 12px;vertical-align:middle;}
+.fee-table tr:nth-child(even) td{background:#F9F8F5;}
+.fee-table tr.section-header td{background:#EAF1F8;font-weight:700;font-size:11px;color:var(--navy);padding:8px 12px;border:1px solid var(--border);letter-spacing:0.04em;text-transform:uppercase;}
+.code-col{width:80px;font-family:monospace;font-size:11px;color:var(--text-m);}
+.desc-col{min-width:300px;}
+.fee-col{width:110px;text-align:right;}
+
+/* SIGNATURE */
+.sig-section{margin-top:32px;padding-top:24px;border-top:2px solid var(--border);}
+.sig-grid{display:grid;grid-template-columns:2fr 1fr;gap:32px;margin-top:16px;}
+.sig-field label{display:block;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-m);margin-bottom:20px;}
+.sig-field .write-line{border-bottom:1.5px solid var(--navy);height:30px;}
+
+/* FOOTER */
+.form-footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:10px;color:var(--text-m);}
+</style>
+</head>
+<body>
+
+<!-- Screen controls -->
+<div class="no-print" style="margin-bottom:24px;">
+  <button class="print-btn" onclick="window.print()">
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="3" y="1" width="9" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="6" width="13" height="7" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M4 10h7M4 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="11.5" cy="8.5" r="0.8" fill="currentColor"/></svg>
+    Print / Save as PDF
+  </button>
+  <div class="screen-note">
+    <strong>How to use this form:</strong> Complete this form and upload it to your PTP seller portal document checklist. Enter your current usual and customary fee for each procedure you offer. You may also export a fee schedule directly from your practice management software and upload that instead.
+  </div>
+</div>
+
+<div class="form-wrap">
+
+  <!-- HEADER -->
+  <div class="form-header">
+    <div class="form-header-left">
+      <h1>Current Fee Schedule</h1>
+      <p>Confidential · For use with seller registration only</p>
+    </div>
+    <div class="form-header-right">
+      <div class="ptp-name">Practice Transition Partners</div>
+      <div style="margin-top:2px;">jose@ptransitions.com</div>
+    </div>
+  </div>
+
+  <!-- PRACTICE INFO -->
+  <div class="practice-info">
+    <div class="pi-field"><label>Practice / Business Name</label><div class="write-line"></div></div>
+    <div class="pi-field"><label>Dentist Name</label><div class="write-line"></div></div>
+    <div class="pi-field"><label>Practice Management Software</label><div class="write-line"></div></div>
+    <div class="pi-field"><label>Date Completed</label><div class="write-line"></div></div>
+  </div>
+
+  <div class="top-note">
+    <strong>Instructions:</strong> List your usual and customary fee for each procedure. Leave the fee blank if that procedure is not offered at your practice. Fees are used internally by PTP for practice valuation and buyer analysis — they are not disclosed without your approval.
+  </div>
+
+  <!-- DIAGNOSTIC -->
+  <table class="fee-table">
+    <thead>
+      <tr><th class="code-col">ADA Code</th><th class="desc-col">Procedure Description</th><th class="fee-col">Fee ($)</th></tr>
+    </thead>
+    <tbody>
+      <tr class="section-header"><td colspan="3">Diagnostic</td></tr>
+      <tr><td class="code-col">D0120</td><td>Periodic oral evaluation — established patient</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D0150</td><td>Comprehensive oral evaluation — new or established patient</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D0210</td><td>Complete series of radiographic images</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D0220</td><td>Periapical radiographic image — first image</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D0230</td><td>Periapical radiographic image — each additional image</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D0272</td><td>Bitewing radiographic image — two images</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D0274</td><td>Bitewing radiographic image — four images</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D0330</td><td>Panoramic radiographic image</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D0340</td><td>2D cephalometric radiographic image</td><td class="fee-col"></td></tr>
+
+      <tr class="section-header"><td colspan="3">Preventive</td></tr>
+      <tr><td class="code-col">D1110</td><td>Prophylaxis — adult</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D1120</td><td>Prophylaxis — child</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D1206</td><td>Topical application of fluoride varnish</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D1208</td><td>Topical application of fluoride — excluding varnish</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D1351</td><td>Sealant — per tooth</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D1352</td><td>Preventive resin restoration — pits and fissures</td><td class="fee-col"></td></tr>
+
+      <tr class="section-header"><td colspan="3">Restorative</td></tr>
+      <tr><td class="code-col">D2140</td><td>Amalgam restoration — one surface, primary or permanent</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2150</td><td>Amalgam restoration — two surfaces, primary or permanent</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2160</td><td>Amalgam restoration — three surfaces, primary or permanent</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2161</td><td>Amalgam restoration — four or more surfaces, primary or permanent</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2330</td><td>Resin-based composite restoration — one surface, anterior</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2331</td><td>Resin-based composite restoration — two surfaces, anterior</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2332</td><td>Resin-based composite restoration — three surfaces, anterior</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2390</td><td>Resin-based composite crown, anterior</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2710</td><td>Crown — resin-based composite (indirect)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2712</td><td>Crown — ¾ resin-based composite (indirect)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2720</td><td>Crown — resin with high noble metal</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2721</td><td>Crown — resin with predominantly base metal</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2740</td><td>Crown — porcelain/ceramic substrate</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2750</td><td>Crown — porcelain fused to high noble metal</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2751</td><td>Crown — porcelain fused to predominantly base metal</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2752</td><td>Crown — porcelain fused to noble metal</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2780</td><td>Crown — ¾ cast high noble metal</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2783</td><td>Crown — ¾ porcelain/ceramic</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D2790</td><td>Crown — full cast high noble metal</td><td class="fee-col"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <table class="fee-table">
+    <thead>
+      <tr><th class="code-col">ADA Code</th><th class="desc-col">Procedure Description</th><th class="fee-col">Fee ($)</th></tr>
+    </thead>
+    <tbody>
+      <tr class="section-header"><td colspan="3">Endodontics</td></tr>
+      <tr><td class="code-col">D3110</td><td>Pulp cap — direct (excluding final restoration)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3120</td><td>Pulp cap — indirect (excluding final restoration)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3310</td><td>Endodontic therapy, anterior tooth (excluding final restoration)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3320</td><td>Endodontic therapy, premolar tooth (excluding final restoration)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3330</td><td>Endodontic therapy, molar tooth (excluding final restoration)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3346</td><td>Retreatment of previous root canal therapy — anterior</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3347</td><td>Retreatment of previous root canal therapy — premolar</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3348</td><td>Retreatment of previous root canal therapy — molar</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3410</td><td>Apicoectomy — anterior</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3421</td><td>Apicoectomy — premolar (first root)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3425</td><td>Apicoectomy — molar (first root)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D3426</td><td>Apicoectomy — (each additional root)</td><td class="fee-col"></td></tr>
+
+      <tr class="section-header"><td colspan="3">Periodontics</td></tr>
+      <tr><td class="code-col">D4210</td><td>Gingivectomy or gingivoplasty — four or more teeth per quadrant</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D4211</td><td>Gingivectomy or gingivoplasty — one to three teeth per quadrant</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D4240</td><td>Gingival flap procedure — four or more teeth per quadrant</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D4260</td><td>Osseous surgery — four or more teeth per quadrant</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D4341</td><td>Periodontal scaling and root planing — four or more teeth per quadrant</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D4342</td><td>Periodontal scaling and root planing — one to three teeth per quadrant</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D4355</td><td>Full mouth debridement</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D4381</td><td>Localized delivery of antimicrobial agents — per tooth</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D4910</td><td>Periodontal maintenance</td><td class="fee-col"></td></tr>
+
+      <tr class="section-header"><td colspan="3">Oral Surgery</td></tr>
+      <tr><td class="code-col">D7110</td><td>Extraction — coronal remnants, primary tooth</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D7120</td><td>Extraction — erupted tooth or exposed root</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D7140</td><td>Extraction — erupted tooth requiring elevation of mucoperiosteal flap</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D7210</td><td>Surgical extraction of erupted tooth</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D7220</td><td>Removal of impacted tooth — soft tissue</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D7230</td><td>Removal of impacted tooth — partially bony</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D7240</td><td>Removal of impacted tooth — completely bony</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D7310</td><td>Alveoloplasty in conjunction with extractions — per quadrant</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D7510</td><td>Incision and drainage of abscess — intraoral soft tissue</td><td class="fee-col"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <table class="fee-table">
+    <thead>
+      <tr><th class="code-col">ADA Code</th><th class="desc-col">Procedure Description</th><th class="fee-col">Fee ($)</th></tr>
+    </thead>
+    <tbody>
+      <tr class="section-header"><td colspan="3">Implants</td></tr>
+      <tr><td class="code-col">D6010</td><td>Surgical placement of implant body: endosteal implant</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6040</td><td>Surgical placement: eposteal implant</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6056</td><td>Prefabricated abutment — includes modification and placement</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6057</td><td>Custom fabricated abutment — includes placement</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6058</td><td>Implant/abutment supported porcelain/ceramic crown</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6059</td><td>Implant/abutment supported porcelain fused to metal crown — high noble metal</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6065</td><td>Implant supported porcelain/ceramic crown</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6066</td><td>Implant supported porcelain fused to metal crown — high noble metal</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6067</td><td>Implant supported metal crown — high noble metal</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6068</td><td>Abutment supported retainer for porcelain/ceramic FPD</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6069</td><td>Abutment supported retainer for porcelain fused to metal FPD — high noble</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6075</td><td>Implant supported retainer for ceramic FPD</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6076</td><td>Implant supported retainer for porcelain fused to metal FPD — high noble</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6077</td><td>Implant supported retainer for cast metal FPD — high noble metal</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D6080</td><td>Implant maintenance procedures — including removal of prosthesis</td><td class="fee-col"></td></tr>
+
+      <tr class="section-header"><td colspan="3">Prosthodontics — Removable</td></tr>
+      <tr><td class="code-col">D5110</td><td>Complete denture — maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5120</td><td>Complete denture — mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5130</td><td>Immediate denture — maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5140</td><td>Immediate denture — mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5211</td><td>Maxillary partial denture — resin base</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5212</td><td>Mandibular partial denture — resin base</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5213</td><td>Maxillary partial denture — cast metal framework with resin denture bases</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5214</td><td>Mandibular partial denture — cast metal framework with resin denture bases</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5225</td><td>Maxillary partial denture — flexible base (thermoplastic)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5226</td><td>Mandibular partial denture — flexible base (thermoplastic)</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5410</td><td>Adjust complete denture — maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5411</td><td>Adjust complete denture — mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5421</td><td>Adjust partial denture — maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5422</td><td>Adjust partial denture — mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5511</td><td>Repair broken complete denture base — mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5512</td><td>Repair broken complete denture base — maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5611</td><td>Repair resin partial denture base — mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5612</td><td>Repair resin partial denture base — maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5711</td><td>Reline complete maxillary denture — chairside</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5712</td><td>Reline complete maxillary denture — laboratory</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5721</td><td>Reline complete mandibular denture — chairside</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5722</td><td>Reline complete mandibular denture — laboratory</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5810</td><td>Interim complete denture — maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5811</td><td>Interim complete denture — mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5820</td><td>Interim partial denture — maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5821</td><td>Interim partial denture — mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5850</td><td>Tissue conditioning — maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5851</td><td>Tissue conditioning — mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5863</td><td>Overdenture — complete maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5864</td><td>Overdenture — partial maxillary</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5865</td><td>Overdenture — complete mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5866</td><td>Overdenture — partial mandibular</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5876</td><td>Add metal substructure to acrylic full denture</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D5899</td><td>Unspecified removable prosthodontic procedure, by report</td><td class="fee-col"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <table class="fee-table">
+    <thead>
+      <tr><th class="code-col">ADA Code</th><th class="desc-col">Procedure Description</th><th class="fee-col">Fee ($)</th></tr>
+    </thead>
+    <tbody>
+      <tr class="section-header"><td colspan="3">Orthodontics</td></tr>
+      <tr><td class="code-col">D8010</td><td>Limited orthodontic treatment of the primary dentition</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D8020</td><td>Limited orthodontic treatment of the transitional dentition</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D8030</td><td>Limited orthodontic treatment of the adolescent dentition</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D8040</td><td>Limited orthodontic treatment of the adult dentition</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D8080</td><td>Comprehensive orthodontic treatment of the adolescent dentition</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D8090</td><td>Comprehensive orthodontic treatment of the adult dentition</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D8660</td><td>Pre-orthodontic examination</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D8670</td><td>Periodic orthodontic treatment visit</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D8680</td><td>Orthodontic retention (removal of appliances, construction and placement of retainer(s))</td><td class="fee-col"></td></tr>
+
+      <tr class="section-header"><td colspan="3">Adjunctive General Services</td></tr>
+      <tr><td class="code-col">D9110</td><td>Palliative (emergency) treatment of dental pain — minor procedure</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9210</td><td>Local anesthesia not in conjunction with operative or surgical procedures</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9211</td><td>Regional block anesthesia</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9212</td><td>Trigeminal division block anesthesia</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9215</td><td>Local anesthesia in conjunction with operative or surgical procedures</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9230</td><td>Inhalation of nitrous oxide / anxiolysis</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9241</td><td>Intravenous moderate (conscious) sedation/analgesia — first 15 min</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9243</td><td>Intravenous moderate sedation/analgesia — each subsequent 15 min</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9248</td><td>Non-intravenous conscious sedation</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9310</td><td>Consultation — diagnostic service provided by dentist or physician other than requesting dentist</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9410</td><td>House/extended care facility call</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9420</td><td>Hospital or ambulatory surgical center call</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9430</td><td>Office visit for observation (during regularly scheduled hours) — no other services performed</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9440</td><td>Office visit — after regularly scheduled hours</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9450</td><td>Case presentation, detailed and extensive treatment planning</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9910</td><td>Application of desensitizing medicament</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9920</td><td>Behavior management, by report</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9930</td><td>Treatment of complications (post-surgical) — unusual circumstances, by report</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9940</td><td>Occlusal guard, by report</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9941</td><td>Fabrication of athletic mouthguard</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9942</td><td>Repair and/or reline of occlusal guard</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9943</td><td>Occlusal guard adjustment</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9944</td><td>Occlusal guard — hard appliance, full arch</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9945</td><td>Occlusal guard — soft appliance, full arch</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9946</td><td>Occlusal guard — hard appliance, partial arch</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9950</td><td>Occlusion analysis — mounted case</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9951</td><td>Occlusal adjustment — limited</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9952</td><td>Occlusal adjustment — complete</td><td class="fee-col"></td></tr>
+      <tr><td class="code-col">D9961</td><td>Duplicate/copy patient records</td><td class="fee-col"></td></tr>
+    </tbody>
+  </table>
+
+  <!-- SIGNATURE -->
+  <div class="sig-section">
+    <p style="font-size:13px;color:var(--text-b);line-height:1.7;">By signing below, I confirm that the fees listed above reflect my current usual and customary fees and that I am authorized to disclose this information to Practice Transition Partners for the purpose of marketing my practice.</p>
+    <div class="sig-grid">
+      <div class="sig-field">
+        <label>Seller Signature</label>
+        <div class="write-line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Date</label>
+        <div class="write-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="form-footer">
+    <span>Practice Transition Partners · jose@ptransitions.com · Confidential</span>
+    <span>Current Fee Schedule · 2026</span>
+  </div>
+
+</div><!-- /form-wrap -->
+
+</body>
+</html>

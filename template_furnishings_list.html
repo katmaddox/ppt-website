@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Office Equipment &amp; Furnishings List — Practice Transition Partners</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@0,400;0,600;0,700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#022C51;--royal:#115694;--sky:#1D86E4;--gold:#ECB100;--cream:#FAF8F1;--white:#fff;--text-b:#3D3B37;--text-m:#73716C;--border:#D9D7CF;--serif:'Libre Baskerville',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif;}
+body{font-family:var(--sans);color:var(--text-b);background:var(--white);padding:32px 40px;max-width:1200px;margin:0 auto;}
+
+/* SCREEN ONLY */
+@media screen {
+  body{background:var(--cream);}
+  .form-wrap{background:var(--white);border-radius:16px;padding:40px;box-shadow:0 4px 24px rgba(2,44,81,0.08);}
+  .print-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:14px;font-weight:700;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;background:var(--navy);color:var(--white);margin-bottom:28px;}
+  .print-btn:hover{background:var(--royal);}
+  .screen-note{background:#EAF1F8;border:1px solid #C8DFEE;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--royal);margin-bottom:28px;line-height:1.6;}
+}
+
+/* PRINT ONLY */
+@media print {
+  body{padding:16px;max-width:100%;}
+  .form-wrap{padding:0;}
+  .no-print{display:none!important;}
+  .page-break{page-break-before:always;}
+  table{font-size:10px;}
+}
+
+/* SHARED */
+.form-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid var(--navy);}
+.form-header-left h1{font-family:var(--serif);font-size:22px;color:var(--navy);margin-bottom:4px;}
+.form-header-left p{font-size:13px;color:var(--text-m);}
+.form-header-right{text-align:right;font-size:12px;color:var(--text-m);}
+.ptp-name{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--navy);}
+
+.practice-info{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:28px;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.pi-field{padding:12px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.pi-field:nth-child(even){border-right:none;}
+.pi-field:nth-last-child(-n+2){border-bottom:none;}
+.pi-field label{display:block;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m);margin-bottom:6px;}
+.pi-field .write-line{border-bottom:1px solid var(--border);height:22px;width:100%;}
+
+section{margin-bottom:32px;}
+section h2{font-family:var(--serif);font-size:16px;color:var(--navy);margin-bottom:4px;}
+section p.sec-note{font-size:12px;color:var(--text-m);margin-bottom:12px;}
+
+/* FURNISHINGS TABLE */
+.furn-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:8px;}
+.furn-table th{background:var(--navy);color:var(--white);padding:9px 8px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}
+.furn-table td{border:1px solid var(--border);padding:7px 8px;vertical-align:middle;}
+.furn-table tr:nth-child(even) td{background:#F9F8F5;}
+.furn-table tr.totals-row td{background:var(--cream);font-weight:700;border-top:2px solid var(--navy);}
+.num-col{width:38px;text-align:center;color:var(--text-m);font-size:11px;}
+.desc-col{min-width:210px;}
+.brand-col{min-width:120px;}
+.qty-col{width:70px;}
+.cond-col{width:90px;}
+.val-col{width:90px;}
+.notes-col{min-width:150px;}
+
+/* SIGNATURE */
+.sig-section{margin-top:32px;padding-top:24px;border-top:2px solid var(--border);}
+.sig-grid{display:grid;grid-template-columns:2fr 1fr;gap:32px;margin-top:16px;}
+.sig-field label{display:block;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-m);margin-bottom:20px;}
+.sig-field .write-line{border-bottom:1.5px solid var(--navy);height:30px;}
+
+/* FOOTER */
+.form-footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:10px;color:var(--text-m);}
+</style>
+</head>
+<body>
+
+<!-- Screen controls -->
+<div class="no-print" style="margin-bottom:24px;">
+  <button class="print-btn" onclick="window.print()">
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="3" y="1" width="9" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="6" width="13" height="7" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M4 10h7M4 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="11.5" cy="8.5" r="0.8" fill="currentColor"/></svg>
+    Print / Save as PDF
+  </button>
+  <div class="screen-note">
+    <strong>How to use this form:</strong> Complete this form and upload it to your PTP seller portal document checklist. List all non-clinical office furniture, technology, and fixtures included in the sale. Estimated values should reflect current resale or fair market value.
+  </div>
+</div>
+
+<div class="form-wrap">
+
+  <!-- HEADER -->
+  <div class="form-header">
+    <div class="form-header-left">
+      <h1>Office Equipment &amp; Furnishings List</h1>
+      <p>Confidential · For use with seller registration only</p>
+    </div>
+    <div class="form-header-right">
+      <div class="ptp-name">Practice Transition Partners</div>
+      <div style="margin-top:2px;">jose@ptransitions.com</div>
+    </div>
+  </div>
+
+  <!-- PRACTICE INFO -->
+  <section>
+    <h2>Practice information</h2>
+    <p class="sec-note">Complete this section at the top of the form.</p>
+    <div class="practice-info">
+      <div class="pi-field"><label>Practice / Business Name</label><div class="write-line"></div></div>
+      <div class="pi-field"><label>Dentist Name</label><div class="write-line"></div></div>
+      <div class="pi-field"><label>Office Address</label><div class="write-line"></div></div>
+      <div class="pi-field"><label>Date Completed</label><div class="write-line"></div></div>
+    </div>
+  </section>
+
+  <!-- FURNISHINGS TABLE -->
+  <section>
+    <h2>Office equipment &amp; furnishings inventory</h2>
+    <p class="sec-note">List all non-clinical items included in the sale. Pre-filled descriptions are suggestions — edit or add to reflect your practice. Quantity column is for identical items (e.g., 6 waiting room chairs = Qty 6, one row).</p>
+
+    <table class="furn-table">
+      <thead>
+        <tr>
+          <th class="num-col">#</th>
+          <th class="desc-col">Description</th>
+          <th class="brand-col">Manufacturer / Brand</th>
+          <th class="qty-col">Quantity</th>
+          <th class="cond-col">Condition</th>
+          <th class="val-col">Estimated Value ($)</th>
+          <th class="notes-col">Notes / Location in Office</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num-col">1</td><td>Reception Desk</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">2</td><td>Waiting Room Seating / Sofa</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">3</td><td>Reception / Guest Chairs</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">4</td><td>Office / Staff Chairs</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">5</td><td>Computer Workstations / Desktops</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">6</td><td>Monitors / Display Screens</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">7</td><td>Printer / Scanner / Copier</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">8</td><td>Phone System</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">9</td><td>TV / Entertainment Display</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">10</td><td>Filing Cabinets</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">11</td><td>Storage Cabinets / Shelving</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">12</td><td>Break Room Refrigerator</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">13</td><td>Break Room Microwave</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">14</td><td>Coffee Maker</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">15</td><td>Conference Table &amp; Chairs</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">16</td><td>Exterior / Interior Signage</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">17</td><td>Window Treatments / Blinds</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">18</td><td>Artwork / Wall Decor</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">19</td><td>Security System Panel / Cameras</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">20</td><td>Safe</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">21</td><td>Shredder</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="totals-row">
+          <td colspan="5" style="text-align:right;padding-right:16px;">Total Estimated Value</td>
+          <td>$</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:11px;color:var(--text-m);margin-bottom:4px;">Condition guide: <strong>Excellent</strong> = like new &nbsp;|&nbsp; <strong>Good</strong> = fully functional, normal wear &nbsp;|&nbsp; <strong>Fair</strong> = functional with minor issues &nbsp;|&nbsp; <strong>Poor</strong> = needs replacement</p>
+  </section>
+
+  <!-- ADDITIONAL ROWS -->
+  <section>
+    <h2>Additional items</h2>
+    <p class="sec-note">Use these rows for any items not listed above.</p>
+    <table class="furn-table">
+      <thead>
+        <tr>
+          <th class="num-col">#</th>
+          <th class="desc-col">Description</th>
+          <th class="brand-col">Manufacturer / Brand</th>
+          <th class="qty-col">Quantity</th>
+          <th class="cond-col">Condition</th>
+          <th class="val-col">Estimated Value ($)</th>
+          <th class="notes-col">Notes / Location in Office</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num-col">22</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">23</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">24</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">25</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">26</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="totals-row">
+          <td colspan="5" style="text-align:right;padding-right:16px;">Additional Items Total</td>
+          <td>$</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SIGNATURE -->
+  <div class="sig-section">
+    <p style="font-size:13px;color:var(--text-b);line-height:1.7;">By signing below, I confirm that the information provided on this form is true and accurate to the best of my knowledge, and that I am authorized to disclose this information to Practice Transition Partners for the purpose of marketing my practice.</p>
+    <div class="sig-grid">
+      <div class="sig-field">
+        <label>Seller Signature</label>
+        <div class="write-line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Date</label>
+        <div class="write-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="form-footer">
+    <span>Practice Transition Partners · jose@ptransitions.com · Confidential</span>
+    <span>Office Equipment &amp; Furnishings List · 2026</span>
+  </div>
+
+</div><!-- /form-wrap -->
+
+</body>
+</html>

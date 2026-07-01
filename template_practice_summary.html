@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice Summary &amp; Zip Code Analysis — Practice Transition Partners</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@0,400;0,600;0,700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#022C51;--royal:#115694;--sky:#1D86E4;--gold:#ECB100;--cream:#FAF8F1;--white:#fff;--text-b:#3D3B37;--text-m:#73716C;--border:#D9D7CF;--serif:'Libre Baskerville',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif;}
+body{font-family:var(--sans);color:var(--text-b);background:var(--white);padding:32px 40px;max-width:960px;margin:0 auto;}
+
+/* SCREEN ONLY */
+@media screen {
+  body{background:var(--cream);}
+  .form-wrap{background:var(--white);border-radius:16px;padding:40px;box-shadow:0 4px 24px rgba(2,44,81,0.08);}
+  .print-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:14px;font-weight:700;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;background:var(--navy);color:var(--white);margin-bottom:28px;}
+  .print-btn:hover{background:var(--royal);}
+  .screen-note{background:#EAF1F8;border:1px solid #C8DFEE;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--royal);margin-bottom:28px;line-height:1.6;}
+}
+
+/* PRINT ONLY */
+@media print {
+  body{padding:16px;max-width:100%;}
+  .form-wrap{padding:0;}
+  .no-print{display:none!important;}
+  .page-break{page-break-before:always;}
+  table{font-size:10px;}
+  .write-area{border:1px solid var(--border)!important;}
+}
+
+/* SHARED */
+.form-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid var(--navy);}
+.form-header-left h1{font-family:var(--serif);font-size:22px;color:var(--navy);margin-bottom:4px;}
+.form-header-left p{font-size:13px;color:var(--text-m);}
+.form-header-right{text-align:right;font-size:12px;color:var(--text-m);}
+.ptp-name{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--navy);}
+
+section{margin-bottom:32px;}
+section h2{font-family:var(--serif);font-size:16px;color:var(--navy);margin-bottom:4px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+section p.sec-note{font-size:12px;color:var(--text-m);margin-bottom:14px;margin-top:6px;line-height:1.6;}
+.sec-num{display:inline-block;background:var(--navy);color:var(--white);font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;text-align:center;line-height:20px;margin-right:8px;vertical-align:middle;position:relative;top:-1px;}
+
+/* FIELD GRID */
+.field-grid{display:grid;gap:0;margin-bottom:4px;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.field-grid-2{grid-template-columns:1fr 1fr;}
+.field-grid-3{grid-template-columns:1fr 1fr 1fr;}
+.field-grid-4{grid-template-columns:1fr 1fr 1fr 1fr;}
+.fg-field{padding:12px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.fg-field:last-child{border-right:none;}
+.fg-field.last-row{border-bottom:none;}
+.fg-field.full{grid-column:1/-1;border-right:none;}
+.fg-field label{display:block;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m);margin-bottom:6px;}
+.fg-field .write-line{border-bottom:1px solid var(--border);height:22px;width:100%;}
+.fg-field select{width:100%;border:none;border-bottom:1px solid var(--border);padding:2px 0;font-family:var(--sans);font-size:13px;color:var(--text-b);background:transparent;outline:none;appearance:auto;height:22px;}
+
+/* TEXT AREA FIELDS */
+.textarea-field{margin-bottom:16px;}
+.textarea-field label{display:block;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m);margin-bottom:8px;}
+.textarea-field .write-area{width:100%;border:1px solid var(--border);border-radius:6px;min-height:80px;padding:10px 12px;font-family:var(--sans);font-size:13px;color:var(--text-b);line-height:1.7;resize:vertical;}
+.textarea-field .write-area.tall{min-height:110px;}
+
+/* ZIP CODE TABLE */
+.zip-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:8px;}
+.zip-table th{background:var(--navy);color:var(--white);padding:9px 10px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+.zip-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:middle;}
+.zip-table tr:nth-child(even) td{background:#F9F8F5;}
+.zip-col{width:90px;}
+.dist-col{width:110px;}
+.pop-col{width:90px;}
+.income-col{width:120px;}
+.dentist-col{width:100px;}
+.notes-col{min-width:140px;}
+
+/* SIGNATURE */
+.sig-section{margin-top:32px;padding-top:24px;border-top:2px solid var(--border);}
+.sig-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;margin-top:16px;}
+.sig-field label{display:block;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-m);margin-bottom:20px;}
+.sig-field .write-line{border-bottom:1.5px solid var(--navy);height:30px;}
+
+/* FOOTER */
+.form-footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:10px;color:var(--text-m);}
+</style>
+</head>
+<body>
+
+<!-- Screen controls -->
+<div class="no-print" style="margin-bottom:24px;">
+  <button class="print-btn" onclick="window.print()">
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="3" y="1" width="9" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="6" width="13" height="7" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M4 10h7M4 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="11.5" cy="8.5" r="0.8" fill="currentColor"/></svg>
+    Print / Save as PDF
+  </button>
+  <div class="screen-note">
+    <strong>How to use this form:</strong> Complete this form and upload it to your PTP seller portal document checklist. This narrative form helps your PTP advisor understand your practice's market position and present it effectively to qualified buyers. Answer each section as thoroughly as possible.
+  </div>
+</div>
+
+<div class="form-wrap">
+
+  <!-- HEADER -->
+  <div class="form-header">
+    <div class="form-header-left">
+      <h1>Practice Summary &amp; Zip Code Analysis</h1>
+      <p>Confidential · For use with seller registration only</p>
+    </div>
+    <div class="form-header-right">
+      <div class="ptp-name">Practice Transition Partners</div>
+      <div style="margin-top:2px;">jose@ptransitions.com</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: PRACTICE OVERVIEW -->
+  <section>
+    <h2><span class="sec-num">1</span>Practice Overview</h2>
+    <p class="sec-note">Basic identifying information about the practice.</p>
+
+    <div class="field-grid field-grid-2" style="margin-bottom:16px;">
+      <div class="fg-field"><label>Practice / Business Name</label><div class="write-line"></div></div>
+      <div class="fg-field"><label>Dentist / Owner Name</label><div class="write-line"></div></div>
+      <div class="fg-field"><label>Street Address</label><div class="write-line"></div></div>
+      <div class="fg-field"><label>City, State, Zip</label><div class="write-line"></div></div>
+      <div class="fg-field last-row"><label>Year Practice Established</label><div class="write-line"></div></div>
+      <div class="fg-field last-row"><label>Years Under Current Ownership</label><div class="write-line"></div></div>
+    </div>
+
+    <div class="field-grid field-grid-2">
+      <div class="fg-field last-row">
+        <label>Practice Type</label>
+        <select>
+          <option value="">— Select —</option>
+          <option>General Dentistry</option>
+          <option>Orthodontics</option>
+          <option>Oral &amp; Maxillofacial Surgery</option>
+          <option>Endodontics</option>
+          <option>Periodontics</option>
+          <option>Pediatric Dentistry</option>
+          <option>Prosthodontics</option>
+          <option>Dental Anesthesiology</option>
+          <option>Oral Medicine</option>
+          <option>Orofacial Pain</option>
+          <option>Multi-Specialty</option>
+          <option>Other Specialty</option>
+        </select>
+      </div>
+      <div class="fg-field last-row"><label>Specialty (if applicable)</label><div class="write-line"></div></div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: LOCATION & DEMOGRAPHICS -->
+  <section>
+    <h2><span class="sec-num">2</span>Location &amp; Demographics</h2>
+    <p class="sec-note">Describe the area and patient population in your own words. Be candid — buyers appreciate honest, specific information.</p>
+
+    <div class="textarea-field">
+      <label>Describe the practice neighborhood / area</label>
+      <div class="write-area" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Describe the practice neighborhood"></div>
+    </div>
+
+    <div class="textarea-field">
+      <label>Nearby landmarks, anchors, or major employers</label>
+      <div class="write-area" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Nearby landmarks"></div>
+    </div>
+
+    <div class="textarea-field">
+      <label>Patient base description (age range, income level, residential vs. commercial area)</label>
+      <div class="write-area tall" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Patient base description"></div>
+    </div>
+
+    <div class="field-grid field-grid-2" style="margin-bottom:16px;">
+      <div class="fg-field last-row"><label>Approximate # of Active Patients</label><div class="write-line"></div></div>
+      <div class="fg-field last-row"><label>Average New Patients per Month</label><div class="write-line"></div></div>
+    </div>
+
+    <div class="textarea-field">
+      <label>Competition in the immediate area (within 1 mile)</label>
+      <div class="write-area" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Competition within 1 mile"></div>
+    </div>
+
+    <div class="textarea-field">
+      <label>Competition within 5 miles (DSOs, large group practices, specialists)</label>
+      <div class="write-area" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Competition within 5 miles"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: ZIP CODE DATA -->
+  <section>
+    <h2><span class="sec-num">3</span>Zip Code Data</h2>
+    <p class="sec-note">Fill in demographic data for the practice zip code and surrounding zip codes. Your PTP advisor can help pull this data if needed — leave blank and note that you need assistance if so.</p>
+
+    <table class="zip-table">
+      <thead>
+        <tr>
+          <th class="zip-col">Zip Code</th>
+          <th class="dist-col">Distance from Practice</th>
+          <th class="pop-col">Population</th>
+          <th class="income-col">Median HH Income</th>
+          <th class="dentist-col"># of Dentists in Zip</th>
+          <th class="notes-col">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td></td><td>Practice zip</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--text-m);margin-top:6px;">Note: Your PTP advisor can help pull zip code demographic data. Data sources: U.S. Census Bureau, ADA HPI, ZipAtlas.</p>
+  </section>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 4: PRACTICE STRENGTHS -->
+  <section>
+    <h2><span class="sec-num">4</span>Practice Strengths</h2>
+    <p class="sec-note">What are the top 3–5 strengths of this practice that would appeal to a buyer? Consider: reputation, technology, loyal staff, stable cash flow, favorable lease, specialized services, location, payer mix, etc.</p>
+
+    <div class="textarea-field">
+      <label>Top strengths of this practice</label>
+      <div class="write-area tall" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Practice strengths"></div>
+    </div>
+
+    <div class="field-grid field-grid-3" style="margin-bottom:16px;">
+      <div class="fg-field last-row"><label>Insurance / Payer Mix (% PPO)</label><div class="write-line"></div></div>
+      <div class="fg-field last-row"><label>% Fee-for-Service</label><div class="write-line"></div></div>
+      <div class="fg-field last-row"><label>% Medicaid / Other</label><div class="write-line"></div></div>
+    </div>
+
+    <div class="field-grid field-grid-2">
+      <div class="fg-field last-row"><label>Lease Terms (length, monthly rent)</label><div class="write-line"></div></div>
+      <div class="fg-field last-row"><label>Option to Renew?</label><div class="write-line"></div></div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: GROWTH OPPORTUNITIES -->
+  <section>
+    <h2><span class="sec-num">5</span>Growth Opportunities</h2>
+    <p class="sec-note">What opportunities exist for a new owner to grow the practice? Think about: expanding hours, adding services, increasing marketing, technology upgrades, adding operatories, expanding hygiene capacity, etc.</p>
+
+    <div class="textarea-field">
+      <label>Growth opportunities for a new owner</label>
+      <div class="write-area tall" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Growth opportunities"></div>
+    </div>
+
+    <div class="textarea-field">
+      <label>Services currently referred out that a buyer could bring in-house (if any)</label>
+      <div class="write-area" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Referred-out services"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: TRANSITION NOTES -->
+  <section>
+    <h2><span class="sec-num">6</span>Transition Notes</h2>
+    <p class="sec-note">Help prospective buyers understand the seller's transition intentions and any special circumstances.</p>
+
+    <div class="textarea-field">
+      <label>Seller transition availability — Is the seller willing to stay on for a transition period? How long? Under what arrangement?</label>
+      <div class="write-area tall" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Seller transition availability"></div>
+    </div>
+
+    <div class="field-grid field-grid-2" style="margin-bottom:16px;">
+      <div class="fg-field last-row"><label>Preferred Closing Timeline</label><div class="write-line"></div></div>
+      <div class="fg-field last-row"><label>Seller Motivation for Transition</label><div class="write-line"></div></div>
+    </div>
+
+    <div class="textarea-field">
+      <label>Any other notes, special circumstances, or messages for prospective buyers</label>
+      <div class="write-area tall" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Additional notes"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: SIGNATURE -->
+  <div class="sig-section">
+    <h2 style="font-family:var(--serif);font-size:16px;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);"><span class="sec-num">7</span>Certification &amp; Signature</h2>
+    <p style="font-size:13px;color:var(--text-b);line-height:1.7;margin-bottom:16px;">By signing below, I certify that the information provided in this Practice Summary is accurate and complete to the best of my knowledge, and that I authorize Practice Transition Partners to use this information in marketing my practice to qualified buyers under the terms of our listing agreement.</p>
+    <div class="sig-grid">
+      <div class="sig-field">
+        <label>Dentist Name (Print)</label>
+        <div class="write-line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Signature</label>
+        <div class="write-line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Date</label>
+        <div class="write-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="form-footer">
+    <span>Practice Transition Partners · jose@ptransitions.com · Confidential</span>
+    <span>Practice Summary &amp; Zip Code Analysis · 2026</span>
+  </div>
+
+</div><!-- /form-wrap -->
+
+</body>
+</html>

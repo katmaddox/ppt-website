@@ -181,9 +181,25 @@ html.new-seller .new-seller-flex{display:flex!important;}
 .doc-section-head{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m);padding:12px 20px;background:var(--cream);border-bottom:1px solid var(--border);}
 .doc-check-item{padding:14px 20px;border-bottom:1px solid var(--border);}
 .doc-check-item:last-child{border-bottom:none;}
-.doc-check-label{display:flex;align-items:flex-start;gap:12px;cursor:pointer;}
+.doc-check-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+.doc-check-label{display:flex;align-items:flex-start;gap:12px;cursor:pointer;flex:1;}
 .doc-check-label input[type="checkbox"]{width:16px;height:16px;accent-color:var(--royal);flex-shrink:0;margin-top:2px;}
 .doc-check-label span{font-size:13px;color:var(--text-b);line-height:1.5;}
+.doc-check-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;padding-top:1px;}
+.doc-status{font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap;}
+.doc-status.not-uploaded{background:#F0F0EE;color:var(--text-m);}
+.doc-status.pending{background:#FFF3CD;color:#7A5800;}
+.doc-status.accepted{background:#D4EDDA;color:#1E7E34;}
+.doc-tmpl-link{font-size:11px;font-weight:600;color:var(--royal);text-decoration:none;white-space:nowrap;border:1px solid #C8DFEE;border-radius:5px;padding:3px 9px;background:var(--navy-tint);display:inline-flex;align-items:center;gap:3px;}
+.doc-tmpl-link:hover{background:#d5e8f5;border-color:var(--royal);}
+.btn-upload-doc{font-size:11px;font-weight:700;padding:4px 11px;border-radius:5px;border:1.5px solid var(--border);color:var(--navy);background:var(--white);cursor:pointer;white-space:nowrap;transition:border-color .15s,background .15s;}
+.btn-upload-doc:hover{border-color:var(--royal);background:var(--navy-tint);}
+.doc-upload-zone{margin:10px 0 2px 28px;padding:12px 16px;border:1.5px dashed var(--border);border-radius:8px;background:var(--cream);display:none;}
+.doc-upload-zone.open{display:block;}
+.doc-upload-trigger{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:var(--text-m);}
+.doc-upload-trigger strong{color:var(--royal);font-weight:700;}
+.doc-upload-input{display:none;}
+.doc-uploaded-file{margin-top:8px;font-size:12px;color:var(--text-b);padding:6px 10px;background:var(--white);border:1px solid var(--border);border-radius:6px;display:none;align-items:center;gap:6px;}
 .remote-choice{margin-top:10px;margin-left:28px;display:flex;flex-direction:column;gap:6px;}
 .remote-opt{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-b);cursor:pointer;}
 .remote-opt input[type="radio"]{width:14px;height:14px;accent-color:var(--royal);flex-shrink:0;}
@@ -768,67 +784,392 @@ html.new-seller .new-seller-flex{display:flex!important;}
 
         <div class="doc-checklist">
           <div class="doc-section-head">Standard documents</div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Dental equipment list</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Office equipment and furnishings listing</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Last 3 years complete business tax returns (Schedule C / corporate return, including all itemized expense statements; or 1040 if Sole Proprietor)</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Last 3 years Profit &amp; Loss statements and current year YTD P&amp;L (through last full month)</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Current fee schedule</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Credit balance report</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Accounts receivable aging report (30 / 60 / 90 days)</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Last 3 years W-2 &amp; W-3 forms (or wage breakdown) for each employee, corporate officer, and associate</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Last 3 years 1099 forms</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Written agreements with all associates</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Copy of office lease including all addendums</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>2024 &amp; 2025 annual employee payroll taxes</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Practice summary with zip code analysis</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Banking statements — last 3 years</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Pension / 401(k) plan documents</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Delta Plan insurance 1099s</span></label></div>
-          <div class="doc-check-item"><label class="doc-check-label"><input type="checkbox"><span>Practice photos — parking, signage, entrance, reception, operatories, sterilization, lab, private office</span></label></div>
+
+          <!-- Dental equipment list — has template -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-dental-equip"><span>Dental equipment list</span></label>
+              <div class="doc-check-actions">
+                <a href="template_equipment_list.html" target="_blank" class="doc-tmpl-link">📄 Template</a>
+                <span class="doc-status not-uploaded" id="status-dental-equip">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('dental-equip')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-dental-equip">
+              <label class="doc-upload-trigger" for="file-dental-equip"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-dental-equip" onchange="handleDocUpload('dental-equip',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-dental-equip"></div>
+            </div>
+          </div>
+
+          <!-- Office furnishings — has template -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-office-furn"><span>Office equipment and furnishings listing</span></label>
+              <div class="doc-check-actions">
+                <a href="template_furnishings_list.html" target="_blank" class="doc-tmpl-link">📄 Template</a>
+                <span class="doc-status not-uploaded" id="status-office-furn">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('office-furn')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-office-furn">
+              <label class="doc-upload-trigger" for="file-office-furn"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-office-furn" onchange="handleDocUpload('office-furn',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-office-furn"></div>
+            </div>
+          </div>
+
+          <!-- Tax returns -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-tax-returns"><span>Last 3 years complete business tax returns (Schedule C / corporate return, including all itemized expense statements; or 1040 if Sole Proprietor)</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-tax-returns">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('tax-returns')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-tax-returns">
+              <label class="doc-upload-trigger" for="file-tax-returns"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-tax-returns" onchange="handleDocUpload('tax-returns',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-tax-returns"></div>
+            </div>
+          </div>
+
+          <!-- P&L statements -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-pl-statements"><span>Last 3 years Profit &amp; Loss statements and current year YTD P&amp;L (through last full month)</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-pl-statements">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('pl-statements')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-pl-statements">
+              <label class="doc-upload-trigger" for="file-pl-statements"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-pl-statements" onchange="handleDocUpload('pl-statements',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-pl-statements"></div>
+            </div>
+          </div>
+
+          <!-- Fee schedule — has template -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-fee-schedule"><span>Current fee schedule</span></label>
+              <div class="doc-check-actions">
+                <a href="template_fee_schedule.html" target="_blank" class="doc-tmpl-link">📄 Template</a>
+                <span class="doc-status not-uploaded" id="status-fee-schedule">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('fee-schedule')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-fee-schedule">
+              <label class="doc-upload-trigger" for="file-fee-schedule"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-fee-schedule" onchange="handleDocUpload('fee-schedule',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-fee-schedule"></div>
+            </div>
+          </div>
+
+          <!-- Credit balance -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-credit-balance"><span>Credit balance report</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-credit-balance">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('credit-balance')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-credit-balance">
+              <label class="doc-upload-trigger" for="file-credit-balance"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-credit-balance" onchange="handleDocUpload('credit-balance',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-credit-balance"></div>
+            </div>
+          </div>
+
+          <!-- AR aging -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-ar-aging"><span>Accounts receivable aging report (30 / 60 / 90 days)</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-ar-aging">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('ar-aging')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-ar-aging">
+              <label class="doc-upload-trigger" for="file-ar-aging"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-ar-aging" onchange="handleDocUpload('ar-aging',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-ar-aging"></div>
+            </div>
+          </div>
+
+          <!-- W-2 W-3 -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-w2-w3"><span>Last 3 years W-2 &amp; W-3 forms (or wage breakdown) for each employee, corporate officer, and associate</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-w2-w3">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('w2-w3')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-w2-w3">
+              <label class="doc-upload-trigger" for="file-w2-w3"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-w2-w3" onchange="handleDocUpload('w2-w3',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-w2-w3"></div>
+            </div>
+          </div>
+
+          <!-- 1099 forms -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-forms-1099"><span>Last 3 years 1099 forms</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-forms-1099">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('forms-1099')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-forms-1099">
+              <label class="doc-upload-trigger" for="file-forms-1099"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-forms-1099" onchange="handleDocUpload('forms-1099',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-forms-1099"></div>
+            </div>
+          </div>
+
+          <!-- Associate agreements -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-assoc-agree"><span>Written agreements with all associates</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-assoc-agree">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('assoc-agree')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-assoc-agree">
+              <label class="doc-upload-trigger" for="file-assoc-agree"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-assoc-agree" onchange="handleDocUpload('assoc-agree',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-assoc-agree"></div>
+            </div>
+          </div>
+
+          <!-- Office lease -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-office-lease"><span>Copy of office lease including all addendums</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-office-lease">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('office-lease')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-office-lease">
+              <label class="doc-upload-trigger" for="file-office-lease"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-office-lease" onchange="handleDocUpload('office-lease',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-office-lease"></div>
+            </div>
+          </div>
+
+          <!-- Payroll taxes -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-payroll-tax"><span>2024 &amp; 2025 annual employee payroll taxes</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-payroll-tax">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('payroll-tax')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-payroll-tax">
+              <label class="doc-upload-trigger" for="file-payroll-tax"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-payroll-tax" onchange="handleDocUpload('payroll-tax',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-payroll-tax"></div>
+            </div>
+          </div>
+
+          <!-- Practice summary — has template -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-practice-summary"><span>Practice summary with zip code analysis</span></label>
+              <div class="doc-check-actions">
+                <a href="template_practice_summary.html" target="_blank" class="doc-tmpl-link">📄 Template</a>
+                <span class="doc-status not-uploaded" id="status-practice-summary">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('practice-summary')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-practice-summary">
+              <label class="doc-upload-trigger" for="file-practice-summary"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-practice-summary" onchange="handleDocUpload('practice-summary',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-practice-summary"></div>
+            </div>
+          </div>
+
+          <!-- Banking statements -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-banking"><span>Banking statements — last 3 years</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-banking">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('banking')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-banking">
+              <label class="doc-upload-trigger" for="file-banking"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-banking" onchange="handleDocUpload('banking',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-banking"></div>
+            </div>
+          </div>
+
+          <!-- Pension / 401k -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-pension"><span>Pension / 401(k) plan documents</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-pension">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('pension')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-pension">
+              <label class="doc-upload-trigger" for="file-pension"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-pension" onchange="handleDocUpload('pension',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-pension"></div>
+            </div>
+          </div>
+
+          <!-- Delta 1099s -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-delta-1099"><span>Delta Plan insurance 1099s</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-delta-1099">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('delta-1099')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-delta-1099">
+              <label class="doc-upload-trigger" for="file-delta-1099"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-delta-1099" onchange="handleDocUpload('delta-1099',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx">
+              <div class="doc-uploaded-file" id="upname-delta-1099"></div>
+            </div>
+          </div>
+
+          <!-- Practice photos -->
+          <div class="doc-check-item">
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-photos"><span>Practice photos — parking, signage, entrance, reception, operatories, sterilization, lab, private office</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-photos">Not uploaded</span>
+                <button class="btn-upload-doc" onclick="toggleUpload('photos')">Upload</button>
+              </div>
+            </div>
+            <div class="doc-upload-zone" id="upzone-photos">
+              <label class="doc-upload-trigger" for="file-photos"><strong>Choose files</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; JPG, PNG, HEIC accepted</label>
+              <input type="file" class="doc-upload-input" id="file-photos" onchange="handleDocUpload('photos',this)" accept=".jpg,.jpeg,.png,.heic,.heif" multiple>
+              <div class="doc-uploaded-file" id="upname-photos"></div>
+            </div>
+          </div>
         </div>
 
         <div class="doc-checklist">
           <div class="doc-section-head">Computer-generated practice reports — last 3 years through last full month</div>
+
           <div class="doc-check-item">
-            <label class="doc-check-label"><input type="checkbox"><span>Itemized Production Breakdown by Category</span></label>
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-prod-cat"><span>Itemized Production Breakdown by Category</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-prod-cat">Not uploaded</span>
+              </div>
+            </div>
             <div class="remote-choice">
-              <label class="remote-opt"><input type="radio" name="p-prodCat" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
-              <label class="remote-opt"><input type="radio" name="p-prodCat" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+              <label class="remote-opt"><input type="radio" name="p-prodCat" value="remote" onchange="showSelfUpload('p-prodCat','prod-cat')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-prodCat" value="self" onchange="showSelfUpload('p-prodCat','prod-cat')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+            <div class="doc-upload-zone" id="upzone-prod-cat">
+              <label class="doc-upload-trigger" for="file-prod-cat"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-prod-cat" onchange="handleDocUpload('prod-cat',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
+              <div class="doc-uploaded-file" id="upname-prod-cat"></div>
             </div>
           </div>
+
           <div class="doc-check-item">
-            <label class="doc-check-label"><input type="checkbox"><span>Itemized Production Breakdown by ADA Code</span></label>
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-prod-ada"><span>Itemized Production Breakdown by ADA Code</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-prod-ada">Not uploaded</span>
+              </div>
+            </div>
             <div class="remote-choice">
-              <label class="remote-opt"><input type="radio" name="p-prodADA" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
-              <label class="remote-opt"><input type="radio" name="p-prodADA" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+              <label class="remote-opt"><input type="radio" name="p-prodADA" value="remote" onchange="showSelfUpload('p-prodADA','prod-ada')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-prodADA" value="self" onchange="showSelfUpload('p-prodADA','prod-ada')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+            <div class="doc-upload-zone" id="upzone-prod-ada">
+              <label class="doc-upload-trigger" for="file-prod-ada"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-prod-ada" onchange="handleDocUpload('prod-ada',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
+              <div class="doc-uploaded-file" id="upname-prod-ada"></div>
             </div>
           </div>
+
           <div class="doc-check-item">
-            <label class="doc-check-label"><input type="checkbox"><span>Itemized Production Breakdown by Provider</span></label>
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-prod-prov"><span>Itemized Production Breakdown by Provider</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-prod-prov">Not uploaded</span>
+              </div>
+            </div>
             <div class="remote-choice">
-              <label class="remote-opt"><input type="radio" name="p-prodProv" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
-              <label class="remote-opt"><input type="radio" name="p-prodProv" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+              <label class="remote-opt"><input type="radio" name="p-prodProv" value="remote" onchange="showSelfUpload('p-prodProv','prod-prov')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-prodProv" value="self" onchange="showSelfUpload('p-prodProv','prod-prov')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+            <div class="doc-upload-zone" id="upzone-prod-prov">
+              <label class="doc-upload-trigger" for="file-prod-prov"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-prod-prov" onchange="handleDocUpload('prod-prov',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
+              <div class="doc-uploaded-file" id="upname-prod-prov"></div>
             </div>
           </div>
+
           <div class="doc-check-item">
-            <label class="doc-check-label"><input type="checkbox"><span>Itemized Collection Breakdown by Category</span></label>
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-coll-cat"><span>Itemized Collection Breakdown by Category</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-coll-cat">Not uploaded</span>
+              </div>
+            </div>
             <div class="remote-choice">
-              <label class="remote-opt"><input type="radio" name="p-collCat" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
-              <label class="remote-opt"><input type="radio" name="p-collCat" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+              <label class="remote-opt"><input type="radio" name="p-collCat" value="remote" onchange="showSelfUpload('p-collCat','coll-cat')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-collCat" value="self" onchange="showSelfUpload('p-collCat','coll-cat')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+            <div class="doc-upload-zone" id="upzone-coll-cat">
+              <label class="doc-upload-trigger" for="file-coll-cat"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-coll-cat" onchange="handleDocUpload('coll-cat',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
+              <div class="doc-uploaded-file" id="upname-coll-cat"></div>
             </div>
           </div>
+
           <div class="doc-check-item">
-            <label class="doc-check-label"><input type="checkbox"><span>Itemized Collection Breakdown by ADA Code</span></label>
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-coll-ada"><span>Itemized Collection Breakdown by ADA Code</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-coll-ada">Not uploaded</span>
+              </div>
+            </div>
             <div class="remote-choice">
-              <label class="remote-opt"><input type="radio" name="p-collADA" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
-              <label class="remote-opt"><input type="radio" name="p-collADA" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+              <label class="remote-opt"><input type="radio" name="p-collADA" value="remote" onchange="showSelfUpload('p-collADA','coll-ada')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-collADA" value="self" onchange="showSelfUpload('p-collADA','coll-ada')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+            <div class="doc-upload-zone" id="upzone-coll-ada">
+              <label class="doc-upload-trigger" for="file-coll-ada"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-coll-ada" onchange="handleDocUpload('coll-ada',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
+              <div class="doc-uploaded-file" id="upname-coll-ada"></div>
             </div>
           </div>
+
           <div class="doc-check-item">
-            <label class="doc-check-label"><input type="checkbox"><span>Itemized Collection Breakdown by Provider</span></label>
+            <div class="doc-check-row">
+              <label class="doc-check-label"><input type="checkbox" id="cb-coll-prov"><span>Itemized Collection Breakdown by Provider</span></label>
+              <div class="doc-check-actions">
+                <span class="doc-status not-uploaded" id="status-coll-prov">Not uploaded</span>
+              </div>
+            </div>
             <div class="remote-choice">
-              <label class="remote-opt"><input type="radio" name="p-collProv" value="remote"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
-              <label class="remote-opt"><input type="radio" name="p-collProv" value="self"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+              <label class="remote-opt"><input type="radio" name="p-collProv" value="remote" onchange="showSelfUpload('p-collProv','coll-prov')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
+              <label class="remote-opt"><input type="radio" name="p-collProv" value="self" onchange="showSelfUpload('p-collProv','coll-prov')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
+            </div>
+            <div class="doc-upload-zone" id="upzone-coll-prov">
+              <label class="doc-upload-trigger" for="file-coll-prov"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
+              <input type="file" class="doc-upload-input" id="file-coll-prov" onchange="handleDocUpload('coll-prov',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
+              <div class="doc-uploaded-file" id="upname-coll-prov"></div>
             </div>
           </div>
         </div>
@@ -1267,6 +1608,30 @@ function showView(id, linkEl) {
 function openRegPick(){document.getElementById('regPickOverlay').classList.add('open');document.body.style.overflow='hidden';}
 function closeRegPick(e){if(e&&e.target!==document.getElementById('regPickOverlay'))return;document.getElementById('regPickOverlay').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeRegPick();});
+
+// Document upload interactions
+function toggleUpload(id){
+  var z=document.getElementById('upzone-'+id);
+  if(z){z.classList.toggle('open');}
+}
+function handleDocUpload(id,input){
+  if(!input.files.length)return;
+  var f=input.files[0];
+  var count=input.files.length;
+  var s=document.getElementById('status-'+id);
+  var n=document.getElementById('upname-'+id);
+  var cb=document.getElementById('cb-'+id);
+  if(s){s.textContent='Uploaded · pending review';s.className='doc-status pending';}
+  if(n){n.textContent=count>1?count+' files uploaded':'📄 '+f.name;n.style.display='flex';}
+  if(cb)cb.checked=true;
+  var z=document.getElementById('upzone-'+id);
+  if(z)z.classList.remove('open');
+}
+function showSelfUpload(radioName,id){
+  var sel=document.querySelector('input[name="'+radioName+'"]:checked');
+  var z=document.getElementById('upzone-'+id);
+  if(z)z.classList.toggle('open', !!(sel&&sel.value==='self'));
+}
 </script>
 
 
