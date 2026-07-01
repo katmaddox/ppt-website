@@ -155,6 +155,7 @@ html.new-seller .new-seller-flex{display:flex!important;}
 /* ONBOARDING STEPS */
 .onboard-steps{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:28px;}
 .onboard-step{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border);}
+.onboard-step-link:hover{background:var(--navy-tint);transition:background .15s;}
 .onboard-step:last-child{border-bottom:none;}
 .onboard-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .onboard-icon.done{background:#E6F4EA;}
@@ -441,10 +442,10 @@ html.new-seller .new-seller-flex{display:flex!important;}
             <div class="onboard-body"><div class="onboard-title done">Registration complete</div><div class="onboard-meta">Listing agreement signed · Today</div></div>
             <span class="onboard-badge done">Done</span>
           </div>
-          <div class="onboard-step">
+          <div class="onboard-step onboard-step-link" onclick="showView('documents', document.querySelector('[data-view=\'documents\']'));return false;" style="cursor:pointer;" title="Go to Documents & NDAs">
             <div class="onboard-icon current"><svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 2v4l2.5 2" stroke="#7A5800" stroke-width="1.5" stroke-linecap="round"/><circle cx="7.5" cy="7.5" r="6" stroke="#7A5800" stroke-width="1.3"/></svg></div>
             <div class="onboard-body"><div class="onboard-title current">Upload your documents</div><div class="onboard-meta">See Documents &amp; NDAs for your checklist — your advisor will follow up within 1 business day</div></div>
-            <span class="onboard-badge current">Action needed</span>
+            <span class="onboard-badge current">Action needed →</span>
           </div>
           <div class="onboard-step">
             <div class="onboard-icon todo"></div>
