@@ -626,6 +626,27 @@ html.new-seller .new-seller-flex{display:flex!important;}
         </div>
       </div>
 
+      <!-- SECOND LISTING: shown when ?listing2=pending -->
+      <div id="listing2-card" style="display:none;margin-top:20px;">
+        <div class="listing-preview" style="border:2px dashed var(--border);opacity:.95;">
+          <div class="listing-preview-body" style="padding:28px 32px;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+              <div>
+                <div class="listing-preview-title" style="color:var(--text-m);">New Practice Listing</div>
+                <div class="listing-preview-loc" style="margin-top:6px;">
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1C4.3 1 2.5 2.8 2.5 5c0 3.3 4 7 4 7s4-3.7 4-7c0-2.2-1.8-4-4-4z" stroke="#73716C" stroke-width="1.2"/><circle cx="6.5" cy="5" r="1.3" stroke="#73716C" stroke-width="1.2"/></svg>
+                  Submitted today &nbsp;·&nbsp; Pending advisor review
+                </div>
+                <span class="status-pill" style="background:#FFF3CD;color:#7A5800;border:1px solid #F0D060;">⏳ Pending review</span>
+              </div>
+            </div>
+            <div style="margin-top:20px;padding:16px 20px;background:var(--navy-tint);border:1px solid #C8DFEE;border-radius:10px;font-size:13px;color:var(--royal);line-height:1.7;">
+              <strong>What happens next?</strong> Your PTP advisor will review your submission and reach out within 1–2 business days to confirm practice details and next steps. Your listing will appear here once it goes live.
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Transition timeline -->
       <div class="section-head established-only" style="margin-bottom:20px;">
         <div>
@@ -1551,6 +1572,19 @@ function signFinNda(buyer) {
   }
 }
 
+
+// SECOND LISTING — detect ?listing2=pending
+(function(){
+  var hasListing2 = new URLSearchParams(window.location.search).get('listing2') === 'pending';
+  if(!hasListing2) return;
+  window.addEventListener('DOMContentLoaded', function(){
+    var card = document.getElementById('listing2-card');
+    if(card) card.style.display = 'block';
+    // Auto-navigate to listing view
+    var listingLink = document.querySelector('[data-view="listing"]');
+    if(listingLink) setTimeout(function(){ showView('listing', listingLink); }, 150);
+  });
+})();
 
 // NEW SELLER STATE — detect ?new=true
 (function(){
