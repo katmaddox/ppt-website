@@ -275,6 +275,10 @@ html.new-seller .new-seller-flex{display:flex!important;}
   .nav-links a{font-size:15px;padding:14px 24px;border-bottom:1px solid var(--border);color:var(--text-b)!important;text-align:left;}
   .nav-links a:last-child{border-bottom:none;}
   .nav-links .nav-cta,.nav-links a.nav-cta{border-bottom:none!important;margin:12px 24px 24px;text-align:center;padding:14px 24px!important;border-radius:8px;background:var(--navy)!important;color:var(--white)!important;display:block!important;}
+  .nav-links .nav-login,.nav-links a.nav-login{
+    border-bottom:1px solid var(--border)!important;padding:18px 24px!important;
+    display:block!important;color:var(--navy)!important;font-weight:600;
+  }
   .nav-links .nav-reg,.nav-links a.nav-reg{
     border:1.5px solid var(--border)!important;border-bottom:none!important;
     text-align:center;justify-content:center;padding:14px 24px!important;
@@ -298,6 +302,8 @@ html.new-seller .new-seller-flex{display:flex!important;}
 }
 
 /* REGISTER PICKER MODAL */
+.nav-login{font-size:13px;font-weight:600;color:var(--navy)!important;padding:6px 4px;text-decoration:none;border-bottom:2px solid transparent;transition:border-color .15s,color .15s;}
+.nav-login:hover{color:var(--royal)!important;border-bottom-color:var(--royal);}
 .nav-reg{font-size:13px;font-weight:700;padding:9px 18px;border-radius:6px;border:1.5px solid var(--border);color:var(--navy)!important;background:var(--white);transition:border-color .15s,background .15s;}
 .nav-reg:hover{border-color:var(--navy)!important;background:var(--cream)!important;}
 .reg-pick-overlay{display:none;position:fixed;inset:0;background:rgba(2,44,81,0.45);z-index:9000;align-items:center;justify-content:center;padding:24px;}
@@ -337,6 +343,7 @@ html.new-seller .new-seller-flex{display:flex!important;}
     <a href="07_about.html">About</a>
     <span class="nav-user">Hi, Dr. Chen</span>
     <a href="#">Sign out</a>
+    <a href="09_seller_portal.html" class="nav-login">Login</a>
     <a onclick="openRegPick();return false;" href="#" class="nav-reg">Register</a>
     <a href="05_opinion_of_value.html" class="nav-cta">Get a Valuation</a>
   </div>
