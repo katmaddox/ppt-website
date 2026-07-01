@@ -796,6 +796,10 @@ document.addEventListener('keydown',function(e){
     });
   });
 })();
+
+function openRegPick(){document.getElementById('regPickOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeRegPick(e){if(e&&e.target!==document.getElementById('regPickOverlay'))return;document.getElementById('regPickOverlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.getElementById('regPickOverlay').classList.remove('open');document.body.style.overflow='';}});
 </script>
 
 
