@@ -148,17 +148,6 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
 .nda-pill.status-completed{background:#D4EDDA;color:#1E7E34;}
 .nda-pill.status-in-review{background:#FFF3CD;color:#7A5800;}
 .nda-pill.status-not-started{background:var(--cream);color:var(--text-m);}
-/* Questionnaire modal */
-#sq-modal-overlay{display:none;}
-#sq-modal-overlay.open{display:block;}
-.sq-q{display:flex;flex-direction:column;gap:8px;}
-.sq-q-label{font-size:14px;font-weight:600;color:var(--text-b);line-height:1.5;}
-.sq-input{font-family:var(--sans);font-size:14px;color:var(--text-b);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;width:100%;box-sizing:border-box;background:var(--white);transition:border-color .15s;}
-.sq-input:focus{outline:none;border-color:var(--sky);}
-.sq-textarea{resize:vertical;min-height:80px;}
-.sq-radio{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-b);padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:background .15s;}
-.sq-radio:hover{background:var(--navy-tint);}
-.sq-radio input{accent-color:var(--royal);}
 
 /* NEW SELLER STATE */
 html.new-seller .established-only{display:none!important;}
@@ -811,7 +800,7 @@ html.new-seller .new-seller-flex{display:flex!important;}
             <div class="doc-action"><span class="nda-pill signed">✓ Signed</span><button class="btn-sm btn-sm-ghost" onclick="alert('In production, this would download your signed agreement.')">Download</button></div>
           </div>
           <!-- Seller Questionnaire — click to continue -->
-          <div class="doc-item doc-item-clickable" id="sq-doc-row" onclick="openSellerQuestionnaire()">
+          <div class="doc-item doc-item-clickable" id="sq-doc-row" onclick="window.location.href='10_seller_register.html'">
             <div class="doc-icon" style="background:#EAF1F8;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="2" stroke="#115694" stroke-width="1.4"/><path d="M7 6h6M7 9.5h6M7 13h3.5" stroke="#115694" stroke-width="1.3" stroke-linecap="round"/><circle cx="14.5" cy="13.5" r="2.5" fill="#ECB100"/><path d="M14.5 12.3v1.2l.8.8" stroke="#022C51" stroke-width="1" stroke-linecap="round"/></svg></div>
             <div class="doc-info">
               <div class="doc-name">Seller Questionnaire</div>
@@ -823,7 +812,7 @@ html.new-seller .new-seller-flex{display:flex!important;}
             </div>
             <div class="doc-action" id="sq-action">
               <span class="nda-pill status-not-started" id="sq-status-pill">Not started</span>
-              <button class="btn-sm btn-sm-primary" id="sq-cta" onclick="event.stopPropagation();openSellerQuestionnaire()">Start →</button>
+              <a href="10_seller_register.html" class="btn-sm btn-sm-primary" id="sq-cta" onclick="event.stopPropagation()" style="text-decoration:none;">Start →</a>
             </div>
           </div>
           <div class="doc-item doc-item-pending">
@@ -1547,32 +1536,6 @@ html.new-seller .new-seller-flex{display:flex!important;}
   </main>
 </div>
 
-<!-- SELLER QUESTIONNAIRE MODAL -->
-<div id="sq-modal-overlay" style="position:fixed;inset:0;background:rgba(2,44,81,.45);z-index:900;overflow-y:auto;padding:40px 16px;" onclick="if(event.target===this)closeSellerQuestionnaire()">
-  <div style="background:var(--white);border-radius:16px;max-width:640px;margin:0 auto;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.18);">
-    <!-- Header -->
-    <div style="background:var(--navy);padding:28px 32px 24px;position:relative;">
-      <div style="font-family:var(--serif);font-size:22px;color:var(--white);margin-bottom:4px;">Seller Questionnaire</div>
-      <div style="font-size:13px;color:rgba(255,255,255,.7);">Practice details &amp; transition preferences · Your answers are saved automatically</div>
-      <button onclick="closeSellerQuestionnaire()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:rgba(255,255,255,.7);font-size:22px;cursor:pointer;line-height:1;">✕</button>
-      <!-- Progress bar -->
-      <div style="margin-top:18px;">
-        <div style="height:6px;background:rgba(255,255,255,.2);border-radius:3px;overflow:hidden;">
-          <div id="sq-modal-progress-fill" style="height:100%;background:var(--gold);border-radius:3px;width:0%;transition:width .3s;"></div>
-        </div>
-        <div id="sq-modal-progress-label" style="font-size:11px;color:rgba(255,255,255,.6);margin-top:5px;">0% complete</div>
-      </div>
-    </div>
-    <!-- Body -->
-    <div id="sq-modal-body" style="padding:28px 32px;display:flex;flex-direction:column;gap:24px;"></div>
-    <!-- Footer -->
-    <div style="padding:20px 32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
-      <button onclick="closeSellerQuestionnaire()" class="btn-sm btn-sm-ghost">Save &amp; close</button>
-      <button onclick="sqSubmit()" class="btn-sm btn-sm-primary" style="padding:9px 22px;font-size:14px;">Submit to advisor →</button>
-    </div>
-  </div>
-</div>
-
 <!-- FOOTER -->
 <footer class="footer">
   <div class="f-bottom">
@@ -1635,14 +1598,7 @@ function signFinNda(buyer) {
 
 
 // ── SELLER QUESTIONNAIRE ──────────────────────────────────────────────────
-var SQ_QUESTIONS = [
-  { id:'sq1', label:'What is your target transition timeline?', type:'select', opts:['Within 6 months','6–12 months','1–2 years','2+ years / exploring options'] },
-  { id:'sq2', label:'What is your primary motivation for transitioning?', type:'select', opts:['Retirement','Relocation','Career change','Health reasons','Partnership opportunity','Other'] },
-  { id:'sq3', label:'Are you open to staying on as an associate after the sale?', type:'radio', opts:['Yes, for a transition period','Yes, long-term','No','Open to discussion'] },
-  { id:'sq4', label:'Describe the character and culture of your practice (patients, team, community ties):', type:'textarea' },
-  { id:'sq5', label:'Are there any known lease, equipment, or staff considerations a buyer should know about?', type:'textarea' },
-  { id:'sq6', label:'What do you feel makes your practice unique or particularly valuable?', type:'textarea' },
-];
+var SQ_TOTAL = 6;
 
 function sqLoadState() {
   try { return JSON.parse(localStorage.getItem('ptp_sq') || '{}'); } catch(e){ return {}; }
@@ -1653,7 +1609,7 @@ function sqSaveState(state) {
 function sqUpdateRowUI() {
   var state = sqLoadState();
   var answered = Object.keys(state).filter(function(k){ return state[k] && state[k].toString().trim(); }).length;
-  var total = SQ_QUESTIONS.length;
+  var total = SQ_TOTAL;
   var pct = Math.round((answered / total) * 100);
   var pill = document.getElementById('sq-status-pill');
   var fill = document.getElementById('sq-progress-fill');
@@ -1679,70 +1635,6 @@ function sqUpdateRowUI() {
     if(plabel) plabel.textContent = '100% complete';
     if(meta) meta.textContent = 'Submitted for advisor review';
   }
-}
-
-function openSellerQuestionnaire() {
-  var overlay = document.getElementById('sq-modal-overlay');
-  if (!overlay) return;
-  sqRenderModal();
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeSellerQuestionnaire() {
-  var overlay = document.getElementById('sq-modal-overlay');
-  if(overlay) overlay.classList.remove('open');
-  document.body.style.overflow = '';
-  sqUpdateRowUI();
-}
-
-function sqRenderModal() {
-  var state = sqLoadState();
-  var html = '';
-  SQ_QUESTIONS.forEach(function(q, i) {
-    html += '<div class="sq-q" id="sqq-'+i+'">';
-    html += '<div class="sq-q-label">'+(i+1)+'. '+q.label+'</div>';
-    if (q.type === 'select') {
-      html += '<select class="sq-input" onchange="sqSaveField(\''+q.id+'\',this.value)">';
-      html += '<option value="">— Select —</option>';
-      q.opts.forEach(function(o){ html += '<option value="'+o+'"'+(state[q.id]===o?' selected':'')+'>'+o+'</option>'; });
-      html += '</select>';
-    } else if (q.type === 'radio') {
-      q.opts.forEach(function(o){
-        html += '<label class="sq-radio"><input type="radio" name="'+q.id+'" value="'+o+'"'+(state[q.id]===o?' checked':'')+' onchange="sqSaveField(\''+q.id+'\',this.value)"> '+o+'</label>';
-      });
-    } else {
-      html += '<textarea class="sq-input sq-textarea" rows="3" placeholder="Your answer…" onchange="sqSaveField(\''+q.id+'\',this.value)">'+( state[q.id]||'' )+'</textarea>';
-    }
-    html += '</div>';
-  });
-  document.getElementById('sq-modal-body').innerHTML = html;
-}
-
-function sqSaveField(id, val) {
-  var state = sqLoadState();
-  state[id] = val;
-  sqSaveState(state);
-  sqUpdateRowUI();
-  // live-update progress bar inside modal
-  var answered = Object.keys(state).filter(function(k){ return state[k]&&state[k].toString().trim(); }).length;
-  var pct = Math.round((answered/SQ_QUESTIONS.length)*100);
-  var mp = document.getElementById('sq-modal-progress-fill');
-  var ml = document.getElementById('sq-modal-progress-label');
-  if(mp) mp.style.width = pct+'%';
-  if(ml) ml.textContent = pct+'% complete';
-}
-
-function sqSubmit() {
-  var state = sqLoadState();
-  var answered = Object.keys(state).filter(function(k){ return state[k]&&state[k].toString().trim(); }).length;
-  if (answered < SQ_QUESTIONS.length) {
-    if(!confirm('You have '+( SQ_QUESTIONS.length - answered )+' unanswered question(s). Submit anyway? You can come back to update your answers.')) return;
-  }
-  state['__submitted'] = true;
-  // mark all unanswered as reviewed
-  SQ_QUESTIONS.forEach(function(q){ if(!state[q.id]) state[q.id] = '__skipped'; });
-  sqSaveState(state);
-  closeSellerQuestionnaire();
 }
 
 document.addEventListener('DOMContentLoaded', function(){ sqUpdateRowUI(); });
