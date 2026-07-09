@@ -514,6 +514,18 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
         <input type="text" placeholder="e.g. Carestream CS 9300">
       </div>
 
+      <div class="field">
+        <label>Scanner?</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'scanner');toggleCond('scannerModel','scanner','yes')"><input type="radio" name="scanner" value="yes"> <span>Yes</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'scanner');toggleCond('scannerModel','scanner','yes')"><input type="radio" name="scanner" value="no"> <span>No</span></label>
+        </div>
+      </div>
+      <div class="field cond-field" id="scannerModel">
+        <label>Make and Model</label>
+        <input type="text" placeholder="e.g. iTero Element 5D">
+      </div>
+
       <hr class="reg-divider">
       <h3 class="section-head">Lease or ownership</h3>
 
