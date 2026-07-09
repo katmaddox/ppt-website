@@ -384,7 +384,7 @@ html.new-seller .new-seller-flex{display:flex!important;}
       <a class="sidebar-link active" data-view="overview" onclick="showView('overview',this);return false;" href="#">Your account</a>
       <a class="sidebar-link" data-view="listing" onclick="showView('listing',this);return false;" href="#">Your listing <span class="sidebar-badge green">Active</span></a>
       <a class="sidebar-link" data-view="inquiries" onclick="showView('inquiries',this);return false;" href="#">Buyer inquiries <span class="sidebar-badge">4</span></a>
-      <a class="sidebar-link" data-view="documents" onclick="showView('documents',this);return false;" href="#">Documents &amp; NDAs</a>
+      <a class="sidebar-link" data-view="documents" onclick="showView('documents',this);return false;" href="#">Documents &amp; NDAs <span class="sidebar-badge gold new-seller-only" id="doc-alert-badge" style="display:none;">!</span></a>
       <a class="sidebar-link" data-view="settings" onclick="showView('settings',this);return false;" href="#">Account settings</a>
     </nav>
     <div class="sidebar-spacer"></div>
@@ -820,7 +820,15 @@ html.new-seller .new-seller-flex{display:flex!important;}
 
       <!-- NEW SELLER: Document Upload Checklist -->
       <div class="new-seller-only">
-        <div class="section-head" style="margin-bottom:6px;"><div class="section-title" style="font-size:17px;">Document upload checklist</div></div>
+        <div class="section-head" style="margin-bottom:6px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <div class="section-title" style="font-size:17px;">Document upload checklist</div>
+            <div style="font-size:13px;font-weight:700;color:var(--royal);" id="doc-pct-label">0 of 22 uploaded</div>
+          </div>
+          <div style="height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:10px;">
+            <div id="doc-pct-bar" style="height:100%;background:var(--sky);border-radius:3px;width:0%;transition:width .3s;"></div>
+          </div>
+        </div>
         <p style="font-size:14px;color:var(--text-m);margin-bottom:16px;line-height:1.7;">Upload each item to your Dropbox folder, labelled and sorted by category. Check items off as you complete them. Your advisor will be notified when each document is received.</p>
 
         <div class="doc-checklist">
@@ -1610,7 +1618,29 @@ function sqUpdateRowUI() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function(){ sqUpdateRowUI(); });
+function updateDocProgress() {
+  var isNew = document.documentElement.classList.contains('new-seller');
+  var scope = isNew ? '.new-seller-only .doc-checklist' : '.established-only .doc-checklist';
+  var boxes = document.querySelectorAll(scope+' input[type="checkbox"]');
+  var total = boxes.length;
+  var checked = 0;
+  boxes.forEach(function(b){ if(b.checked) checked++; });
+  var pct = total ? Math.round((checked/total)*100) : 0;
+  var bar = document.getElementById('doc-pct-bar');
+  var lbl = document.getElementById('doc-pct-label');
+  var badge = document.getElementById('doc-alert-badge');
+  if(bar) bar.style.width = pct+'%';
+  if(lbl) lbl.textContent = checked+' of '+total+' uploaded';
+  if(badge) badge.style.display = (isNew && checked < total) ? 'inline' : 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  sqUpdateRowUI();
+  document.querySelectorAll('.doc-checklist input[type="checkbox"]').forEach(function(cb){
+    cb.addEventListener('change', updateDocProgress);
+  });
+  updateDocProgress();
+});
 
 // SECOND LISTING — detect ?listing2=pending
 (function(){
