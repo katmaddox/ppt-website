@@ -1099,110 +1099,98 @@ html.new-seller .new-seller-flex{display:flex!important;}
 
           <div class="doc-check-item">
             <div class="doc-check-row">
-              <label class="doc-check-label"><input type="checkbox" id="cb-prod-cat"><span>Itemized Production Breakdown by Category</span></label>
+              <span class="doc-check-label"><span>Itemized Production Breakdown by Category</span></span>
               <div class="doc-check-actions">
                 <span class="doc-status not-uploaded" id="status-prod-cat">Not uploaded</span>
+                <button class="btn-upload-doc" id="upbtn-prod-cat" style="display:none;" onclick="document.getElementById('file-prod-cat').click()">Upload</button>
+                <input type="file" id="file-prod-cat" style="display:none;" onchange="handleDocUpload('prod-cat',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
               </div>
             </div>
             <div class="remote-choice">
               <label class="remote-opt"><input type="radio" name="p-prodCat" value="remote" onchange="showSelfUpload('p-prodCat','prod-cat')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
               <label class="remote-opt"><input type="radio" name="p-prodCat" value="self" onchange="showSelfUpload('p-prodCat','prod-cat')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
             </div>
-            <div class="doc-upload-zone" id="upzone-prod-cat">
-              <label class="doc-upload-trigger" for="file-prod-cat"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
-              <input type="file" class="doc-upload-input" id="file-prod-cat" onchange="handleDocUpload('prod-cat',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
-              <div class="doc-uploaded-file" id="upname-prod-cat"></div>
-            </div>
+            <div class="doc-uploaded-file" id="upname-prod-cat" style="margin-top:6px;"></div>
           </div>
 
           <div class="doc-check-item">
             <div class="doc-check-row">
-              <label class="doc-check-label"><input type="checkbox" id="cb-prod-ada"><span>Itemized Production Breakdown by ADA Code</span></label>
+              <span class="doc-check-label"><span>Itemized Production Breakdown by ADA Code</span></span>
               <div class="doc-check-actions">
                 <span class="doc-status not-uploaded" id="status-prod-ada">Not uploaded</span>
+                <button class="btn-upload-doc" id="upbtn-prod-ada" style="display:none;" onclick="document.getElementById('file-prod-ada').click()">Upload</button>
+                <input type="file" id="file-prod-ada" style="display:none;" onchange="handleDocUpload('prod-ada',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
               </div>
             </div>
             <div class="remote-choice">
               <label class="remote-opt"><input type="radio" name="p-prodADA" value="remote" onchange="showSelfUpload('p-prodADA','prod-ada')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
               <label class="remote-opt"><input type="radio" name="p-prodADA" value="self" onchange="showSelfUpload('p-prodADA','prod-ada')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
             </div>
-            <div class="doc-upload-zone" id="upzone-prod-ada">
-              <label class="doc-upload-trigger" for="file-prod-ada"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
-              <input type="file" class="doc-upload-input" id="file-prod-ada" onchange="handleDocUpload('prod-ada',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
-              <div class="doc-uploaded-file" id="upname-prod-ada"></div>
-            </div>
+            <div class="doc-uploaded-file" id="upname-prod-ada" style="margin-top:6px;"></div>
           </div>
 
           <div class="doc-check-item">
             <div class="doc-check-row">
-              <label class="doc-check-label"><input type="checkbox" id="cb-prod-prov"><span>Itemized Production Breakdown by Provider</span></label>
+              <span class="doc-check-label"><span>Itemized Production Breakdown by Provider</span></span>
               <div class="doc-check-actions">
                 <span class="doc-status not-uploaded" id="status-prod-prov">Not uploaded</span>
+                <button class="btn-upload-doc" id="upbtn-prod-prov" style="display:none;" onclick="document.getElementById('file-prod-prov').click()">Upload</button>
+                <input type="file" id="file-prod-prov" style="display:none;" onchange="handleDocUpload('prod-prov',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
               </div>
             </div>
             <div class="remote-choice">
               <label class="remote-opt"><input type="radio" name="p-prodProv" value="remote" onchange="showSelfUpload('p-prodProv','prod-prov')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
               <label class="remote-opt"><input type="radio" name="p-prodProv" value="self" onchange="showSelfUpload('p-prodProv','prod-prov')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
             </div>
-            <div class="doc-upload-zone" id="upzone-prod-prov">
-              <label class="doc-upload-trigger" for="file-prod-prov"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
-              <input type="file" class="doc-upload-input" id="file-prod-prov" onchange="handleDocUpload('prod-prov',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
-              <div class="doc-uploaded-file" id="upname-prod-prov"></div>
-            </div>
+            <div class="doc-uploaded-file" id="upname-prod-prov" style="margin-top:6px;"></div>
           </div>
 
           <div class="doc-check-item">
             <div class="doc-check-row">
-              <label class="doc-check-label"><input type="checkbox" id="cb-coll-cat"><span>Itemized Collection Breakdown by Category</span></label>
+              <span class="doc-check-label"><span>Itemized Collection Breakdown by Category</span></span>
               <div class="doc-check-actions">
                 <span class="doc-status not-uploaded" id="status-coll-cat">Not uploaded</span>
+                <button class="btn-upload-doc" id="upbtn-coll-cat" style="display:none;" onclick="document.getElementById('file-coll-cat').click()">Upload</button>
+                <input type="file" id="file-coll-cat" style="display:none;" onchange="handleDocUpload('coll-cat',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
               </div>
             </div>
             <div class="remote-choice">
               <label class="remote-opt"><input type="radio" name="p-collCat" value="remote" onchange="showSelfUpload('p-collCat','coll-cat')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
               <label class="remote-opt"><input type="radio" name="p-collCat" value="self" onchange="showSelfUpload('p-collCat','coll-cat')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
             </div>
-            <div class="doc-upload-zone" id="upzone-coll-cat">
-              <label class="doc-upload-trigger" for="file-coll-cat"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
-              <input type="file" class="doc-upload-input" id="file-coll-cat" onchange="handleDocUpload('coll-cat',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
-              <div class="doc-uploaded-file" id="upname-coll-cat"></div>
-            </div>
+            <div class="doc-uploaded-file" id="upname-coll-cat" style="margin-top:6px;"></div>
           </div>
 
           <div class="doc-check-item">
             <div class="doc-check-row">
-              <label class="doc-check-label"><input type="checkbox" id="cb-coll-ada"><span>Itemized Collection Breakdown by ADA Code</span></label>
+              <span class="doc-check-label"><span>Itemized Collection Breakdown by ADA Code</span></span>
               <div class="doc-check-actions">
                 <span class="doc-status not-uploaded" id="status-coll-ada">Not uploaded</span>
+                <button class="btn-upload-doc" id="upbtn-coll-ada" style="display:none;" onclick="document.getElementById('file-coll-ada').click()">Upload</button>
+                <input type="file" id="file-coll-ada" style="display:none;" onchange="handleDocUpload('coll-ada',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
               </div>
             </div>
             <div class="remote-choice">
               <label class="remote-opt"><input type="radio" name="p-collADA" value="remote" onchange="showSelfUpload('p-collADA','coll-ada')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
               <label class="remote-opt"><input type="radio" name="p-collADA" value="self" onchange="showSelfUpload('p-collADA','coll-ada')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
             </div>
-            <div class="doc-upload-zone" id="upzone-coll-ada">
-              <label class="doc-upload-trigger" for="file-coll-ada"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
-              <input type="file" class="doc-upload-input" id="file-coll-ada" onchange="handleDocUpload('coll-ada',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
-              <div class="doc-uploaded-file" id="upname-coll-ada"></div>
-            </div>
+            <div class="doc-uploaded-file" id="upname-coll-ada" style="margin-top:6px;"></div>
           </div>
 
           <div class="doc-check-item">
             <div class="doc-check-row">
-              <label class="doc-check-label"><input type="checkbox" id="cb-coll-prov"><span>Itemized Collection Breakdown by Provider</span></label>
+              <span class="doc-check-label"><span>Itemized Collection Breakdown by Provider</span></span>
               <div class="doc-check-actions">
                 <span class="doc-status not-uploaded" id="status-coll-prov">Not uploaded</span>
+                <button class="btn-upload-doc" id="upbtn-coll-prov" style="display:none;" onclick="document.getElementById('file-coll-prov').click()">Upload</button>
+                <input type="file" id="file-coll-prov" style="display:none;" onchange="handleDocUpload('coll-prov',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
               </div>
             </div>
             <div class="remote-choice">
               <label class="remote-opt"><input type="radio" name="p-collProv" value="remote" onchange="showSelfUpload('p-collProv','coll-prov')"> I authorize Practice Transition Partners to remote in and collect this data <span class="remote-tag auto">PTP collects</span></label>
               <label class="remote-opt"><input type="radio" name="p-collProv" value="self" onchange="showSelfUpload('p-collProv','coll-prov')"> I'll upload this myself <span class="remote-tag manual">I'll upload</span></label>
             </div>
-            <div class="doc-upload-zone" id="upzone-coll-prov">
-              <label class="doc-upload-trigger" for="file-coll-prov"><strong>Choose file</strong> &nbsp;or drag &amp; drop &nbsp;·&nbsp; PDF, JPG, PNG, XLSX accepted</label>
-              <input type="file" class="doc-upload-input" id="file-coll-prov" onchange="handleDocUpload('coll-prov',this)" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls">
-              <div class="doc-uploaded-file" id="upname-coll-prov"></div>
-            </div>
+            <div class="doc-uploaded-file" id="upname-coll-prov" style="margin-top:6px;"></div>
           </div>
         </div>
 
@@ -1738,8 +1726,9 @@ function handleDocUpload(id,input){
 }
 function showSelfUpload(radioName,id){
   var sel=document.querySelector('input[name="'+radioName+'"]:checked');
-  var z=document.getElementById('upzone-'+id);
-  if(z)z.classList.toggle('open', !!(sel&&sel.value==='self'));
+  var isSelf=!!(sel&&sel.value==='self');
+  var btn=document.getElementById('upbtn-'+id);
+  if(btn)btn.style.display=isSelf?'inline-block':'none';
 }
 </script>
 
