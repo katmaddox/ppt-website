@@ -251,7 +251,6 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
     <div class="step-item" id="si-2"><div class="step-circle" id="sc-2">2</div><div class="step-label">Practice Details</div></div>
     <div class="step-item" id="si-3"><div class="step-circle" id="sc-3">3</div><div class="step-label">Team &amp; Hours</div></div>
     <div class="step-item" id="si-4"><div class="step-circle" id="sc-4">4</div><div class="step-label">Practice Profile</div></div>
-    <div class="step-item" id="si-5"><div class="step-circle" id="sc-5">5</div><div class="step-label">Sign Agreement</div></div>
   </div>
 
   <div class="reg-card">
@@ -956,70 +955,11 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
 
       <div class="btn-row">
         <button class="btn btn-ghost" onclick="goToStep(3)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
-        <button class="btn btn-primary" onclick="goToStep(5)">Next: Sign Agreement <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="btn btn-primary" onclick="completeRegistration()">Submit Registration <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div><!-- /panel-4 -->
 
 
-    <!-- ══════════════════════════════════════
-         STEP 5 — SIGN LISTING AGREEMENT
-    ══════════════════════════════════════ -->
-    <div class="step-panel" id="panel-5">
-      <h2 class="reg-title">Seller listing agreement</h2>
-      <p class="reg-sub">Please read and sign the agreement below. This authorizes Practice Transition Partners to market your practice on your behalf.</p>
-
-      <div class="agree-scroll">
-        <h3>Practice Transition Partners<br>Exclusive Seller Listing &amp; Marketing Agreement</h3>
-        <p style="text-align:center;font-size:12px;color:var(--text-m);margin-bottom:16px;">[PLACEHOLDER — Final agreement language to be provided by Practice Transition Partners]</p>
-
-        <h4>1. Appointment of Broker</h4>
-        <p>The undersigned Seller hereby appoints Practice Transition Partners ("Broker") as Seller's exclusive agent for the purpose of marketing, advertising, and facilitating the sale of Seller's dental practice ("Practice") during the term of this Agreement. Seller agrees not to engage any other broker, agent, or intermediary for the sale of the Practice during the term without Broker's prior written consent.</p>
-
-        <h4>2. Term of Agreement</h4>
-        <p>This Agreement shall commence on the date of execution and shall remain in effect for a period of twelve (12) months ("Initial Term"). Following the Initial Term, this Agreement shall automatically renew on a month-to-month basis unless either party provides thirty (30) days' written notice of termination. In the event of termination, Broker's commission obligations survive for a period of twenty-four (24) months for any buyer introduced by Broker during the term.</p>
-
-        <h4>3. Broker's Duties</h4>
-        <p>Broker agrees to: (a) prepare and distribute a confidential practice profile; (b) market the Practice through Broker's proprietary buyer network, website, and professional channels; (c) qualify prospective buyers and obtain signed Non-Disclosure Agreements prior to releasing any confidential information; (d) coordinate site visits and buyer meetings on Seller's behalf; (e) present all offers to Seller and assist in negotiation of terms; and (f) coordinate the due diligence and closing process.</p>
-
-        <h4>4. Seller's Duties</h4>
-        <p>Seller agrees to: (a) provide accurate and complete financial and operational information as requested by Broker; (b) make the Practice available for qualified buyer site visits upon reasonable notice; (c) maintain the Practice in its current operating condition during the marketing period; (d) promptly inform Broker of any material changes to the Practice's financial condition, staff, patient base, or physical premises; and (e) direct all buyer inquiries received directly to Broker.</p>
-
-        <h4>5. Commission</h4>
-        <p>Seller agrees to pay Broker a commission upon the successful closing of a sale of the Practice. The commission rate and structure will be set forth in a separate commission schedule provided by Broker and incorporated herein by reference. Commission shall be earned upon execution of a binding purchase agreement and shall be payable at the close of escrow. [SPECIFIC COMMISSION RATE AND TERMS TO BE INSERTED BY PTP]</p>
-
-        <h4>6. Confidentiality</h4>
-        <p>Broker agrees to maintain the confidentiality of Seller's identity and practice details. All prospective buyers will be required to execute a Buyer Non-Disclosure Agreement prior to receiving any identifying information about Seller or the Practice. Seller acknowledges that general, non-identifying marketing materials may be distributed publicly.</p>
-
-        <h4>7. Accuracy of Information</h4>
-        <p>Seller represents and warrants that all information provided to Broker, including but not limited to financial statements, production reports, lease documents, and staff records, is true, accurate, and complete to the best of Seller's knowledge. Seller agrees to indemnify Broker against any claims arising from material inaccuracies in the information provided.</p>
-
-        <h4>8. Governing Law</h4>
-        <p>This Agreement shall be governed by the laws of the State of California. Any disputes arising hereunder shall be resolved by binding arbitration in Ventura County, California. Electronic signatures shall be deemed original signatures and are legally binding.</p>
-
-        <div class="agree-highlight">By signing below, Seller confirms they have read, understand, and agree to the terms of this Exclusive Listing &amp; Marketing Agreement, and authorize Practice Transition Partners to market their practice on their behalf.</div>
-      </div>
-
-      <label class="sign-row">
-        <input type="checkbox" id="agreeSign">
-        <p>By checking this box, I confirm my identity as the Seller named in this registration and agree that this digital signature is legally binding and constitutes my acceptance of this Exclusive Listing &amp; Marketing Agreement. <span class="req">*</span></p>
-      </label>
-
-      <div class="field-row">
-        <div class="field">
-          <label>Full legal name (signature) <span class="req">*</span></label>
-          <input type="text" id="signName" placeholder="Dr. Sarah Chen">
-        </div>
-        <div class="field">
-          <label>Today's date <span class="req">*</span></label>
-          <input type="date" id="signDate">
-        </div>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goToStep(4)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
-        <button class="btn btn-primary" onclick="completeRegistration()">Complete Registration <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
-    </div><!-- /panel-5 -->
 
 
     <!-- ══════════════════════════════════════
@@ -1181,7 +1121,7 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
 <script>
 // ── STEPPER ──────────────────────────────────────────────
 let currentStep = 1;
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 4;
 
 function goToStep(n) {
   document.getElementById('panel-' + currentStep).classList.remove('active');
@@ -1206,19 +1146,7 @@ function goToStep(n) {
 }
 
 function completeRegistration() {
-  if (!document.getElementById('agreeSign').checked) {
-    alert('Please check the box to confirm your agreement before signing.');
-    return;
-  }
-  if (!document.getElementById('signName').value.trim()) {
-    alert('Please enter your full legal name.');
-    return;
-  }
-  if (!document.getElementById('signDate').value) {
-    alert('Please enter today\'s date.');
-    return;
-  }
-  document.getElementById('panel-5').classList.remove('active');
+  document.getElementById('panel-4').classList.remove('active');
   for (let i = 1; i <= TOTAL_STEPS; i++) {
     const si = document.getElementById('si-' + i);
     if (si) { si.classList.remove('active'); si.classList.add('completed'); }
