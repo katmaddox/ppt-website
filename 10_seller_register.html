@@ -494,6 +494,26 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
         <input type="text" placeholder="e.g. Dentsply Sirona Schick 33">
       </div>
 
+      <div class="field">
+        <label>Cone Beam?</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'coneBeam')"><input type="radio" name="coneBeam" value="yes"> <span>Yes</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'coneBeam')"><input type="radio" name="coneBeam" value="no"> <span>No</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>CBCT?</label>
+        <div class="radio-row" style="margin-top:4px;">
+          <label class="radio-opt" onclick="selectRadio(this,'cbct');toggleCond('cbctModel','cbct','yes')"><input type="radio" name="cbct" value="yes"> <span>Yes</span></label>
+          <label class="radio-opt" onclick="selectRadio(this,'cbct');toggleCond('cbctModel','cbct','yes')"><input type="radio" name="cbct" value="no"> <span>No</span></label>
+        </div>
+      </div>
+      <div class="field cond-field" id="cbctModel">
+        <label>Make and Model</label>
+        <input type="text" placeholder="e.g. Carestream CS 9300">
+      </div>
+
       <hr class="reg-divider">
       <h3 class="section-head">Lease or ownership</h3>
 
