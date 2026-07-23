@@ -259,119 +259,48 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
          STEP 1 — PERSONAL INFO
     ══════════════════════════════════════ -->
     <div class="step-panel active" id="panel-1">
-      <h2 class="reg-title">Personal information</h2>
-      <p class="reg-sub">Let's start with your contact details and a bit about why you're considering a transition.</p>
+      <h2 class="reg-title">Create your account</h2>
+      <p class="reg-sub">Just the basics to get you started — you can complete the full questionnaire now or come back later.</p>
 
       <div class="field-row">
         <div class="field"><label>First Name <span class="req">*</span></label><input type="text" id="firstName" placeholder="Sarah"></div>
         <div class="field"><label>Last Name <span class="req">*</span></label><input type="text" id="lastName" placeholder="Chen"></div>
       </div>
 
-      <div class="field">
-        <label>Credentials <span class="req">*</span></label>
-        <div class="radio-row" style="margin-top:4px;">
-          <label class="radio-opt" onclick="selectRadio(this,'title')"><input type="radio" name="title" value="DDS"> <span>D.D.S.</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'title')"><input type="radio" name="title" value="DMD"> <span>D.M.D.</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'title')"><input type="radio" name="title" value="MD"> <span>M.D.</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'title')"><input type="radio" name="title" value="other"> <span>Other</span></label>
-        </div>
-      </div>
-
       <div class="field-row">
-        <div class="field"><label>Cell Phone <span class="req">*</span></label><input type="tel" id="cell" placeholder="(805) 555-0182"></div>
         <div class="field"><label>Email Address <span class="req">*</span></label><input type="email" id="email" placeholder="you@example.com"></div>
+        <div class="field"><label>Phone <span class="req">*</span></label><input type="tel" id="cell" placeholder="(805) 555-0182"></div>
       </div>
 
       <div class="field">
-        <label>Home Address</label>
-        <input type="text" id="homeAddress" placeholder="123 Main St, City, State ZIP">
-      </div>
-
-      <div class="field">
-        <label>Preferred contact method</label>
-        <div class="radio-row" style="margin-top:4px;">
-          <label class="radio-opt" onclick="selectRadio(this,'contactPref')"><input type="radio" name="contactPref" value="cell"> <span>Cell</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'contactPref')"><input type="radio" name="contactPref" value="email"> <span>Email</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'contactPref')"><input type="radio" name="contactPref" value="home"> <span>Home</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'contactPref')"><input type="radio" name="contactPref" value="office"> <span>Office</span></label>
+        <label>Specialty <span class="req">*</span></label>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:15px;color:var(--text-b);font-family:'Source Sans 3',sans-serif;font-weight:400;">
+            <input type="checkbox" name="specialty" value="dentist" style="width:18px;height:18px;accent-color:var(--royal);cursor:pointer;"> Dentist
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:15px;color:var(--text-b);font-family:'Source Sans 3',sans-serif;font-weight:400;">
+            <input type="checkbox" name="specialty" value="doctor" style="width:18px;height:18px;accent-color:var(--royal);cursor:pointer;"> Doctor
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:15px;color:var(--text-b);font-family:'Source Sans 3',sans-serif;font-weight:400;">
+            <input type="checkbox" name="specialty" value="optometry" style="width:18px;height:18px;accent-color:var(--royal);cursor:pointer;"> Optometry
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:15px;color:var(--text-b);font-family:'Source Sans 3',sans-serif;font-weight:400;">
+            <input type="checkbox" name="specialty" value="veterinarian" style="width:18px;height:18px;accent-color:var(--royal);cursor:pointer;"> Veterinarian
+          </label>
         </div>
       </div>
 
-      <div class="field">
-        <label>Handedness</label>
-        <div class="radio-row" style="margin-top:4px;">
-          <label class="radio-opt" onclick="selectRadio(this,'hand')"><input type="radio" name="hand" value="right"> <span>Right-handed</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'hand')"><input type="radio" name="hand" value="left"> <span>Left-handed</span></label>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Dental / Medical License Number</label>
-        <div class="hint">State and number (e.g. CA-DDS-12345)</div>
-        <input type="text" id="license" placeholder="State — License number">
-      </div>
-
-      <div class="field">
-        <label>Professional associations</label>
-        <input type="text" id="associations" placeholder="e.g. ADA, CDA, AGD…">
-      </div>
-
-      <div class="field">
-        <label>Educational background</label>
-        <div class="hint">Institution(s), degree(s), and year(s) completed</div>
-        <input type="text" id="education" placeholder="e.g. UCLA School of Dentistry, DDS, 1998">
-      </div>
-
-      <hr class="reg-divider">
-
-      <h3 class="section-head">Your transition</h3>
-      <p class="section-sub">This information helps us position your practice correctly from the start.</p>
-
-      <div class="field">
-        <label>Reason for selling <span class="req">*</span></label>
-        <div class="radio-group">
-          <label class="radio-opt" onclick="selectRadio(this,'sellReason')"><input type="radio" name="sellReason" value="retirement"> <span>Retirement</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'sellReason')"><input type="radio" name="sellReason" value="relocation"> <span>Relocation</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'sellReason')"><input type="radio" name="sellReason" value="health"> <span>Health reasons</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'sellReason')"><input type="radio" name="sellReason" value="burnout"> <span>Burnout / lifestyle change</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'sellReason')"><input type="radio" name="sellReason" value="other"> <span>Other</span></label>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Business entity type <span class="req">*</span></label>
-        <select id="entityType">
-          <option value="">Select entity type</option>
-          <option>Sole Proprietor (Schedule C)</option>
-          <option>S Corporation</option>
-          <option>C Corporation</option>
-          <option>LLC</option>
-          <option>Partnership</option>
-          <option>Other</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label>Spouse / partner name</label>
-        <div class="hint">Optional — only if they have a role in the practice</div>
-        <input type="text" id="spouseName" placeholder="Full name">
-      </div>
-      <div class="field">
-        <label>Spouse / partner role in practice</label>
-        <input type="text" id="spouseRole" placeholder="e.g. Office Manager, Dental Hygienist, None">
-      </div>
-
-      <hr class="reg-divider">
-
-      <h3 class="section-head">Create your password</h3>
-      <p class="section-sub">You'll use this to log in and manage your listing and documents.</p>
       <div class="field-row">
         <div class="field"><label>Password <span class="req">*</span></label><input type="password" id="password" placeholder="Min. 8 characters"></div>
         <div class="field"><label>Confirm password <span class="req">*</span></label><input type="password" id="confirmPw" placeholder="Repeat password"></div>
       </div>
 
-      <div class="btn-row first">
-        <button class="btn btn-primary" onclick="goToStep(2)">Next <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:32px;flex-wrap:wrap;gap:12px;">
+        <button class="btn" style="background:var(--border);color:var(--text-b);padding:10px 22px;font-size:15px;border-radius:6px;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-weight:600;" onclick="alert('Saved!')">Save</button>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <a href="09_seller_portal.html?new=true" style="font-size:14px;color:var(--text-m);text-decoration:underline;cursor:pointer;font-family:'Source Sans 3',sans-serif;">Complete forms later</a>
+          <button class="btn btn-primary" onclick="goToStep(2)">Continue to questionnaire <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
       </div>
     </div><!-- /panel-1 -->
 
