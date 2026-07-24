@@ -827,15 +827,46 @@ a{text-decoration:none;color:inherit;}img{display:block;max-width:100%;}h1,h2,h3
       </div>
 
       <div class="field">
-        <label>Are you a member of any insurance plan? (PPO, HMO, Delta, etc.)</label>
-        <div class="radio-row" style="margin-top:4px;">
-          <label class="radio-opt" onclick="selectRadio(this,'hasPPO');toggleCond('ppoList','hasPPO','yes')"><input type="radio" name="hasPPO" value="yes"> <span>Yes</span></label>
-          <label class="radio-opt" onclick="selectRadio(this,'hasPPO');toggleCond('ppoList','hasPPO','yes')"><input type="radio" name="hasPPO" value="no"> <span>No — fee for service only</span></label>
-        </div>
+        <label>Fee type <span class="req">*</span></label>
+        <select id="feeType" onchange="toggleInsurancePlans()">
+          <option value="">Select fee type</option>
+          <option value="private">Private (fee for service only)</option>
+          <option value="insurance">Insurance</option>
+          <option value="mixed">Mixed</option>
+        </select>
       </div>
-      <div class="field cond-field" id="ppoList">
-        <label>List all accepted insurance plans</label>
-        <textarea placeholder="e.g. Delta Dental Premier, Cigna PPO, Aetna PPO, MetLife…"></textarea>
+
+      <div id="insurancePlanBreakdown" style="display:none;">
+        <div class="field">
+          <label>Insurance plan breakdown</label>
+          <div class="hint">Enter the approximate percentage of patients under each plan. Leave blank if not applicable.</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;max-width:340px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:14px;color:var(--text-b);font-family:'Source Sans 3',sans-serif;">PPO</span>
+              <div style="display:flex;align-items:center;gap:6px;"><input type="number" id="pct-ppo" min="0" max="100" placeholder="0" style="width:72px;text-align:right;"> <span style="font-size:14px;color:var(--text-m);">%</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:14px;color:var(--text-b);font-family:'Source Sans 3',sans-serif;">HMO</span>
+              <div style="display:flex;align-items:center;gap:6px;"><input type="number" id="pct-hmo" min="0" max="100" placeholder="0" style="width:72px;text-align:right;"> <span style="font-size:14px;color:var(--text-m);">%</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:14px;color:var(--text-b);font-family:'Source Sans 3',sans-serif;">Denti-Cal</span>
+              <div style="display:flex;align-items:center;gap:6px;"><input type="number" id="pct-dentacal" min="0" max="100" placeholder="0" style="width:72px;text-align:right;"> <span style="font-size:14px;color:var(--text-m);">%</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:14px;color:var(--text-b);font-family:'Source Sans 3',sans-serif;">Medical</span>
+              <div style="display:flex;align-items:center;gap:6px;"><input type="number" id="pct-medical" min="0" max="100" placeholder="0" style="width:72px;text-align:right;"> <span style="font-size:14px;color:var(--text-m);">%</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:14px;color:var(--text-b);font-family:'Source Sans 3',sans-serif;">Delta Premier</span>
+              <div style="display:flex;align-items:center;gap:6px;"><input type="number" id="pct-delta" min="0" max="100" placeholder="0" style="width:72px;text-align:right;"> <span style="font-size:14px;color:var(--text-m);">%</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:14px;color:var(--text-b);font-family:'Source Sans 3',sans-serif;">Cash</span>
+              <div style="display:flex;align-items:center;gap:6px;"><input type="number" id="pct-cash" min="0" max="100" placeholder="0" style="width:72px;text-align:right;"> <span style="font-size:14px;color:var(--text-m);">%</span></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="field">
@@ -1106,6 +1137,12 @@ function selectRadio(label, name) {
 }
 
 // ── CONDITIONAL FIELDS ───────────────────────────────────
+function toggleInsurancePlans() {
+  var val = document.getElementById('feeType').value;
+  var show = (val === 'insurance' || val === 'mixed');
+  document.getElementById('insurancePlanBreakdown').style.display = show ? 'block' : 'none';
+}
+
 function toggleCond(fieldId, radioName, showValue) {
   const radios = document.querySelectorAll('input[name="' + radioName + '"]');
   let val = '';
